@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[java String split的坑]]></title>
+    <url>%2Fjava-String-split%E7%9A%84%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[Java的String中，有一个方法split() 1public String[] split(String regex) 这个方法根据给定的正则表达式，去切分目标字符串，并返回切分后的结果。 简单的测试代码： 123456@Testpublic void test1() &#123; System.out.println(Arrays.toString("1,2".split(",")));&#125;// 输出结果：[1, 2] 上面的代码，输出结果完全符合预期。然而，当把代码做如下修改时： 123456@Testpublic void test2() &#123; System.out.println(Arrays.toString("1.2".split(".")));&#125;// 输出结果：[] 难道不应该输出 [1, 2]吗？ 其实问题就出在split的参数上，在Java中，有些特殊符号输入时，是必须要转义的 \。 将参数改为\\.，就能输出正确结果了 123456@Testpublic void test3() &#123; System.out.println(Arrays.toString("1.2".split("\\.")));&#125;// 输出结果：[1, 2]]]></content>
+      <categories>
+        <category>踩坑记</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[由拆装箱引起的性能问题]]></title>
+    <url>%2F%E7%94%B1%E6%8B%86%E8%A3%85%E7%AE%B1%E5%BC%95%E8%B5%B7%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题代码1int a = Integer.valueOf(request.getParameter("baseProjectId")) 这段代码看上去没什么问题，但其实会有性能上的浪费，Integer.valueOf()的部分源码： 12345678910public static Integer valueOf(String s) throws NumberFormatException &#123; return Integer.valueOf(parseInt(s, 10)); // 注意parseInt这句&#125;public static Integer valueOf(int i) &#123; assert IntegerCache.high &gt;= 127; if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high) return IntegerCache.cache[i + (-IntegerCache.low)]; return new Integer(i);&#125; 由代码可以看出，Integer.valueOf() 先调用parseInt()解析字符串，然后再调用方法，将int转换为Integer对象，然后返回Integer对象。结合上面的问题代码，整个类型转换流程为： 1String --&gt; int --&gt; Integer --&gt; int 在此过程中，不仅创建了一个临时对象，浪费内存，而且进行了一次拆装箱操作，浪费了性能。 更改建议直接将Integer.valueOf()改为Integer.parseInt() 1int a = Integer.parseInt(request.getParameter("baseProjectId"))]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[破解防盗链]]></title>
+    <url>%2F%E7%A0%B4%E8%A7%A3%E9%98%B2%E7%9B%97%E9%93%BE%2F</url>
+    <content type="text"><![CDATA[什么是盗链简单来说，有两个网站，A和B。A网站有一张图片 1&lt;img src="http://xxx/a.png" /&gt; B网站看到了这张图片，他不下载，直接将图片的地址放到了自己的服务器上。那么当用户访问B站点时，实际却跑的是A站点的流量和服务，从而不劳而获，这就是盗链。 referrer为了解决这种事情，HTTP协议规定：浏览器在加载非本站资源时，会增加如下请求头： 1Referer: http://localhost:8080/temp/b.html 这个Referer标签是告诉请求者，引用这个资源的站点是谁 防盗链原理一般的站点，会根据Referer来进行防盗链工作，当请求头存在Referer时，即为非法引用，此时服务器拒绝服务，从而达到防盗链的目的。具体的实现有很多种，此处不细讲了，可自行Google。 破解防盗链了解了防盗链的基本原理后，破解就简单多了。只要想办法在请求的时候取消请求头中的Referer就可以了。这里破解也有好多种办法，可以使用nginx反向代理，或者使用iframe等等。这里介绍一种我认为相对来说最简单的办法： 1&lt;meta name="referrer" content="never"&gt; 只要在html中加入上面的meta标签，就可以破解简单的防盗链了。这个meta标签的意思是告诉浏览器，请求时不用包含referer相关的信息，从而达到破解防盗链的目的。 referer与referrer有人觉得很奇怪，浏览器中的请求头是referer，怎么标签里的是referrer，其实标签中的referrer才是正确的单词，据说是当时HTTP协议的制定者将单词拼错，大家就将错就错的使用了。具体可看维基百科的 HTTP来源地址 词条]]></content>
+      <categories>
+        <category>奇淫巧技</category>
+      </categories>
+      <tags>
+        <tag>奇淫巧技</tag>
+        <tag>防盗链</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[搭建git服务器]]></title>
     <url>%2F%E6%90%AD%E5%BB%BAgit%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[前言&emsp;&emsp;git可以说是目前使用最广泛的版本控制系统了，GitHub是基于git的免费的代码托管网站，有人说，既然都是免费的了，直接用不就好了吗，干嘛还要费劲自己搭建一个服务。我想说的是，GitHub虽然是免费的，但是有一点很重要，那就是私有性。公司内部的项目通常都是要保密的。虽然GitHub可以选择仓库私有，但那是要收费的。综上所述，还是在自己私有的服务器上搭建git服务比较合适。 &emsp;&emsp;本次演示使用VMware虚拟机，系统镜像CentOS 6.9 x64，root账户进行安装操作。 正文开始安装git使用yum查询当前是否有可安装的git版本 1[root@hadoop02 home]# yum info git 使用yum安装git 1[root@hadoop03 ~]# yum install -y git 检查是否安装成功 12[root@hadoop03 ~]# git versiongit version 1.7.1 创建git运行用户1[root@hadoop03 ~]# adduser git 在当前Linux系统中创建了一个新的用户git。 执行完以上命令后，会在/home生成一个git文件夹。我们cd到home目录查看一下 123[root@hadoop03 git]# cd /home/git[root@hadoop03 git]# ls -a. .. .bash_logout .bash_profile .bashrc .gnome2 .mozilla 禁止git用户shell登录创建git用户是为了访问服务器的git仓库，为了安全起见，将git用户禁止shell登录。 1[root@hadoop02 gitrepo]# vi /etc/passwd 找到类似下面的一句 1git:x:501:501::/home/git:/bin/bash 将其改为 1git:x:501:501::/home/git:/usr/bin/git-shell 保存即可 创建ssh证书登录在/home/git文件夹下，创建一个新文件夹.ssh，并新建一个文件authorized_keys，这个authorized_keys文件用来存放我们的git公钥。 12345[root@hadoop03 git]# mkdir .ssh[root@hadoop03 git]# cd .ssh[root@hadoop03 .ssh]# touch authorized_keys[root@hadoop03 .ssh]# lsauthorized_keys 收集团队中其他人的git公钥，复制后添加到authorized_keys文件中。git公钥一般存放在C:\Users\xxx\.ssh\id_rsa.pub中。如果你的电脑上没有，需要安装git客户端，并生成git公钥。关于此部分，我的另一篇博客使用GitHub-Pages-Hexo-搭建博客中有所介绍，此处不再细讲。 1[root@hadoop03 git]# vim authorized_keys 粘贴公钥后，保存即可。 注意：粘贴公钥时，注意空格。公钥一行一个。 初始化git仓库创建一个仓库目录，我放在/home/gitrepo下面 123[root@hadoop03 home]# mkdir gitrepo[root@hadoop03 home]# lsgit gitrepo 初始化git仓库，假设项目名叫test 123[root@hadoop03 home]# cd gitrepo/[root@hadoop03 gitrepo]# git init --bare test.gitInitialized empty Git repository in /home/gitrepo/test.git/ 执行完命令后，会在gitrepo下生成test.git目录 12[root@hadoop03 gitrepo]# lstest.git 修改仓库的归属权限，否则无法访问git仓库 1[root@hadoop02 gitrepo]# chown -R git:git test.git/ 至此，git服务器搭建完成。 克隆远程仓库1234λ git clone git@192.168.213.130:/home/gitrepo/test.gitCloning into 'test'...key_load_public: invalid formatwarning: You appear to have cloned an empty repository. 接下来就尽情使用git吧。]]></content>
