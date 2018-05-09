@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hexo修改样式的弯路]]></title>
+    <url>%2FHexo%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%BC%AF%E8%B7%AF%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;博客搭建一周多了，文章没写多少，却每天舍本逐末，不断的修改主题样式。今天终于醒悟了，本来搭建博客，是为了方便写作，分享知识，现在却背道而驰，想想感觉自己挺可笑的。 &emsp;&emsp;静下心来想想，自己经常会犯这种错，主次不分。嗯！希望以后注意这个问题，尽快改正。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[java String split的坑]]></title>
     <url>%2Fjava-String-split%E7%9A%84%E5%9D%91%2F</url>
     <content type="text"><![CDATA[Java的String中，有一个方法split() 1public String[] split(String regex) 这个方法根据给定的正则表达式，去切分目标字符串，并返回切分后的结果。 简单的测试代码： 123456@Testpublic void test1() &#123; System.out.println(Arrays.toString("1,2".split(",")));&#125;// 输出结果：[1, 2] 上面的代码，输出结果完全符合预期。然而，当把代码做如下修改时： 123456@Testpublic void test2() &#123; System.out.println(Arrays.toString("1.2".split(".")));&#125;// 输出结果：[] 难道不应该输出 [1, 2]吗？ 其实问题就出在split的参数上，在Java中，有些特殊符号输入时，是必须要转义的 \。 将参数改为\\.，就能输出正确结果了 123456@Testpublic void test3() &#123; System.out.println(Arrays.toString("1.2".split("\\.")));&#125;// 输出结果：[1, 2]]]></content>
