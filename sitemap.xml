@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.zhangjava.com/about/index.html</loc>
+    
+    <lastmod>2018-05-09T13:41:54.694Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.zhangjava.com/java-String-split%E7%9A%84%E5%9D%91/</loc>
     
-    <lastmod>2018-05-08T15:29:25.041Z</lastmod>
+    <lastmod>2018-05-09T13:40:20.238Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>https://www.zhangjava.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%86%99%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2018-05-07T01:29:28.424Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.zhangjava.com/about/index.html</loc>
-    
-    <lastmod>2018-05-05T17:03:06.505Z</lastmod>
     
   </url>
   
