@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IntelliJ IDEA 使用git]]></title>
+    <url>%2FIntelliJ-IDEA-%E4%BD%BF%E7%94%A8git%2F</url>
+    <content type="text"><![CDATA[IDEA中git的配置使用Ctrl+Alt+S打开设置 如图所示进行配置，配置完场后点击Test按钮，如果弹出版本号表示配置成功。 项目中使用gitgit检出项目 填写完地址后，点击Clone就可以检出项目了。 为项目添加git版本控制如图所示，为项目创建一个本地git版本库 选择当前项目文件夹，创建版本库 项目右键，将项目添加到版本控制中 提交项目到本地的仓库 填写提交说明，点击提交 连接到远程仓库 设置远程仓库位置 推送到远程仓库]]></content>
+      <categories>
+        <category>编程工具</category>
+      </categories>
+      <tags>
+        <tag>IntelliJ IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo修改样式的弯路]]></title>
     <url>%2FHexo%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%BC%AF%E8%B7%AF%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;博客搭建一周多了，文章没写多少，却每天舍本逐末，不断的修改主题样式。今天终于醒悟了，本来搭建博客，是为了方便写作，分享知识，现在却背道而驰，想想感觉自己挺可笑的。 &emsp;&emsp;静下心来想想，自己经常会犯这种错，主次不分。嗯！希望以后注意这个问题，尽快改正。]]></content>
