@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/%E4%BD%BF%E7%94%A8GitHub-Pages-Hexo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-05-11T09:55:35.179Z</lastmod>
+    <data>
+        <display>
+        <title>使用GitHub Pages + Hexo 搭建博客</title>
+        <pubTime>2018-05-04T14:56:36.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>自建博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="https://www.zhangjava.com/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/IntelliJ-IDEA-%E4%BD%BF%E7%94%A8git/</loc>
     <lastmod>2018-05-10T14:11:13.691Z</lastmod>
     <data>
@@ -120,28 +142,6 @@
            
              
               <breadCrumb title="git" url="https://www.zhangjava.com/categories/git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.zhangjava.com/%E4%BD%BF%E7%94%A8GitHub-Pages-Hexo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2018-05-07T01:57:40.924Z</lastmod>
-    <data>
-        <display>
-        <title>使用GitHub Pages + Hexo 搭建博客</title>
-        <pubTime>2018-05-04T14:56:36.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-        <tag>自建博客</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="https://www.zhangjava.com/categories/Hexo/"/>
           
         </display>
     </data>
