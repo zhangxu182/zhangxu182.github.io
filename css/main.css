@@ -1999,7 +1999,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b58e4d;
+  background: #ffffd6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2121,7 +2121,7 @@ pre .javascript .function {
 }
 .footer {
   font-size: 14px;
-  color: #999;
+  color: $white-dark;
 }
 .footer img {
   border: none;
@@ -3305,6 +3305,14 @@ pre .javascript .function {
 }
 .highlight figcaption a {
   color: #5073b8;
+}
+@media screen and (min-width: 1200px) {
+  body {
+    background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+  }
 }
 span#inline-yellow {
   display: inline;

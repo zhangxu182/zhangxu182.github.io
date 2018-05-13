@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hexo写作样式]]></title>
-    <url>%2FHexo%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F%2F</url>
+    <title><![CDATA[Hexo写作样式简介]]></title>
+    <url>%2FHexo%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F%E7%AE%80%E4%BB%8B%2F</url>
     <content type="text"><![CDATA[使用Hexo中自带的写作样式，丰富文章表现形式 note标签修改主题配置文件_config.yml 12345note: style: flat icons: true border_radius: 3 light_bg_offset: 0 default 1&lt;div class="note default"&gt;&lt;p&gt;default&lt;/p&gt;&lt;/div&gt; primary 1&lt;div class="note primary"&gt;&lt;p&gt;primary&lt;/p&gt;&lt;/div&gt; success 1&lt;div class="note success"&gt;&lt;p&gt;success&lt;/p&gt;&lt;/div&gt; info 1&lt;div class="note info"&gt;&lt;p&gt;info&lt;/p&gt;&lt;/div&gt; warning 1&lt;div class="note warning"&gt;&lt;p&gt;warning&lt;/p&gt;&lt;/div&gt; danger 1&lt;div class="note danger"&gt;&lt;p&gt;danger&lt;/p&gt;&lt;/div&gt; tabs标签选项卡 1选项卡 2选项卡 3选项卡 1 选项卡 2 这是选项卡 3 上面的，3表示打开页面时，默认展示第三个选项卡 1234567891011&#123;% tabs 选项卡, 3 %&#125;&lt;!-- tab --&gt;**选项卡 1**&lt;!-- endtab --&gt;&lt;!-- tab --&gt;**选项卡 2**&lt;!-- endtab --&gt;&lt;!-- tab --&gt;**这是选项卡 3**&lt;!-- endtab --&gt;&#123;% endtabs %&#125; 图标 照相机 电池 hexo 使用的是fontawesome图标，直接引用就可以 121. &lt;i class="fa fa-camera"&gt;&lt;/i&gt; 照相机2. &lt;i class="fa fa-battery-4"&gt;&lt;/i&gt; 电池 按钮google一下 1&#123;% btn https://www.google.com, google一下, google fa-fw %&#125;]]></content>
       <categories>
         <category>Hexo</category>

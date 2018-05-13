@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.zhangjava.com/Hexo%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2018-05-11T16:50:03.134Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.zhangjava.com/%E7%A0%B4%E8%A7%A3%E9%98%B2%E7%9B%97%E9%93%BE/</loc>
     
     <lastmod>2018-05-11T16:35:39.191Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://www.zhangjava.com/IntelliJ-IDEA-%E4%BD%BF%E7%94%A8git/</loc>
     
     <lastmod>2018-05-11T16:31:21.298Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.zhangjava.com/Hexo%E5%86%99%E4%BD%9C%E6%A0%B7%E5%BC%8F/</loc>
-    
-    <lastmod>2018-05-11T16:26:54.083Z</lastmod>
     
   </url>
   
