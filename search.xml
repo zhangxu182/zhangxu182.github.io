@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java NIO 概述]]></title>
+    <url>%2FJava-NIO-%E6%A6%82%E8%BF%B0%2F</url>
+    <content type="text"><![CDATA[Java NIO简介 Java NIO 简介Java NIO(New IO / Non Blocking IO)是从Java1.4 版本开始引入的一个新的IO API，可以替代标准的Java IO API。NIO与原来的IO有相同的作用和目的，但是使用的方式完全不同，NIO支持面向缓冲区的、基于通道的IO操作。NIO以更加高效的方式进行文件的读写操作。 NIO与IO的区别 IO NIO 面向流(Stream Oriented) 面向缓冲区(Buffer Oriented) 阻塞IO(Blocking IO) 非阻塞IO(Non Blocking IO) 选择器(Selectors) 通道和缓冲区Java NIO系统的核心在于：通道(Channel)和缓冲区(Buffer)。通道表示打开到IO设备(如：文件、套接字)的连接。若需要使用NIO系统，需要获取用于连接IO设备的通道以及用于容纳数据的缓冲区。然后操作缓冲区，对数据进行处理。 缓冲区是一个用于存放特定基本数据类型的容器。由java.nio包定义，所有的缓冲区都是Buffer抽象类的子类。缓冲区主要用来与通道进行交互，数据从通道读入缓冲区，从缓冲区写入通道。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一些感悟]]></title>
     <url>%2F%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F%2F</url>
     <content type="text"><![CDATA[最近的一些感悟 &emsp;&emsp;有十天没有写过东西了，今天刚好周末，说静下心来写写东西吧，结果坐下来想了想，似乎并没有什么要写的。感觉这一周仿佛什么都没有做一样。再往深处想一想，一年仅仅52周，如果每周都是这个样子，那么一年也就是这个样子了。一年是这个样子，十年呢，二十年呢？细思极恐，一辈子碌碌无为恐怕就是这样的吧。 &emsp;&emsp;似乎我们身边的人都感觉时间是最不值钱的东西，我们可以整天待在家里抱着手机看一天的视频或者小说，仗着自己年轻，尽情挥霍着大把大把的时间。然后感叹一下，哎，今天又虚度了一天。结果第二天依然如此，日复一日，年复一年。 &emsp;&emsp;世间虽有很多的不公，但在时间上，是绝对公平的。每个人所拥有的时间都是完全一样的。人与人的区别就在于时间利用上的不同而体现出来的。有的人是重复昨天，而有的人是活在今天。勤学似春起之苗,不见其增,日有所长;辍学如磨刀之石,不见其损,日有所亏。 &emsp;&emsp;与君共勉。]]></content>
