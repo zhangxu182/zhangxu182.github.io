@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="张扎瓦,zhangjava" />
+  <meta name="keywords" content="Channel,NIO," />
 
 
 
@@ -88,17 +88,21 @@
 
 
 
-<meta name="description" content="生命不止，编程不息">
-<meta name="keywords" content="张扎瓦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="张扎瓦的博客">
-<meta property="og:url" content="https://www.zhangjava.com/archives/index.html">
+<meta name="description" content="Channel通道的获取与原理">
+<meta name="keywords" content="Channel,NIO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Channel通道">
+<meta property="og:url" content="https://www.zhangjava.com/Channel通道/index.html">
 <meta property="og:site_name" content="张扎瓦的博客">
-<meta property="og:description" content="生命不止，编程不息">
+<meta property="og:description" content="Channel通道的获取与原理">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1527650405316.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1527650405765.jpg">
+<meta property="og:updated_time" content="2018-05-30T06:20:39.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="张扎瓦的博客">
-<meta name="twitter:description" content="生命不止，编程不息">
+<meta name="twitter:title" content="Channel通道">
+<meta name="twitter:description" content="Channel通道的获取与原理">
+<meta name="twitter:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1527650405316.jpg">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://www.zhangjava.com/archives/"/>
+  <link rel="canonical" href="https://www.zhangjava.com/Channel通道/"/>
 
 
 
 
 
-  <title>归档 | 张扎瓦的博客</title>
+  <title>Channel通道 | 张扎瓦的博客</title>
   
 
 
@@ -153,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,411 +295,295 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/Channel通道/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张扎瓦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://zhangjava-1252424622.cosbj.myqcloud.com/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张扎瓦的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Channel通道</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T16:43:37+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T14:20:39+08:00">
+                2018-05-30
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 16 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Channel通道/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Channel通道/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/Channel通道/" class="leancloud_visitors" data-flag-title="Channel通道">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Channel通道/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Channel通道</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  612
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-29T16:43:37+08:00"
-              content="2018-05-29" >
-          05-29
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Buffer缓冲区/" itemprop="url">
-              
-                <span itemprop="name">Buffer缓冲区</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-29T11:24:46+08:00"
-              content="2018-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Java-NIO-概述/" itemprop="url">
-              
-                <span itemprop="name">Java NIO 概述</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-28T21:45:06+08:00"
-              content="2018-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote class="blockquote-center"><p>Channel通道的获取与原理</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>表示io源与目标打开的连接。Channel类似于传统的流，只不过Channel本身不能直接访问数据，Channel只能与Buffer进行交互。</p>
+<p>Channel的主要实现类：FileChannel，SocketChannel，ServerSocketChannel，DatagramChannel</p>
+<h2 id="获取通道"><a href="#获取通道" class="headerlink" title="获取通道"></a>获取通道</h2><h3 id="使用getChannel-方法"><a href="#使用getChannel-方法" class="headerlink" title="使用getChannel()方法"></a>使用getChannel()方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>(</span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">"b.txt"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1.获取通道</span></span><br><span class="line">        FileChannel inChannel = fileInputStream.getChannel();</span><br><span class="line">        FileChannel outChannel = fileOutputStream.getChannel();</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 2.创建缓冲区</span></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3.将通道中的数据存入缓冲区</span></span><br><span class="line">        <span class="keyword">while</span> (inChannel.read(byteBuffer) != -<span class="number">1</span>) &#123;</span><br><span class="line">            byteBuffer.flip();  <span class="comment">//切换到读数据模式</span></span><br><span class="line">            outChannel.write(byteBuffer);</span><br><span class="line">            byteBuffer.clear(); <span class="comment">//清空缓冲区</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用静态open-方法"><a href="#使用静态open-方法" class="headerlink" title="使用静态open()方法"></a>使用静态open()方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>(</span><br><span class="line">        FileChannel inChannel = FileChannel.open(Paths.get(<span class="string">"a.txt"</span>), StandardOpenOption.READ);</span><br><span class="line">        FileChannel outChannel = FileChannel.open(Paths.get(<span class="string">"b.txt"</span>),</span><br><span class="line">                                                  StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE);</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 内存映射文件</span></span><br><span class="line">        MappedByteBuffer inMappedByteBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, <span class="number">0</span>, inChannel.size());</span><br><span class="line">        MappedByteBuffer outMappedByteBuffer = outChannel.map(FileChannel.MapMode.READ_WRITE, <span class="number">0</span>, inChannel.size());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] dst = <span class="keyword">new</span> <span class="keyword">byte</span>[inMappedByteBuffer.limit()];</span><br><span class="line">        inMappedByteBuffer.get(dst);</span><br><span class="line">        outMappedByteBuffer.put(dst);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用Files工具类中的静态方法-newByteChannel"><a href="#使用Files工具类中的静态方法-newByteChannel" class="headerlink" title="使用Files工具类中的静态方法 newByteChannel()"></a>使用Files工具类中的静态方法 newByteChannel()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="comment">// 获取Channel，Files只能获取ByteChannel</span></span><br><span class="line">        ByteChannel inChannel = Files.newByteChannel(Paths.get(<span class="string">"a.txt"</span>),</span><br><span class="line">                                                     StandardOpenOption.READ);</span><br><span class="line">        ByteChannel outChannel = Files.newByteChannel(Paths.get(<span class="string">"b.txt"</span>),</span><br><span class="line">                                                      StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE);</span><br><span class="line"></span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 创建缓冲区</span></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line">        <span class="keyword">while</span> (inChannel.read(byteBuffer) != -<span class="number">1</span>) &#123;</span><br><span class="line">            byteBuffer.flip();</span><br><span class="line">            outChannel.write(byteBuffer);</span><br><span class="line">            byteBuffer.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="通道之间的互相传输"><a href="#通道之间的互相传输" class="headerlink" title="通道之间的互相传输"></a>通道之间的互相传输</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        FileChannel inChannel = FileChannel.open(Paths.get(<span class="string">"a.txt"</span>), StandardOpenOption.READ);</span><br><span class="line">        FileChannel outChannel = FileChannel.open(Paths.get(<span class="string">"b.txt"</span>),</span><br><span class="line">                                                  StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE);</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">//inChannel.transferTo(0, inChannel.size(), outChannel);</span></span><br><span class="line">        <span class="comment">// 或者</span></span><br><span class="line">        outChannel.transferFrom(inChannel, <span class="number">0</span>, inChannel.size());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分散读取与聚集写入"><a href="#分散读取与聚集写入" class="headerlink" title="分散读取与聚集写入"></a>分散读取与聚集写入</h2><p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1527650405316.jpg" alt="分散读取"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        FileChannel fileChannel = FileChannel.open(Paths.get(<span class="string">"a.txt"</span>), StandardOpenOption.READ);</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 分配缓冲区</span></span><br><span class="line">        ByteBuffer buffer1 = ByteBuffer.allocate(<span class="number">9</span>);</span><br><span class="line">        ByteBuffer buffer2 = ByteBuffer.allocate(<span class="number">6</span>);</span><br><span class="line">        ByteBuffer[] byteBuffers = &#123;buffer1, buffer2&#125;;</span><br><span class="line">        <span class="comment">// 分散读取</span></span><br><span class="line">        fileChannel.read(byteBuffers);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (ByteBuffer byteBuffer : byteBuffers) &#123;</span><br><span class="line">            byteBuffer.flip();</span><br><span class="line">            System.out.println(byteBuffer + <span class="keyword">new</span> String(byteBuffer.array()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1527650405765.jpg" alt="聚集写入"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test6</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        FileChannel inChannel = FileChannel.open(Paths.get(<span class="string">"a.txt"</span>), StandardOpenOption.READ);</span><br><span class="line">        FileChannel outChannel = FileChannel.open(Paths.get(<span class="string">"b.txt"</span>),</span><br><span class="line">                                                  StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE);</span><br><span class="line">    ) &#123;</span><br><span class="line">        ByteBuffer buffer1 = ByteBuffer.allocate(<span class="number">72</span>);</span><br><span class="line">        ByteBuffer buffer2 = ByteBuffer.allocate(<span class="number">72</span>);</span><br><span class="line">        ByteBuffer[] buffers = &#123;buffer1, buffer2&#125;;</span><br><span class="line"></span><br><span class="line">        inChannel.read(buffers);</span><br><span class="line">        <span class="keyword">for</span> (ByteBuffer buffer : buffers) &#123;</span><br><span class="line">            buffer.flip();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 聚集写入</span></span><br><span class="line">        outChannel.write(buffers);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/一些感悟/" itemprop="url">
-              
-                <span itemprop="name">一些感悟</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-27T16:33:14+08:00"
-              content="2018-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/创建型模式之简单工厂/" itemprop="url">
-              
-                <span itemprop="name">创建型模式之简单工厂</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T21:41:27+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/创建型模式之单例模式/" itemprop="url">
-              
-                <span itemprop="name">创建型模式之单例模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-15T22:31:26+08:00"
-              content="2018-05-15" >
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/设计模式概述/" itemprop="url">
-              
-                <span itemprop="name">设计模式概述</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-15T21:18:33+08:00"
-              content="2018-05-15" >
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Hexo上传图片/" itemprop="url">
-              
-                <span itemprop="name">Hexo上传图片</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-13T15:06:21+08:00"
-              content="2018-05-13" >
-          05-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Hexo写作样式简介/" itemprop="url">
-              
-                <span itemprop="name">Hexo写作样式简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-11T22:57:30+08:00"
-              content="2018-05-11" >
-          05-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/IntelliJ-IDEA-使用git/" itemprop="url">
-              
-                <span itemprop="name">IntelliJ IDEA 使用git</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-10T17:17:00+08:00"
-              content="2018-05-10" >
-          05-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对您有所帮助，不妨打赏一杯豆浆以资鼓励(○｀ 3′○)</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://zhangjava-1252424622.cosbj.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E9%92%B1%E7%A0%81.jpg" alt="张扎瓦 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://zhangjava-1252424622.cosbj.myqcloud.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E9%92%B1%E7%A0%81.jpg" alt="张扎瓦 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    张扎瓦
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.zhangjava.com/Channel通道/" title="Channel通道">https://www.zhangjava.com/Channel通道/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Channel/" rel="tag"><i class="fa fa-tag"></i> Channel</a>
+          
+            <a href="/tags/NIO/" rel="tag"><i class="fa fa-tag"></i> NIO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Buffer缓冲区/" rel="next" title="Buffer缓冲区">
+                <i class="fa fa-chevron-left"></i> Buffer缓冲区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -703,6 +591,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -723,8 +618,17 @@
 	  
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -788,6 +692,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取通道"><span class="nav-number">2.</span> <span class="nav-text">获取通道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用getChannel-方法"><span class="nav-number">2.1.</span> <span class="nav-text">使用getChannel()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用静态open-方法"><span class="nav-number">2.2.</span> <span class="nav-text">使用静态open()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Files工具类中的静态方法-newByteChannel"><span class="nav-number">2.3.</span> <span class="nav-text">使用Files工具类中的静态方法 newByteChannel()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道之间的互相传输"><span class="nav-number">3.</span> <span class="nav-text">通道之间的互相传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分散读取与聚集写入"><span class="nav-number">4.</span> <span class="nav-text">分散读取与聚集写入</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -922,6 +842,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
