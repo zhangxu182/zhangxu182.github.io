@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="奇淫巧技,防盗链," />
+  <meta name="keywords" content="java,netty," />
 
 
 
@@ -88,20 +88,18 @@
 
 
 
-<meta name="description" content="用简单粗暴的方式破解防盗链">
-<meta name="keywords" content="奇淫巧技,防盗链">
+<meta name="description" content="Java NIO 框架netty的简单介绍以及hello world程序示例">
+<meta name="keywords" content="java,netty">
 <meta property="og:type" content="article">
-<meta property="og:title" content="破解防盗链">
-<meta property="og:url" content="https://www.zhangjava.com/破解防盗链/index.html">
+<meta property="og:title" content="netty hello world">
+<meta property="og:url" content="https://www.zhangjava.com/netty-hello-world/index.html">
 <meta property="og:site_name" content="张扎瓦的博客">
-<meta property="og:description" content="用简单粗暴的方式破解防盗链">
+<meta property="og:description" content="Java NIO 框架netty的简单介绍以及hello world程序示例">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhangjava-1252424622.cosbj.myqcloud.com/referer.png">
-<meta property="og:updated_time" content="2018-05-11T16:35:39.191Z">
+<meta property="og:updated_time" content="2018-06-02T08:18:07.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="破解防盗链">
-<meta name="twitter:description" content="用简单粗暴的方式破解防盗链">
-<meta name="twitter:image" content="http://zhangjava-1252424622.cosbj.myqcloud.com/referer.png">
+<meta name="twitter:title" content="netty hello world">
+<meta name="twitter:description" content="Java NIO 框架netty的简单介绍以及hello world程序示例">
 
 
 
@@ -131,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://www.zhangjava.com/破解防盗链/"/>
+  <link rel="canonical" href="https://www.zhangjava.com/netty-hello-world/"/>
 
 
 
 
 
-  <title>破解防盗链 | 张扎瓦的博客</title>
+  <title>netty hello world | 张扎瓦的博客</title>
   
 
 
@@ -308,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/破解防盗链/">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/netty-hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张扎瓦">
@@ -325,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">破解防盗链</h1>
+          <h1 class="post-title" itemprop="name headline">netty hello world</h1>
         
 
         <div class="post-meta">
@@ -337,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T21:22:51+08:00">
-                2018-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-02T15:27:45+08:00">
+                2018-06-02
               </time>
             
 
@@ -353,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-12T00:35:39+08:00">
-                2018-05-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-02T16:18:07+08:00">
+                2018-06-02
               </time>
             
           </span>
@@ -372,8 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/奇淫巧技/" itemprop="url" rel="index">
-                    <span itemprop="name">奇淫巧技</span>
+                  <a href="/categories/netty/" itemprop="url" rel="index">
+                    <span itemprop="name">netty</span>
                   </a>
                 </span>
 
@@ -390,8 +388,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/破解防盗链/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/破解防盗链/" itemprop="commentCount"></span>
+                <a href="/netty-hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/netty-hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -399,7 +397,7 @@
 
           
           
-             <span id="/破解防盗链/" class="leancloud_visitors" data-flag-title="破解防盗链">
+             <span id="/netty-hello-world/" class="leancloud_visitors" data-flag-title="netty hello world">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  498
+                  1,825
                 </span>
               
 
@@ -440,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  8
                 </span>
               
             </div>
@@ -461,22 +459,45 @@
       
 
       
-        <blockquote class="blockquote-center"><p>用简单粗暴的方式破解防盗链</p>
+        <blockquote class="blockquote-center"><p>Java NIO 框架netty的简单介绍以及hello world程序示例</p>
 </blockquote>
 <a id="more"></a>
 <hr>
-<h2 id="什么是盗链"><a href="#什么是盗链" class="headerlink" title="什么是盗链"></a>什么是盗链</h2><p>简单来说，有两个网站，A和B。<br>A网站有一张图片</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://xxx/a.png"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>B网站看到了这张图片，他不下载，直接将图片的地址放到了自己的服务器上。那么当用户访问B站点时，实际却跑的是A站点的流量和服务，从而不劳而获，这就是盗链。</p>
-<h2 id="referrer"><a href="#referrer" class="headerlink" title="referrer"></a>referrer</h2><p>为了解决这种事情，HTTP协议规定：浏览器在加载非本站资源时，会增加如下请求头：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer: http://localhost:8080/temp/b.html</span><br></pre></td></tr></table></figure>
-<p>这个Referer标签是告诉请求者，引用这个资源的站点是谁</p>
-<p><img src="http://zhangjava-1252424622.cosbj.myqcloud.com/referer.png" alt="referer"></p>
-<h2 id="防盗链原理"><a href="#防盗链原理" class="headerlink" title="防盗链原理"></a>防盗链原理</h2><p>一般的站点，会根据Referer来进行防盗链工作，当请求头存在Referer时，即为非法引用，此时服务器拒绝服务，从而达到防盗链的目的。具体的实现有很多种，此处不细讲了，可自行Google。</p>
-<h2 id="破解防盗链"><a href="#破解防盗链" class="headerlink" title="破解防盗链"></a>破解防盗链</h2><p>了解了防盗链的基本原理后，破解就简单多了。只要想办法在请求的时候取消请求头中的<code>Referer</code>就可以了。这里破解也有好多种办法，可以使用nginx反向代理，或者使用iframe等等。这里介绍一种我认为相对来说最简单的办法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"referrer"</span> <span class="attr">content</span>=<span class="string">"never"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>只要在html中加入上面的meta标签，就可以破解简单的防盗链了。这个meta标签的意思是告诉浏览器，请求时不用包含referer相关的信息，从而达到破解防盗链的目的。</p>
-<h2 id="referer与referrer"><a href="#referer与referrer" class="headerlink" title="referer与referrer"></a>referer与referrer</h2><p>有人觉得很奇怪，浏览器中的请求头是<code>referer</code>，怎么标签里的是<code>referrer</code>，其实标签中的<code>referrer</code>才是正确的单词，据说是当时HTTP协议的制定者将单词拼错，大家就将错就错的使用了。具体可看维基百科的 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%8F%83%E7%85%A7%E4%BD%8D%E5%9D%80" target="_blank" rel="noopener">HTTP来源地址</a> 词条</p>
+<h2 id="Netty简介"><a href="#Netty简介" class="headerlink" title="Netty简介"></a>Netty简介</h2><p>&emsp;&emsp;Netty是一款NIO客户端服务器框架，可以快速轻松地开发协议服务器和客户端等网络应用程序。 它极大地简化并简化了TCP和UDP套接字服务器等网络编程。</p>
+<p>&emsp;&emsp;’快速和简单’并不意味着由此产生的应用程序将受到可维护性或性能问题的困扰。 Netty的设计经验非常丰富，包括FTP，SMTP，HTTP以及各种基于二进制和基于文本的传统协议等。 因此，Netty成功地找到了一种方法来实现轻松的开发，性能，稳定性和灵活性，而无需妥协。</p>
+<p>&emsp;&emsp;以上内容摘自<a href="https://netty.io/" target="_blank" rel="noopener">Netty官网</a>。</p>
+<h2 id="不建议使用Java原生NIO编程的原因"><a href="#不建议使用Java原生NIO编程的原因" class="headerlink" title="不建议使用Java原生NIO编程的原因"></a>不建议使用Java原生NIO编程的原因</h2><ol>
+<li>NIO的类库和API繁杂，使用麻烦，需要熟练掌握Selector、ServerSocketChannel、SocketChannel、ByteBuffer等。</li>
+<li>需要具备其他额外的技能做铺垫，例如熟悉Java的多线程编程。这是因为NIO涉及到Reactor模式，你必须对多线程和网络编程非常熟悉，才能编写出高质量的NIO程序。</li>
+<li>可靠性能力补齐，工作量和难度都非常大。例如客户端面临断连重连、网络闪断、半包读写、失败缓存、网络拥塞和异常码流的处理等问题，NIO编程的特点是功能开发相对容易，但是可靠性能力补齐的工作量和难度都非常大。</li>
+<li>JDK NIO的bug，例如臭名昭著的epoll bug，他会导致Selector空轮询，最终导致CPU100%。官方声称在JDK1.6版本的update18修复了该问题，但是直到JDK1.7版本改问题依旧存在，只不过是发生的概率低了一些，并没有得到根本性的解决。</li>
+</ol>
+<h2 id="为什么选择Netty"><a href="#为什么选择Netty" class="headerlink" title="为什么选择Netty"></a>为什么选择Netty</h2><p>&emsp;&emsp;Netty是业界最流行的NIO框架之一，它的健壮性、功能、性能、可定制性和可扩展性在同类框架中都是首屈一指的，他已经得到成百上千的商用项目验证，例如Haoop的RPC框架Avro就使用了Netty作为底层通信框架，其他还有业界主流的PRC框架，也使用Netty来构建高性能的异步通信能力。</p>
+<p>Netty的优点如下：</p>
+<ol>
+<li>API使用简单，开发门槛低。</li>
+<li>功能强大，预置了多种编解码功能，支持多种主流协议。</li>
+<li>定制能力强，可以通过ChannelHandler对通信框架进行灵活的扩展。</li>
+<li>性能高，通过与其他业界主流的NIO框架对比，Netty的综合性能最优。</li>
+<li>成熟、稳定，Netty修复了已经发现的所有JDK NIO bug，业务开发人员不需要在位NIO的bug烦恼。</li>
+<li>社区活跃，版本迭代周期短，发现的bug可以被及时修复，同时，更多的新功能会加入。</li>
+<li>经历了大规模的商业应用考验，质量得到验证。Netty在互联网、大数据、网络游戏、企业应用、电信软件等众多行业已经取得了成功商用，证明它已经完全能够满足不同行业的商业应用了。</li>
+</ol>
+<h2 id="Netty-hello-world-Demo"><a href="#Netty-hello-world-Demo" class="headerlink" title="Netty hello world Demo"></a>Netty hello world Demo</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>自定义逻辑处理类 HelloServerHandler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServerHandler</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取客户端发送的消息</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> channelHandlerContext</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext channelHandlerContext, String s)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 收到消息直接打出</span></span><br><span class="line">        System.out.println(channelHandlerContext.channel().remoteAddress()+<span class="string">"说:"</span> + s);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 向客户端发送消息</span></span><br><span class="line">        channelHandlerContext.writeAndFlush(<span class="string">"服务器已收到消息，内容是："</span> + s + <span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 建立连接后调用</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ctx</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(ctx.channel().remoteAddress()+<span class="string">"连接！"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 向客户端发送消息</span></span><br><span class="line">        ctx.writeAndFlush(<span class="string">"欢迎登录"</span>+InetAddress.getLocalHost().getHostName()+<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IO事件初始化类 HelloServerInitializer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServerInitializer</span> <span class="keyword">extends</span> <span class="title">ChannelInitializer</span>&lt;<span class="title">SocketChannel</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel socketChannel)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ChannelPipeline pipeline = socketChannel.pipeline();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 以("\n")为结尾分割的 解码器</span></span><br><span class="line">        pipeline.addLast(<span class="string">"framer"</span>, <span class="keyword">new</span> DelimiterBasedFrameDecoder(<span class="number">8192</span>,</span><br><span class="line">                Delimiters.lineDelimiter()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 字符串解码 和 编码</span></span><br><span class="line">        pipeline.addLast(<span class="string">"decoder"</span>, <span class="keyword">new</span> StringDecoder());</span><br><span class="line">        pipeline.addLast(<span class="string">"encoder"</span>, <span class="keyword">new</span> StringEncoder());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 自己的逻辑Handler</span></span><br><span class="line">        pipeline.addLast(<span class="string">"handler"</span>, <span class="keyword">new</span> HelloServerHandler());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务端启动类 Server</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 监听端口</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PORT = <span class="number">8888</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 用于接受客户端连接的线程组</span></span><br><span class="line">        EventLoopGroup bossGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">        <span class="comment">// 用于进行SocketChannel读写的线程组</span></span><br><span class="line">        EventLoopGroup workerGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// netty启动类</span></span><br><span class="line">        ServerBootstrap server = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">        <span class="comment">// 将线程组配置到启动类中</span></span><br><span class="line">        server.group(bossGroup, workerGroup)</span><br><span class="line">                .channel(NioServerSocketChannel.class)  <span class="comment">// 创建ServerSocketChannel</span></span><br><span class="line">                .childHandler(<span class="keyword">new</span> HelloServerInitializer());    <span class="comment">// 绑定IO事件处理类</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"服务端已启动，等待客户端连接..."</span>);</span><br><span class="line">            <span class="comment">// 服务器绑定端口</span></span><br><span class="line">            ChannelFuture future = server.bind(PORT).sync();</span><br><span class="line">            <span class="comment">// 等待服务端监听端口关闭后，main函数才退出</span></span><br><span class="line">            future.channel().closeFuture().sync();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 释放线程组资源</span></span><br><span class="line">            bossGroup.shutdownGracefully();</span><br><span class="line">            workerGroup.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>自定义业务逻辑处理类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClientHandler</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Thread thread = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取服务器发送的消息</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> channelHandlerContext</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext channelHandlerContext, String s)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"服务器说："</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 建立连接后调用</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ctx</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (thread == <span class="keyword">null</span>) &#123;</span><br><span class="line">            thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">                Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">                <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">                    String msg = scanner.next();</span><br><span class="line">                    ctx.writeAndFlush(msg + <span class="string">"\n"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 与服务器断开连接后调用</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ctx</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelInactive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"客户端关闭"</span>);</span><br><span class="line">        <span class="keyword">super</span>.channelInactive(ctx);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IO事件初始化类 HelloClientInititlizer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClientInitializer</span> <span class="keyword">extends</span> <span class="title">ChannelInitializer</span>&lt;<span class="title">SocketChannel</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel socketChannel)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ChannelPipeline pipeline = socketChannel.pipeline();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 这个地方的 必须和服务端对应上。否则无法正常解码和编码</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        pipeline.addLast(<span class="string">"framer"</span>, <span class="keyword">new</span> DelimiterBasedFrameDecoder(<span class="number">8192</span>,</span><br><span class="line">                Delimiters.lineDelimiter()));</span><br><span class="line">        pipeline.addLast(<span class="string">"decoder"</span>, <span class="keyword">new</span> StringDecoder());</span><br><span class="line">        pipeline.addLast(<span class="string">"encoder"</span>, <span class="keyword">new</span> StringEncoder());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 客户端的逻辑</span></span><br><span class="line">        pipeline.addLast(<span class="string">"handler"</span>, <span class="keyword">new</span> HelloClientHandler());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户端启动类Client</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 服务器IP */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HOST = <span class="string">"127.0.0.1"</span>;</span><br><span class="line">    <span class="comment">/** 服务器端口号 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PORT = <span class="number">8888</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建NIO线程组</span></span><br><span class="line">        EventLoopGroup group = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">        <span class="comment">// 创建NIO客户端</span></span><br><span class="line">        Bootstrap client = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">        <span class="comment">// 将线程组配置到启动类中，并创建SocketChannel，设置处理类</span></span><br><span class="line">        client.group(group).channel(NioSocketChannel.class)</span><br><span class="line">                .handler(<span class="keyword">new</span> HelloClientInitializer());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 发起异步连接操作</span></span><br><span class="line">            ChannelFuture future = client.connect(HOST, PORT).sync();</span><br><span class="line">            <span class="comment">// 关闭连接后，主函数退出。</span></span><br><span class="line">            future.channel().closeFuture().sync();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 释放线程组资源</span></span><br><span class="line">            group.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分别启动Server 和 Client 后，控制台输出</p>
+<figure class="highlight java"><figcaption><span>Server控制台输出</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">服务端已启动，等待客户端连接...</span><br><span class="line">/<span class="number">127.0</span>.0.1:<span class="number">53521</span>连接！</span><br><span class="line">/<span class="number">127.0</span>.0.1:<span class="number">53521</span>说:hello</span><br><span class="line">/<span class="number">127.0</span>.0.1:<span class="number">53521</span>说:world</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><figcaption><span>Client控制台输出</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">服务器说：欢迎登录zhangxu</span><br><span class="line">hello world </span><br><span class="line">服务器说：服务器已收到消息，内容是：hello</span><br><span class="line">服务器说：服务器已收到消息，内容是：world</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -526,7 +547,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.zhangjava.com/破解防盗链/" title="破解防盗链">https://www.zhangjava.com/破解防盗链/</a>
+    <a href="https://www.zhangjava.com/netty-hello-world/" title="netty hello world">https://www.zhangjava.com/netty-hello-world/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -541,9 +562,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/奇淫巧技/" rel="tag"><i class="fa fa-tag"></i> 奇淫巧技</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
-            <a href="/tags/防盗链/" rel="tag"><i class="fa fa-tag"></i> 防盗链</a>
+            <a href="/tags/netty/" rel="tag"><i class="fa fa-tag"></i> netty</a>
           
         </div>
       
@@ -556,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/搭建git服务器/" rel="next" title="搭建git服务器">
-                <i class="fa fa-chevron-left"></i> 搭建git服务器
+              <a href="/Pipe管道/" rel="next" title="Pipe管道">
+                <i class="fa fa-chevron-left"></i> Pipe管道
               </a>
             
           </div>
@@ -565,10 +586,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/由拆装箱引起的性能问题/" rel="prev" title="由拆装箱引起的性能问题">
-                由拆装箱引起的性能问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -707,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是盗链"><span class="nav-number">1.</span> <span class="nav-text">什么是盗链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#referrer"><span class="nav-number">2.</span> <span class="nav-text">referrer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防盗链原理"><span class="nav-number">3.</span> <span class="nav-text">防盗链原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破解防盗链"><span class="nav-number">4.</span> <span class="nav-text">破解防盗链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#referer与referrer"><span class="nav-number">5.</span> <span class="nav-text">referer与referrer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty简介"><span class="nav-number">1.</span> <span class="nav-text">Netty简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不建议使用Java原生NIO编程的原因"><span class="nav-number">2.</span> <span class="nav-text">不建议使用Java原生NIO编程的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么选择Netty"><span class="nav-number">3.</span> <span class="nav-text">为什么选择Netty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty-hello-world-Demo"><span class="nav-number">4.</span> <span class="nav-text">Netty hello world Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端"><span class="nav-number">4.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">4.2.</span> <span class="nav-text">客户端</span></a></li></ol></li></ol></div>
             
 
           </div>
