@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java8新功能-接口可以实现方法]]></title>
+    <url>%2FJava8%E6%96%B0%E5%8A%9F%E8%83%BD-%E6%8E%A5%E5%8F%A3%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[Java8中，接口不仅仅可以定义方法，还可以实现方法 接口定义123456789101112public interface InterfaceTest &#123; default void test1() &#123; System.out.println("test1"); &#125; static int test2() &#123; System.out.println("test2"); return 0; &#125; String getName();&#125; 接口可以使用default和static两个修饰符定义方法，同一个方法不能同时使用这两个修饰符。 使用static修饰的方法，可以直接使用接口.方法名的方式进行调用。 使用default修饰的方法，在子类中无需重写，也可调用。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>interface</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java8新功能-lambda表达式]]></title>
+    <url>%2FJava8%E6%96%B0%E5%8A%9F%E8%83%BD-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[Java8中新增的lambda表达式的介绍和用法 为什么需要lambda表达式场景在JDK8以前，如果我们需要临时创建一个线程，通常使用匿名内部类的方式实现。 123456789public void test1() &#123; Thread thread = new Thread(new Runnable() &#123; @Override public void run() &#123; System.out.println(Thread.currentThread()); &#125; &#125;); thread.start();&#125; 当我们需要对集合进行自定义排序时，通常这么写 12345678910111213public void test2() &#123; List&lt;String&gt; names = new ArrayList&lt;&gt;(); names.add("tom"); names.add("jerry"); names.sort(new Comparator&lt;String&gt;() &#123; @Override public int compare(String o1, String o2) &#123; return o1.length() - o2.length(); &#125; &#125;); System.out.println(names);&#125; 上面两个例子中，我们都是将一段代码当作参数，传入方法中。 使用lambda在JDK8中，我们可以使用lambda表达式简化代码。 创建线程 123456public void test3() &#123; Thread thread = new Thread(() -&gt; &#123; System.out.println(Thread.currentThread()); &#125;); thread.start();&#125; 自定义比较器 123456789public void test4() &#123; List&lt;String&gt; names = new ArrayList&lt;&gt;(); names.add("tom"); names.add("jerry"); names.sort((o1, o2) -&gt; &#123; return Integer.compare(o1.length(), o2.length()); &#125;); System.out.println(names);&#125; ()里写参数名，如果没有参数，可以不写。{}里写表达式，如果无法用一个表达式表示，也可以写多条语句。 12345names.sort((o1, o2) -&gt; &#123; System.out.println("123"); ... return Integer.compare(o1.length(), o2.length());&#125;); 参数的类型如果可以被推导，也可以省略。 如果需要赋值，也可以这样： 123Comparator&lt;String&gt; comparator = (o1, o2) -&gt; &#123; return Integer.compare(o1.length(), o2.length());&#125;;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java8</tag>
+        <tag>lambda表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[spring参数统一校验]]></title>
+    <url>%2Fspring%E5%8F%82%E6%95%B0%E7%BB%9F%E4%B8%80%E6%A0%A1%E9%AA%8C%2F</url>
+    <content type="text"><![CDATA[使用spring aop 实现特定接口参数统一校验 问题场景&emsp;&emsp;写过接口的人都会面临一个问题，那就是参数校验的问题。尽管客户端有参数校验，但经验告诉我们，仅仅依赖客户端是极大的错误。通常情况下，我们都应该认为，客户端传过来的参数都是不可信任的。每个参数都应该经过合理的校验才能使用，否则迟早会发生不可预料的问题。 &emsp;&emsp;基于上述的问题，最简单的解决办法就是在每个接口上，都加上参数校验。关键的地方来了，怎么加？接口少了还好说，修改代码就行，接口多了呢？几百个几千个，怎么办？ 使用AOP解决问题&emsp;&emsp;AOP(Aspect Oriented Programming )，中文叫面向切面编程。程序运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程 。其实本质上是一种动态代理技术。 &emsp;&emsp;有了AOP，我们就可以写一个通用的参数校验方法，对所有需要参数校验的接口进行统一处理了。而且对原来的代码没有侵入性，符合开闭原则。 下面是一个简单的例子： 1234567891011121314151617181920212223242526272829303132333435363738@Component@Aspectpublic class CheckParametersEmpty &#123; /** * 检查com.zbrx.speed.controller包下所有的返回值为ResultData的方法， * 如果参数有空，则阻止执行，并直接返回结果 * 否则继续执行 * @throws Throwable * */ @Around("execution(com.zbrx.speed.base.dto.ResultData com.zbrx.speed.controller..*.*(..))") public Object checkParam(ProceedingJoinPoint point) throws Throwable &#123; //获取方法的请求参数 Object[] params = point.getArgs(); //获取方法 Signature signature = point.getSignature(); MethodSignature methodSignature = (MethodSignature)signature; Method targetMethod = methodSignature.getMethod(); //检测方法上是否有 @IgnoreParams注解，如果有，则不检测参数，直接向下执行 IgnoreParams ignoreParams = targetMethod.getAnnotation(IgnoreParams.class); if (ignoreParams != null) &#123; //如果有注解 return point.proceed(params); //直接执行向下执行 &#125; //遍历参数，查看是否有空值 for (Object object : params) &#123; if (object == null) &#123; //如果参数有空值，直接返回 return ResultData.error(ResponseCode.PARAM_EMPTY); &#125; &#125; //否则继续往下执行 return point.proceed(params); &#125;&#125; @Around指定了切入点，也就是哪些方法需要进行参数校验。关于SpringAOP具体的介绍，我会在另一篇博客中说明。]]></content>
+      <categories>
+        <category>经验杂谈</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+        <tag>aop</tag>
+        <tag>经验杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[清理maven下载失败的jar包]]></title>
     <url>%2F%E6%B8%85%E7%90%86maven%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5%E7%9A%84jar%E5%8C%85%2F</url>
     <content type="text"><![CDATA[下载失败包的特征maven下载失败的包，会使用.lastUpdated作为文件的结尾。如果不清除这些包，maven不会自动再次下载。 清理方法明白了maven的处理方法，就比较好解决了，直接删除本地仓库里以.lastUpdated结尾的文件就可以了。这里介绍下两种方法。 手动删除打开本地仓库目录，使用windows文件搜索功能，搜索出文件，删除即可。 使用代码删除毕竟咱是程序员，有问题还是自己写代码解决比较好😆。代码思路非常简单，递归出符合命名的文件，然后删除就可以了。 12345678910111213141516171819202122232425262728293031323334public class MavenClear &#123; public static void main(String[] args) &#123; String filePath = "E:\\test"; delete(filePath); &#125; /** * 根据路径删除下载失败的jar包，下载失败的包以 .lastUpdated结尾 * * @param filePath */ public static void delete(String filePath) &#123; File file = new File(filePath); if (file.exists()) &#123; // 判断是文件还是目录 if (file.isFile()) &#123; if (file.getName().endsWith("lastUpdated")) &#123; file.delete(); System.out.println("删除：" + file.getAbsoluteFile()); &#125; &#125; // 如果是目录 if (file.isDirectory()) &#123; // 获取目录，并循环递归 File[] files = file.listFiles(); for (File f : files) &#123; delete(f.getAbsolutePath()); &#125; &#125; &#125; &#125;&#125; 代码其实也没几行，可以将其打包成可执行文件，直接点击运行就可以了。]]></content>
@@ -19,7 +56,7 @@
         <category>netty</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>Java</tag>
         <tag>netty</tag>
       </tags>
   </entry>
@@ -28,11 +65,11 @@
     <url>%2FPipe%E7%AE%A1%E9%81%93%2F</url>
     <content type="text"><![CDATA[123456789101112131415161718192021222324public class PipeTest &#123; public static void main(String[] args) throws IOException &#123; Pipe pipe = Pipe.open(); // 通过管道发送数据 Pipe.SinkChannel sink = pipe.sink(); ByteBuffer byteBuffer = ByteBuffer.allocate(1024); byteBuffer.put("通过管道发送数据".getBytes()); byteBuffer.flip(); sink.write(byteBuffer); byteBuffer.clear(); // 接受数据 Pipe.SourceChannel source = pipe.source(); int len = source.read(byteBuffer); byteBuffer.flip(); System.out.println(new String(byteBuffer.array(), 0, len)); byteBuffer.clear(); sink.close(); source.close(); &#125;&#125;]]></content>
       <categories>
-        <category>java</category>
+        <category>NIO</category>
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -40,11 +77,11 @@
     <url>%2F%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[Java NIO 中的阻塞模型与非阻塞模型的实现 阻塞与非阻塞&emsp;&emsp;传统的IO都是阻塞式的。也就是说，当一个线程调用read()或write()方法时，该线程被阻塞，直到有一些数据被读取或写入，该线程在此期间不能执行其他任务。因此，在网络通信进行IO操作时，由于线程会阻塞，所以服务端必须为每个客户端都提供一个独立的线程进行处理，当服务器端需要处理大量客户端时，性能急剧下降。 &emsp;&emsp;Java NIO 是非阻塞模型的。当线程从某通道进行读写数据时，若没有数据可用时，该线程可以进行其他任务。线程通常将非阻塞IO的空闲时间用于在其他通道上执行IO操作，所以单独的线程可以管理多个输入和输出通道。因此，NIO可以让服务器端使用一个或者有限几个线程来同时处理连接到服务器端的所有客户端。 Selector&emsp;&emsp;选择器，用于监听客户端与服务端的连接。调用通道的register(Selector sel, int ops)方法，将通道注册到选择器上，参数ops是常量，用于设置选择器的监听事件。可以监听的事件类型列表： 事件名称 功能 SelectionKey.OP_READ 读 SelectionKey.OP_WRITE 写 SelectionKey.OP_CONNECT 连接 SelectionKey.OP_ACCEPT 接收 当监听多个事件时，可以使用|操作符连接 SelectionKey.OP_READ | SelectionKey.OP_WRITE 演示代码阻塞方式1234567891011121314151617@Testpublic void client() throws IOException &#123; try ( // 1.获取通道 SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 10000)); FileChannel fileChannel = FileChannel.open(Paths.get("a.txt"), StandardOpenOption.READ); ) &#123; // 2.分配缓存 ByteBuffer byteBuffer = ByteBuffer.allocate(1024); while (fileChannel.read(byteBuffer) != -1) &#123; byteBuffer.flip(); // 3.发送数据到服务端 socketChannel.write(byteBuffer); byteBuffer.clear(); &#125; &#125;&#125; 12345678910111213141516171819202122232425@Testpublic void server() &#123; try ( // 1.获取通道 ServerSocketChannel serverSocketChannel = ServerSocketChannel.open(); FileChannel fileChannel = FileChannel.open(Paths.get("c.txt"), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE); ) &#123; // 2.绑定端口 serverSocketChannel.bind(new InetSocketAddress(10000)); // 3.获取客户端连接 SocketChannel socketChannel = serverSocketChannel.accept(); // 4.获取客户端的数据，保存到本地 ByteBuffer byteBuffer = ByteBuffer.allocate(1024); while (socketChannel.read(byteBuffer) != -1) &#123; byteBuffer.flip(); fileChannel.write(byteBuffer); byteBuffer.clear(); &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 非阻塞模式12345678910111213141516171819202122232425public class Client &#123; public static void main(String[] args) &#123; try ( // 打开通道 SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 8888)); ) &#123; // 设置非阻塞模式 socketChannel.configureBlocking(false); // 创建缓冲区 ByteBuffer byteBuffer = ByteBuffer.allocate(1024); // 发送数据 Scanner scanner = new Scanner(System.in); while (scanner.hasNext()) &#123; String msg = scanner.next(); byteBuffer.put(msg.getBytes()); byteBuffer.flip(); socketChannel.write(byteBuffer); byteBuffer.clear(); &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142434445public class Server &#123; public static void main(String[] args) &#123; try ( // 打开通道 ServerSocketChannel serverSocketChannel = ServerSocketChannel.open(); ) &#123; // 绑定端口 serverSocketChannel.bind(new InetSocketAddress(8888)); //设置非阻塞模式 serverSocketChannel.configureBlocking(false); // 获取选择器 Selector selector = Selector.open(); // 注册连接事件 serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT); while (selector.select() &gt; 0) &#123; // 遍历注册事件，进行业务处理 Iterator&lt;SelectionKey&gt; it = selector.selectedKeys().iterator(); while (it.hasNext()) &#123; SelectionKey key = it.next(); if (key.isAcceptable()) &#123; // 如果有客户端连接 SocketChannel socketChannel = serverSocketChannel.accept(); socketChannel.configureBlocking(false); // 注册读取事件，读取客户端发送的数据 socketChannel.register(selector, SelectionKey.OP_READ); &#125; else if (key.isReadable()) &#123; // 获取客户端的数据 SocketChannel socketChannel = (SocketChannel) key.channel(); ByteBuffer byteBuffer = ByteBuffer.allocate(1024); int len = 0; while ((len = socketChannel.read(byteBuffer)) &gt; 0) &#123; byteBuffer.flip(); System.out.println("[客户端]："+new String(byteBuffer.array(), 0, len)); byteBuffer.clear(); &#125; &#125; // 清除已处理的事件 it.remove(); &#125; &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java</category>
+        <category>NIO</category>
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -52,11 +89,12 @@
     <url>%2FChannel%E9%80%9A%E9%81%93%2F</url>
     <content type="text"><![CDATA[Channel通道的获取与原理 简介表示io源与目标打开的连接。Channel类似于传统的流，只不过Channel本身不能直接访问数据，Channel只能与Buffer进行交互。 Channel的主要实现类：FileChannel，SocketChannel，ServerSocketChannel，DatagramChannel 获取通道使用getChannel()方法1234567891011121314151617181920212223public void test1() throws FileNotFoundException &#123; try( FileInputStream fileInputStream = new FileInputStream("a.txt"); FileOutputStream fileOutputStream = new FileOutputStream("b.txt"); // 1.获取通道 FileChannel inChannel = fileInputStream.getChannel(); FileChannel outChannel = fileOutputStream.getChannel(); ) &#123; // 2.创建缓冲区 ByteBuffer byteBuffer = ByteBuffer.allocate(1024); // 3.将通道中的数据存入缓冲区 while (inChannel.read(byteBuffer) != -1) &#123; byteBuffer.flip(); //切换到读数据模式 outChannel.write(byteBuffer); byteBuffer.clear(); //清空缓冲区 &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 使用静态open()方法1234567891011121314151617public void test2() &#123; try( FileChannel inChannel = FileChannel.open(Paths.get("a.txt"), StandardOpenOption.READ); FileChannel outChannel = FileChannel.open(Paths.get("b.txt"), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE); ) &#123; // 内存映射文件 MappedByteBuffer inMappedByteBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size()); MappedByteBuffer outMappedByteBuffer = outChannel.map(FileChannel.MapMode.READ_WRITE, 0, inChannel.size()); byte[] dst = new byte[inMappedByteBuffer.limit()]; inMappedByteBuffer.get(dst); outMappedByteBuffer.put(dst); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 使用Files工具类中的静态方法 newByteChannel()1234567891011121314151617181920public void test3() &#123; try ( // 获取Channel，Files只能获取ByteChannel ByteChannel inChannel = Files.newByteChannel(Paths.get("a.txt"), StandardOpenOption.READ); ByteChannel outChannel = Files.newByteChannel(Paths.get("b.txt"), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE); ) &#123; // 创建缓冲区 ByteBuffer byteBuffer = ByteBuffer.allocate(1024); while (inChannel.read(byteBuffer) != -1) &#123; byteBuffer.flip(); outChannel.write(byteBuffer); byteBuffer.clear(); &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 通道之间的互相传输12345678910111213public void test4() &#123; try ( FileChannel inChannel = FileChannel.open(Paths.get("a.txt"), StandardOpenOption.READ); FileChannel outChannel = FileChannel.open(Paths.get("b.txt"), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE); ) &#123; //inChannel.transferTo(0, inChannel.size(), outChannel); // 或者 outChannel.transferFrom(inChannel, 0, inChannel.size()); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 分散读取与聚集写入 12345678910111213141516171819public void test5() &#123; try ( FileChannel fileChannel = FileChannel.open(Paths.get("a.txt"), StandardOpenOption.READ); ) &#123; // 分配缓冲区 ByteBuffer buffer1 = ByteBuffer.allocate(9); ByteBuffer buffer2 = ByteBuffer.allocate(6); ByteBuffer[] byteBuffers = &#123;buffer1, buffer2&#125;; // 分散读取 fileChannel.read(byteBuffers); for (ByteBuffer byteBuffer : byteBuffers) &#123; byteBuffer.flip(); System.out.println(byteBuffer + new String(byteBuffer.array())); &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125; 123456789101112131415161718192021public void test6() &#123; try ( FileChannel inChannel = FileChannel.open(Paths.get("a.txt"), StandardOpenOption.READ); FileChannel outChannel = FileChannel.open(Paths.get("b.txt"), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE); ) &#123; ByteBuffer buffer1 = ByteBuffer.allocate(72); ByteBuffer buffer2 = ByteBuffer.allocate(72); ByteBuffer[] buffers = &#123;buffer1, buffer2&#125;; inChannel.read(buffers); for (ByteBuffer buffer : buffers) &#123; buffer.flip(); &#125; // 聚集写入 outChannel.write(buffers); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125;&#125;]]></content>
       <categories>
-        <category>java</category>
+        <category>NIO</category>
       </categories>
       <tags>
-        <tag>NIO</tag>
         <tag>Channel</tag>
+        <tag>NIO</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -64,10 +102,11 @@
     <url>%2FBuffer%E7%BC%93%E5%86%B2%E5%8C%BA%2F</url>
     <content type="text"><![CDATA[NIO 中Buffer缓冲区介绍及基本操作 简介Buffer(缓冲区)，在Java NIO中负责数据的存取。缓冲区本质上就是数组，用于存储不同数据类型的数据。 根据数据类型不同(boolean除外)，提供了相应类型的缓冲区 ByteBuffer CharBuffer ShortBuffer IntBuffer LongBuffer FloatBuffer DoubleBuffer 缓冲区可以通过allocate()获取缓冲区 12// 创建一个指定大小的缓冲区ByteBuffer byteBuffer = ByteBuffer.allocate(1024); 直接缓冲区与非直接缓冲区通过allocate()方式创建的缓冲区，称为非直接缓冲区，这种缓冲区是在jvm中创建的。 通过allocateDirect()创建的缓冲区，称为直接缓冲区，这种缓冲区是在物理内存中直接创建的。 使用allocateDirect()所需要的成本比allocate()要高，而且无法使用垃圾自动回收。 四个核心属性 capacity：容量，表示缓冲区中最大存储数据的容量，一旦声明不能改变 limit：界限，表示缓冲区中可以操作数据的大小。(limit后数据不能进行读写)。 position：位置，表示缓冲区中正在操作数据的位置。 mark：标记，表示当前position的位置，可以通过reset()恢复到mark的位置 四个属性的关系：0 &lt;= mark &lt;= position &lt;= limit &lt;= capacity 常用操作allocate()：创建缓冲区 1234ByteBuffer byteBuffer = ByteBuffer.allocate(1024);System.out.println("position: "+byteBuffer.position()); //0System.out.println("limit: "+byteBuffer.limit()); //1024System.out.println("capacity: "+byteBuffer.capacity()); //1024 put()：向缓冲区中写数据 12345String name = "tom";byteBuffer.put(name.getBytes());System.out.println("position: "+byteBuffer.position()); //3System.out.println("limit: "+byteBuffer.limit()); //1024System.out.println("capacity: "+byteBuffer.capacity()); //1024 flip()：切换到读数据模式 1234byteBuffer.flip();System.out.println("position: "+byteBuffer.position()); //0System.out.println("limit: "+byteBuffer.limit()); //3System.out.println("capacity: "+byteBuffer.capacity()); //1024 get()：读取缓冲区中的数据 123456byte[] dst = new byte[byteBuffer.limit()];byteBuffer.get(dst);System.out.println("buffer中的数据："+new String(dst, 0, dst.length));System.out.println("position: "+byteBuffer.position()); //3System.out.println("limit: "+byteBuffer.limit()); //3System.out.println("capacity: "+byteBuffer.capacity()); //1024 rewind()：重新从头读取数据 1234byteBuffer.rewind();System.out.println("position: "+byteBuffer.position()); //0System.out.println("limit: "+byteBuffer.limit()); //3System.out.println("capacity: "+byteBuffer.capacity()); //1024 clear()：清除缓冲区，数据依然存在。只是位置信息被初始化 1234byteBuffer.clear();System.out.println("position: "+byteBuffer.position()); //0System.out.println("limit: "+byteBuffer.limit()); //1024System.out.println("capacity: "+byteBuffer.capacity()); //1024 mark()：标记position的位置 1234byteBuffer.put("jerry".getBytes());byteBuffer.mark(); //当position为5时，进行标记byteBuffer.put("tom".getBytes());System.out.println("position: "+byteBuffer.position()); //8 reset()：恢复mark标记的position的位置 12byteBuffer.reset();System.out.println("position: "+byteBuffer.position()); //5]]></content>
       <categories>
-        <category>java</category>
+        <category>NIO</category>
       </categories>
       <tags>
         <tag>NIO</tag>
+        <tag>Java</tag>
         <tag>Buffer</tag>
       </tags>
   </entry>
@@ -76,11 +115,11 @@
     <url>%2FJava-NIO-%E6%A6%82%E8%BF%B0%2F</url>
     <content type="text"><![CDATA[Java NIO简介 Java NIO 简介Java NIO(New IO / Non Blocking IO)是从Java1.4 版本开始引入的一个新的IO API，可以替代标准的Java IO API。NIO与原来的IO有相同的作用和目的，但是使用的方式完全不同，NIO支持面向缓冲区的、基于通道的IO操作。NIO以更加高效的方式进行文件的读写操作。 NIO与IO的区别 IO NIO 面向流(Stream Oriented) 面向缓冲区(Buffer Oriented) 阻塞IO(Blocking IO) 非阻塞IO(Non Blocking IO) 选择器(Selectors) 通道和缓冲区Java NIO系统的核心在于：通道(Channel)和缓冲区(Buffer)。通道表示打开到IO设备(如：文件、套接字)的连接。若需要使用NIO系统，需要获取用于连接IO设备的通道以及用于容纳数据的缓冲区。然后操作缓冲区，对数据进行处理。 缓冲区是一个用于存放特定基本数据类型的容器。由java.nio包定义，所有的缓冲区都是Buffer抽象类的子类。缓冲区主要用来与通道进行交互，数据从通道读入缓冲区，从缓冲区写入通道。]]></content>
       <categories>
-        <category>java</category>
+        <category>NIO</category>
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -129,7 +168,7 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>Java</tag>
         <tag>设计模式</tag>
       </tags>
   </entry>
@@ -162,10 +201,11 @@
     <url>%2FIntelliJ-IDEA-%E4%BD%BF%E7%94%A8git%2F</url>
     <content type="text"><![CDATA[介绍了IDEA中如何使用git IDEA中git的配置使用Ctrl+Alt+S打开设置 如图所示进行配置，配置完场后点击Test按钮，如果弹出版本号表示配置成功。 项目中使用gitgit检出项目 填写完地址后，点击Clone就可以检出项目了。 为项目添加git版本控制如图所示，为项目创建一个本地git版本库 选择当前项目文件夹，创建版本库 项目右键，将项目添加到版本控制中 提交项目到本地的仓库 填写提交说明，点击提交 连接到远程仓库 设置远程仓库位置 推送到远程仓库]]></content>
       <categories>
-        <category>编程工具</category>
+        <category>git</category>
       </categories>
       <tags>
         <tag>IntelliJ IDEA</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -176,7 +216,7 @@
         <category>踩坑记</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -184,10 +224,10 @@
     <url>%2F%E7%94%B1%E6%8B%86%E8%A3%85%E7%AE%B1%E5%BC%95%E8%B5%B7%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[Integer.valueOf与Integer.parseInt引发的性能问题 问题代码1int a = Integer.valueOf(request.getParameter("baseProjectId")) 这段代码看上去没什么问题，但其实会有性能上的浪费，Integer.valueOf()的部分源码： 12345678910public static Integer valueOf(String s) throws NumberFormatException &#123; return Integer.valueOf(parseInt(s, 10)); // 注意parseInt这句&#125;public static Integer valueOf(int i) &#123; assert IntegerCache.high &gt;= 127; if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high) return IntegerCache.cache[i + (-IntegerCache.low)]; return new Integer(i);&#125; 由代码可以看出，Integer.valueOf() 先调用parseInt()解析字符串，然后再调用方法，将int转换为Integer对象，然后返回Integer对象。结合上面的问题代码，整个类型转换流程为： 1String --&gt; int --&gt; Integer --&gt; int 在此过程中，不仅创建了一个临时对象，浪费内存，而且进行了一次拆装箱操作，浪费了性能。 更改建议直接将Integer.valueOf()改为Integer.parseInt() 1int a = Integer.parseInt(request.getParameter("baseProjectId"))]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>java性能优化</tag>
+        <tag>Java性能优化</tag>
       </tags>
   </entry>
   <entry>
