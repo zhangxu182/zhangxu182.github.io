@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/%E4%BD%BF%E7%94%A8GitHub-Pages-Hexo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-06-17T03:41:01.787Z</lastmod>
+    <data>
+        <display>
+        <title>使用GitHub Pages + Hexo 搭建博客</title>
+        <pubTime>2018-05-04T14:56:36.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>自建博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="https://www.zhangjava.com/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/Java8%E6%96%B0%E5%8A%9F%E8%83%BD-%E6%8E%A5%E5%8F%A3%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2018-06-10T08:34:00.322Z</lastmod>
     <data>
@@ -305,28 +327,6 @@
            
              
               <breadCrumb title="奇淫巧技" url="https://www.zhangjava.com/categories/%E5%A5%87%E6%B7%AB%E5%B7%A7%E6%8A%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.zhangjava.com/%E4%BD%BF%E7%94%A8GitHub-Pages-Hexo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2018-06-06T07:20:37.821Z</lastmod>
-    <data>
-        <display>
-        <title>使用GitHub Pages + Hexo 搭建博客</title>
-        <pubTime>2018-05-04T14:56:36.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-        <tag>自建博客</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="https://www.zhangjava.com/categories/Hexo/"/>
           
         </display>
     </data>
