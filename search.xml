@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot将项目与依赖分开打包]]></title>
+    <url>%2Fspringboot%E5%B0%86%E9%A1%B9%E7%9B%AE%E4%B8%8E%E4%BE%9D%E8%B5%96%E5%88%86%E5%BC%80%E6%89%93%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[本文介绍了在spring boot项目中，配置项目与依赖分开打包的方法 写在前面的&emsp;&emsp;当我们使用spring boot写项目时，一般都会遇到一个问题，那就是spring boot打包时，会将自己写的代码和项目的所有依赖文件打成一个可执行的jar包。通常我们的项目都是运行在服务器上的，当项目更新时，每次都要向服务器上传这个包。如果项目的依赖包很多，那么这个文件就会非常大。大文件上传不仅浪费带宽，有时候网络不稳定，传输一半断网，又要重新上传，非常麻烦。 默认的maven配置 12345678&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt; &emsp;&emsp;如果能将项目外部依赖和自己的代码包分开打包，当修改项目后，只需要再次覆盖修改后的包，那岂不是美滋滋？ 解决方案使用maven的assembly打包插件 assembly配置&emsp;&emsp;在项目中创建一个文件，我放在src/main/assembly/assembly.xml中，大家可以根据喜好自己创建。 assembly中的具体配置 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162&lt;assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd"&gt; &lt;!-- 必须写，否则打包时会有 assembly ID must be present and non-empty 错误 这个名字最终会追加到打包的名字的末尾，如项目的名字为 speed-api-0.0.1-SNAPSHOT, 则最终生成的包名为 speed-api-0.0.1-SNAPSHOT-bin.zip --&gt; &lt;id&gt;bin&lt;/id&gt; &lt;!-- 打包后的文件格式,可以是zip,tar,tar.gz,tar.bz2,jar,war,dir --&gt; &lt;formats&gt; &lt;format&gt;zip&lt;/format&gt; &lt;/formats&gt; &lt;!-- 压缩包下是否生成和项目名相同的根目录 --&gt; &lt;includeBaseDirectory&gt;false&lt;/includeBaseDirectory&gt; &lt;dependencySets&gt; &lt;dependencySet&gt; &lt;!-- 不使用项目的artifact，第三方jar不要解压，打包进zip文件的lib目录 --&gt; &lt;useProjectArtifact&gt;false&lt;/useProjectArtifact&gt; &lt;outputDirectory&gt;lib&lt;/outputDirectory&gt; &lt;unpack&gt;false&lt;/unpack&gt; &lt;/dependencySet&gt; &lt;/dependencySets&gt; &lt;fileSets&gt; &lt;!-- 把项目相关的说明文件，打包进zip文件的根目录 --&gt; &lt;fileSet&gt; &lt;directory&gt;$&#123;project.basedir&#125;&lt;/directory&gt; &lt;outputDirectory&gt;&lt;/outputDirectory&gt; &lt;includes&gt; &lt;include&gt;README*&lt;/include&gt; &lt;include&gt;LICENSE*&lt;/include&gt; &lt;include&gt;NOTICE*&lt;/include&gt; &lt;/includes&gt; &lt;/fileSet&gt; &lt;!-- 把项目的配置文件，打包进zip文件的config目录 --&gt; &lt;fileSet&gt; &lt;directory&gt;$&#123;project.basedir&#125;/src/main/resources&lt;/directory&gt; &lt;outputDirectory&gt;config&lt;/outputDirectory&gt; &lt;/fileSet&gt; &lt;!-- 把项目的脚本文件，打包进zip文件的bin目录 --&gt; &lt;fileSet&gt; &lt;directory&gt;$&#123;project.build.scriptSourceDirectory&#125;&lt;/directory&gt; &lt;outputDirectory&gt;bin&lt;/outputDirectory&gt; &lt;/fileSet&gt; &lt;!-- 把项目自己编译出来的jar文件，打包进zip文件的根目录 --&gt; &lt;fileSet&gt; &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt; &lt;outputDirectory&gt;&lt;/outputDirectory&gt; &lt;includes&gt; &lt;include&gt;*.jar&lt;/include&gt; &lt;/includes&gt; &lt;/fileSet&gt; &lt;/fileSets&gt;&lt;/assembly&gt; maven中的配置123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354&lt;build&gt; &lt;plugins&gt; &lt;!-- 指定启动类，将依赖打成外部jar包 --&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;configuration&gt; &lt;archive&gt; &lt;!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件 --&gt; &lt;addMavenDescriptor&gt;false&lt;/addMavenDescriptor&gt; &lt;manifest&gt; &lt;!-- 是否要把第三方jar放到manifest的classpath中 --&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;!-- 外部依赖jar包的最终位置 --&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;!-- 项目启动类 --&gt; &lt;mainClass&gt;com.zbrx.speed.App&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;!-- 使用assembly打包 --&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt; &lt;configuration&gt; &lt;descriptors&gt; &lt;!-- assembly配置文件位置 --&gt; &lt;descriptor&gt;src/main/assembly/assembly.xml&lt;/descriptor&gt; &lt;/descriptors&gt; &lt;/configuration&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;make-assembly&lt;/id&gt; &lt;phase&gt;package&lt;/phase&gt; &lt;goals&gt; &lt;goal&gt;single&lt;/goal&gt; &lt;/goals&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;/plugin&gt; &lt;!-- 打包发布时，跳过单元测试 --&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt; &lt;configuration&gt; &lt;skipTests&gt;true&lt;/skipTests&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt; 最终打包后的效果 压缩包里的文件内容 lib中的文件 config配置文件 因为我没有写启动脚本，所以没有bin文件夹。]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java8新功能-接口可以实现方法]]></title>
     <url>%2FJava8%E6%96%B0%E5%8A%9F%E8%83%BD-%E6%8E%A5%E5%8F%A3%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[Java8中，接口不仅仅可以定义方法，还可以实现方法 接口定义123456789101112public interface InterfaceTest &#123; default void test1() &#123; System.out.println("test1"); &#125; static int test2() &#123; System.out.println("test2"); return 0; &#125; String getName();&#125; 接口可以使用default和static两个修饰符定义方法，同一个方法不能同时使用这两个修饰符。 使用static修饰的方法，可以直接使用接口.方法名的方式进行调用。 使用default修饰的方法，在子类中无需重写，也可调用。]]></content>
@@ -92,9 +104,9 @@
         <category>NIO</category>
       </categories>
       <tags>
-        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
+        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -106,8 +118,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Java</tag>
         <tag>Buffer</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
