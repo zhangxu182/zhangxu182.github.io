@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="张扎瓦的博客">
 <meta property="og:description" content="本地搭建git服务器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-11T16:34:17.612Z">
+<meta property="og:updated_time" content="2018-06-25T08:38:10.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建git服务器">
 <meta name="twitter:description" content="本地搭建git服务器">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-12T00:34:17+08:00">
-                2018-05-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-25T16:38:10+08:00">
+                2018-06-25
               </time>
             
           </span>
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  779
+                  778
                 </span>
               
 
@@ -467,7 +467,7 @@
 <p>&emsp;&emsp;本次演示使用VMware虚拟机，系统镜像CentOS 6.9 x64，root账户进行安装操作。</p>
 <hr>
 <h2 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h2><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>使用yum查询当前是否有可安装的git版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop02 home]<span class="comment"># yum info git</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 home]<span class="comment"># yum info git</span></span><br></pre></td></tr></table></figure>
 <p>使用yum安装git</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 ~]<span class="comment"># yum install -y git</span></span><br></pre></td></tr></table></figure>
 <p>检查是否安装成功</p>
@@ -477,7 +477,7 @@
 <p>执行完以上命令后，会在<code>/home</code>生成一个<code>git</code>文件夹。我们cd到home目录查看一下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 git]<span class="comment"># cd /home/git</span></span><br><span class="line">[root@hadoop03 git]<span class="comment"># ls -a</span></span><br><span class="line">.  ..  .bash_logout  .bash_profile  .bashrc  .gnome2  .mozilla</span><br></pre></td></tr></table></figure>
 <h3 id="禁止git用户shell登录"><a href="#禁止git用户shell登录" class="headerlink" title="禁止git用户shell登录"></a>禁止git用户shell登录</h3><p>创建git用户是为了访问服务器的git仓库，为了安全起见，将git用户禁止shell登录。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop02 gitrepo]<span class="comment"># vi /etc/passwd</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 ~]<span class="comment"># vi /etc/passwd</span></span><br></pre></td></tr></table></figure>
 <p>找到类似下面的一句</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git:x:501:501::/home/git:/bin/bash</span><br></pre></td></tr></table></figure>
 <p>将其改为</p>
@@ -498,7 +498,7 @@
 <p>执行完命令后，会在<code>gitrepo</code>下生成<code>test.git</code>目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 gitrepo]<span class="comment"># ls</span></span><br><span class="line">test.git</span><br></pre></td></tr></table></figure>
 <p>修改仓库的归属权限，否则无法访问git仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop02 gitrepo]<span class="comment"># chown -R git:git test.git/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop03 gitrepo]<span class="comment"># chown -R git:git test.git/</span></span><br></pre></td></tr></table></figure>
 <p>至此，git服务器搭建完成。</p>
 <h3 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">λ git <span class="built_in">clone</span> git@192.168.213.130:/home/gitrepo/test.git</span><br><span class="line">Cloning into <span class="string">'test'</span>...</span><br><span class="line">key_load_public: invalid format</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br></pre></td></tr></table></figure>
 <p>接下来就尽情使用git吧。</p>
