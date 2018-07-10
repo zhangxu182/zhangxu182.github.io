@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[自己搭建Shadowsocks服务器]]></title>
+    <url>%2F%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[本文介绍了在Linux环境下搭建Shadowsocks服务器的方法 前言首先必须要有一个国外的服务器(废话)，我这里使用亚马逊的服务器为例，系统版本是redhat7.5。 安装过程使用Shadowsocks 一键安装脚本（四合一）脚本工具进行安装。 使用root账户，执行如下命令： 123[root@tom ~]# wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh[root@tom ~]# chmod +x shadowsocks-all.sh[root@tom ~]# ./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log 注意：如果没有wget 工具，需要安装一下： 1yum install -y wget 如果不出意外的话，会自动执行交互式安装程序。最终安装成功后会输出如下信息： 12345678910111213Congratulations, your_shadowsocks_version install completed!Your Server IP :your_server_ipYour Server Port :your_server_portYour Password :your_passwordYour Encryption Method:your_encryption_methodYour QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients) ss://your_encryption_method:your_password@your_server_ip:your_server_portYour QR Code has been saved as a PNG file path: your_path.pngWelcome to visit:https://teddysun.com/486.htmlEnjoy it! 服务器安装好后，就可以在客户端配置使用了，这里放上客户端的下载链接。 常规版 Windows 客户端https://github.com/shadowsocks/shadowsocks-windows/releases ShadowsocksR 版 Windows 客户端https://github.com/shadowsocksrr/shadowsocksr-csharp/releases 遇到的问题我在安装过程中，遇到了两个包依赖问题导致安装失败，这两个包分别是epel和qrencode，最后通过手动安装解决了依赖问题。具体的命令如下： 1234# 下载epel依赖包wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm# 安装依赖yum install epel-release-latest-7.noarch.rpm qrencode包的下载地址：下载地址 我这里选择Centos 7 的包进行下载，大家可以根据自己的系统选择对应的包进行下载。 1234# 下载依赖wget http://mirror.centos.org/centos/7/os/x86_64/Packages/qrencode-3.4.1-3.el7.x86_64.rpm# 安装yum install qrencode-3.4.1-3.el7.x86_64.rpm 依赖安装好以后，再次执行Shadowsocks的安装脚本，就可以完成安装了。]]></content>
+      <categories>
+        <category>科学上网</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>Shadowsocks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用xx-net实现科学上网]]></title>
+    <url>%2F%E4%BD%BF%E7%94%A8xx-net%E5%AE%9E%E7%8E%B0%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%2F</url>
+    <content type="text"><![CDATA[本文介绍了使用xx-net科学上网的详细流程 下载点击xx-net进入下载页面 下载完成后，本地解压，根据官网的教程操作即可。 文档地址 遇到的问题无法开启IPv6。其实这个不用根据官网的开启方法开启，下载好的包里就有开启脚本。具体的路径如下： XX-Net-3.12.2\code\default\gae_proxy\local\ipv6_tunnel\disable_ipv6.bat XX-Net-3.12.2\code\default\gae_proxy\local\ipv6_tunnel\enable_ipv6.bat 直接双击执行这两个脚本就可以了。]]></content>
+      <categories>
+        <category>科学上网</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[springboot自定义json格式转换]]></title>
     <url>%2Fspringboot%E8%87%AA%E5%AE%9A%E4%B9%89json%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[最近在看JDK8的新功能，在项目中使用了新的时间API，结果却引发了一个问题，本篇文章详细介绍了问题的出现以及解决方法。 错误的出现web项目中，我们常常会定义实体类，来对应数据库的表。 12345678910public class User implements Serializable &#123; private Integer id; private String name; private String password; private Instant created;&#125; 在上面的实体类中，我使用了JDK8中新的API java.time.Instant来替代java.util.Date类。经过测试后，可以使用mybatis正常操作数据库。但当写接口返回json时，created字段原本应该返回时间戳，但却返回成了浮点数。 1"created":1522234791.000000000 解决办法Instant中是由toEpochMilli()方法转为时间戳的，我们可以自定义一个JsonSerializer来进行转换。 1234567public class InstantConverter extends JsonSerializer&lt;Instant&gt; &#123; @Override public void serialize(Instant value, JsonGenerator gen, SerializerProvider serializers) throws IOException &#123; gen.writeNumber(value.toEpochMilli()); &#125;&#125; 定义完成后，需要在指定的属性上加@JsonSerialize(using = 自定义转换方法.class)，来标注。这样当返回json数据时，会自动调用我们的方法进行格式转换。 修改后的实体类 1234567891011public class User implements Serializable &#123; private Integer id; private String name; private String password; @JsonSerialize(using = InstantConverter.class) private Instant created;&#125;]]></content>
