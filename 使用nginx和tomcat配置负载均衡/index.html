@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="张扎瓦,zhangjava" />
+  <meta name="keywords" content="nginx,tomcat,负载均衡," />
 
 
 
@@ -88,18 +88,23 @@
 
 
 
-<meta name="description" content="后端程序员，目前从事Java-Web开发工作。 QQ: 806986775 email: softuuid@gmail.com">
-<meta name="keywords" content="张扎瓦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="https://www.zhangjava.com/about/index.html">
+<meta name="description" content="本文介绍了使用nginx和tomcat配置简单的负载均衡">
+<meta name="keywords" content="nginx,tomcat,负载均衡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用nginx和tomcat配置负载均衡">
+<meta property="og:url" content="https://www.zhangjava.com/使用nginx和tomcat配置负载均衡/index.html">
 <meta property="og:site_name" content="张扎瓦的博客">
-<meta property="og:description" content="后端程序员，目前从事Java-Web开发工作。 QQ: 806986775 email: softuuid@gmail.com">
+<meta property="og:description" content="本文介绍了使用nginx和tomcat配置简单的负载均衡">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-15T13:04:37.317Z">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531366485311.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531366485874.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531372059633.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531372081605.jpg">
+<meta property="og:updated_time" content="2018-07-12T05:56:31.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="后端程序员，目前从事Java-Web开发工作。 QQ: 806986775 email: softuuid@gmail.com">
+<meta name="twitter:title" content="使用nginx和tomcat配置负载均衡">
+<meta name="twitter:description" content="本文介绍了使用nginx和tomcat配置简单的负载均衡">
+<meta name="twitter:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531366485311.jpg">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://www.zhangjava.com/about/"/>
+  <link rel="canonical" href="https://www.zhangjava.com/使用nginx和tomcat配置负载均衡/"/>
 
 
 
 
 
-  <title>关于我 | 张扎瓦的博客</title>
+  <title>使用nginx和tomcat配置负载均衡 | 张扎瓦的博客</title>
   
 
 
@@ -294,36 +299,321 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/使用nginx和tomcat配置负载均衡/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张扎瓦">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://zhangjava-1252424622.cosbj.myqcloud.com/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张扎瓦的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于我</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>后端程序员，目前从事Java-Web开发工作。</p>
-<p>QQ: 806986775</p>
-<p>email: <a href="mailto:softuuid@gmail.com" target="_blank" rel="noopener">softuuid@gmail.com</a></p>
-
+          <h1 class="post-title" itemprop="name headline">使用nginx和tomcat配置负载均衡</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T20:56:14+08:00">
+                2018-07-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-12T13:56:31+08:00">
+                2018-07-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/使用nginx和tomcat配置负载均衡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/使用nginx和tomcat配置负载均衡/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/使用nginx和tomcat配置负载均衡/" class="leancloud_visitors" data-flag-title="使用nginx和tomcat配置负载均衡">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,212
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote class="blockquote-center"><p>本文介绍了使用nginx和tomcat配置简单的负载均衡</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>做开发的常常会遇到这样一个问题：项目上线了，而后续又需要添加新功能，常常是把服务停掉，将新功能部署到服务器上，再重启服务器。这样会导致服务一段时间不可用，能不能不停服务器把新功能更新呢？</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>我们可以使用nginx和多个tomcat实现这样的效果，当需要部署新功能时，可以先停掉一个tomcat进行部署，此时如果有客户端进行请求，nginx会自动将请求转发到运行的tomcat中。等部署完成后再启动，nginx检测到服务可用时，就会自动将请求转发到正常运行的tomcat中。这样就完成了不停机更新。</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531366485311.jpg" alt="正常"></p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531366485874.jpg" alt="部署"></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>nginx安装方式有好多种，我这里偷个懒，使用oneinstack一键安装脚本进行安装。如果你对这个感兴趣，可以到<a href="https://oneinstack.com/" target="_blank" rel="noopener">这里</a>去看看。安装过程很简单，执行脚本后，就可以自动安装上。</p>
+<h3 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h3><p>tomcat是不用进行安装的，直接解压就可以使用，可以从<a href="">tomcat官网</a>获取需要的版本。在Linux下使用wget下载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32.tar.gz</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf apache-tomcat-8.5.32.tar.gz</span><br></pre></td></tr></table></figure>
+<p>将tomcat复制两份，我放到<code>/usr/local</code>下，这个位置大家可以随意放置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -r apache-tomcat-8.5.32 /usr/<span class="built_in">local</span>/tomcat1</span><br><span class="line">cp -r apache-tomcat-8.5.32 /usr/<span class="built_in">local</span>/tomcat2</span><br></pre></td></tr></table></figure>
+<p>修改tomcat2的端口号，否则无法启动两个tomcat。将<code>conf/service.xml</code>中的 8005 8080 8009 分别修改成其他的端口号，比如 8006 8081 8010。</p>
+<p>为了方便看效果，修改tomcat中的<code>webapps/ROOT/index.jsp</code>，在其中加入如下代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>tomcat1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>tomcat2类似。这样tomcat就配置好了。分别启动两个tomcat进行访问测试。</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531372059633.jpg" alt="tomcat1"></p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1531372081605.jpg" alt="tomcat2"></p>
+<p>如果浏览器无法访问，请检查防火墙是否阻止了端口。</p>
+<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>编辑nginx的配置文件nginx.conf，在<code>http{}</code>中加入如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>server{}</code>中加入如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    root html;</span><br><span class="line">    index index.html index.htm index.jsp;</span><br><span class="line">    proxy_pass http://<span class="built_in">test</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后重启nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>此时再次访问的时候，就可以看到效果了。多次刷新页面，可以看到tomcat1和tomcat2互相切换，这样简单的负载均衡就配置好了。</p>
+<h2 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h2><h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><p>默认的配置，请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器宕掉，能自动剔除。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最少连接"><a href="#最少连接" class="headerlink" title="最少连接"></a>最少连接</h3><p>请求会转发到连接最少的服务器上处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">	least_conn;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="weight-权重"><a href="#weight-权重" class="headerlink" title="weight 权重"></a>weight 权重</h2><p>指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况，weight默认是1。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">	<span class="comment"># 服务器A和服务器B的访问比例为：2-1;比如有3个请求，前两个会访问A，三个访问B，其它规则和轮询一样</span></span><br><span class="line">	server 127.0.0.1:8080 weight=2; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ip-hash"><a href="#ip-hash" class="headerlink" title="ip_hash"></a>ip_hash</h2><p>每个请求按访问ip的hash值分配，这样同一客户端连续的Web请求都会被分发到同一服务器进行处理，可以解决session的问题。当后台服务器宕机时，会自动跳转到其它服务器。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">	ip_hash;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="url-hash（第三方）"><a href="#url-hash（第三方）" class="headerlink" title="url_hash（第三方）"></a>url_hash（第三方）</h2><p>url_hash是nginx的第三方模块，nginx本身不支持，需要打补丁。</p>
+<p>nginx按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器、文件服务器、静态服务器时比较有效。缺点是当后端服务器宕机的时候，url_hash不会自动跳转的其他缓存服务器，而是返回给用户一个503错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream nginxDemo &#123;</span><br><span class="line">	<span class="built_in">hash</span> <span class="variable">$request_url</span>;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="fair"><a href="#fair" class="headerlink" title="fair"></a>fair</h2><p>按后端服务器的响应时间来分配请求，响应时间短的优先分配。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream nginxDemo &#123;</span><br><span class="line">	fair;</span><br><span class="line">	server 127.0.0.1:8080; <span class="comment">#tomcat1访问地址</span></span><br><span class="line">	server 127.0.0.1:8081; <span class="comment">#tomcat2访问地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考链接：<a href="https://my.oschina.net/bgq365/blog/870569" target="_blank" rel="noopener">https://my.oschina.net/bgq365/blog/870569</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果我的文章对您有所帮助，不妨打赏一杯豆浆以资鼓励(○｀ 3′○)</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://zhangjava-1252424622.cosbj.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E9%92%B1%E7%A0%81.jpg" alt="张扎瓦 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://zhangjava-1252424622.cosbj.myqcloud.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E9%92%B1%E7%A0%81.jpg" alt="张扎瓦 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    张扎瓦
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.zhangjava.com/使用nginx和tomcat配置负载均衡/" title="使用nginx和tomcat配置负载均衡">https://www.zhangjava.com/使用nginx和tomcat配置负载均衡/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+          
+            <a href="/tags/tomcat/" rel="tag"><i class="fa fa-tag"></i> tomcat</a>
+          
+            <a href="/tags/负载均衡/" rel="tag"><i class="fa fa-tag"></i> 负载均衡</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/自己搭建Shadowsocks服务器/" rel="next" title="自己搭建Shadowsocks服务器">
+                <i class="fa fa-chevron-left"></i> 自己搭建Shadowsocks服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -332,6 +622,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -352,8 +649,17 @@
 	  
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -417,6 +723,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Nginx"><span class="nav-number">3.1.</span> <span class="nav-text">安装Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装tomcat"><span class="nav-number">3.2.</span> <span class="nav-text">安装tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置"><span class="nav-number">4.</span> <span class="nav-text">Nginx配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡策略"><span class="nav-number">5.</span> <span class="nav-text">负载均衡策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轮询"><span class="nav-number">5.1.</span> <span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最少连接"><span class="nav-number">5.2.</span> <span class="nav-text">最少连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weight-权重"><span class="nav-number">6.</span> <span class="nav-text">weight 权重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ip-hash"><span class="nav-number">7.</span> <span class="nav-text">ip_hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url-hash（第三方）"><span class="nav-number">8.</span> <span class="nav-text">url_hash（第三方）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fair"><span class="nav-number">9.</span> <span class="nav-text">fair</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
