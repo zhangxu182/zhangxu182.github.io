@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="张扎瓦的博客">
 <meta property="og:description" content="本文介绍了Linux环境下，自定义服务的开机自启">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-02T13:53:29.667Z">
+<meta property="og:updated_time" content="2018-08-02T13:58:58.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux配置springboot开机自启">
 <meta name="twitter:description" content="本文介绍了Linux环境下，自定义服务的开机自启">
@@ -351,7 +351,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T21:53:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T21:58:58+08:00">
                 2018-08-02
               </time>
             
@@ -472,7 +472,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nohup: ignoring input</span><br><span class="line">nohup: failed to run <span class="built_in">command</span> `java<span class="string">': No such file or directory</span></span><br></pre></td></tr></table></figure>
 <p>因为在加载执行此文件的时候，环境变量还未生效。</p>
 <h3 id="写脚本，放入-etc-profile-d"><a href="#写脚本，放入-etc-profile-d" class="headerlink" title="写脚本，放入/etc/profile.d"></a>写脚本，放入/etc/profile.d</h3><p>自己写一个shell脚本，放在此路径下，系统启动时会自动执行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cd /etc/profile.d/</span></span><br><span class="line">[root@localhost profile.d]<span class="comment"># vi mystart.sh</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">nohup /usr/<span class="built_in">local</span>/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1    -SNAPSHOT.jar &amp;&gt;/dev/null</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cd /etc/profile.d/</span></span><br><span class="line">[root@localhost profile.d]<span class="comment"># vi mystart.sh</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">nohup /usr/<span class="built_in">local</span>/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null</span><br></pre></td></tr></table></figure>
 <p>此处同上，依然使用完全限定的java命令来执行。编写完脚本后，要为脚本分配可执行权限。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost profile.d]<span class="comment"># chmod a+x mystart.sh</span></span><br></pre></td></tr></table></figure>
 <h3 id="使用chkconfig命令执行"><a href="#使用chkconfig命令执行" class="headerlink" title="使用chkconfig命令执行"></a>使用chkconfig命令执行</h3><p>自己写脚本，放入<code>/etc/init.d</code>下</p>
