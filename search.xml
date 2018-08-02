@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Linux配置springboot开机自启]]></title>
     <url>%2FLinux%E9%85%8D%E7%BD%AEspringboot%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%2F</url>
-    <content type="text"><![CDATA[本文介绍了Linux环境下，自定义服务的开机自启 背景&emsp;&emsp;对于不使用云服务器的公司而言，服务器断电是一件很头痛的事。最近公司的一个外包项目上线了，但甲方三天两头打电话，说服务没办法访问。最后才找出原因，他们的服务器断过电。一开始，我以为是偶发事件，结果是他们的服务器经常性的断电。每次断电重启后，都要打电话给我，重新启动项目，非常麻烦。能不能配置一下服务器，在开机的时候就启动指定的服务呢？ 配置关于Linux服务开机自启，有三种方式。 &emsp;&emsp;关于Linux服务开机自启，有三种方式。 编辑/etc/rc.local使用vi编辑此文件，直接添加要执行的命令就行 12345678910111213141516#!/bin/bash# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES## It is highly advisable to create own systemd services or udev rules# to run scripts during boot instead of using this file.## In contrast to previous versions due to parallel execution during boot# this script will NOT be run after all other services.## Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure# that this script will be executed during boot.touch /var/lock/subsys/local# 这里是自定义的执行命令nohup /usr/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null 这里有一点需要注意，即使配置过环境变量，在这里也要指定java命令的路径，否则会有如下错误。 12nohup: ignoring inputnohup: failed to run command `java': No such file or directory 因为在加载执行此文件的时候，环境变量还未生效。 写脚本，放入/etc/profile.d自己写一个shell脚本，放在此路径下，系统启动时会自动执行。 123456[root@localhost ~]# cd /etc/profile.d/[root@localhost profile.d]# vi mystart.sh#!/bin/bashnohup /usr/local/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null 此处同上，依然使用完全限定的java命令来执行。编写完脚本后，要为脚本分配可执行权限。 1[root@localhost profile.d]# chmod a+x mystart.sh 使用chkconfig命令执行自己写脚本，放入/etc/init.d下 12345678[root@localhost ~]# cd /etc/init.d[root@localhost init.d]# vi speed-start#!/bin/bash# chkconfig: - 95 15# description: speed-api start scriptnohup /usr/local/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/data/wwwroot/api/mylog.log 保存脚本，并赋予执行权限 1[root@localhost init.d]# chmod a+x speed-start 添加到chkconfig中，并设置开机启动 12[root@localhost init.d]# chkconfig --add speed-start[root@localhost init.d]# chkconfig speed-start on 这样，当下次服务器重启时，项目就可以自己启动了。]]></content>
+    <content type="text"><![CDATA[本文介绍了Linux环境下，自定义服务的开机自启 背景&emsp;&emsp;对于不使用云服务器的公司而言，服务器断电是一件很头痛的事。最近公司的一个外包项目上线了，但甲方三天两头打电话，说服务没办法访问。最后才找出原因，他们的服务器断过电。一开始，我以为是偶发事件，结果是他们的服务器经常性的断电。每次断电重启后，都要打电话给我，重新启动项目，非常麻烦。能不能配置一下服务器，在开机的时候就启动指定的服务呢？ 配置Linux服务开机自启，有三种方式。 编辑/etc/rc.local使用vi编辑此文件，直接添加要执行的命令就行 12345678910111213141516#!/bin/bash# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES## It is highly advisable to create own systemd services or udev rules# to run scripts during boot instead of using this file.## In contrast to previous versions due to parallel execution during boot# this script will NOT be run after all other services.## Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure# that this script will be executed during boot.touch /var/lock/subsys/local# 这里是自定义的执行命令nohup /usr/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null 这里有一点需要注意，即使配置过环境变量，在这里也要指定java命令的路径，否则会有如下错误。 12nohup: ignoring inputnohup: failed to run command `java': No such file or directory 因为在加载执行此文件的时候，环境变量还未生效。 写脚本，放入/etc/profile.d自己写一个shell脚本，放在此路径下，系统启动时会自动执行。 123456[root@localhost ~]# cd /etc/profile.d/[root@localhost profile.d]# vi mystart.sh#!/bin/bashnohup /usr/local/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null 此处同上，依然使用完全限定的java命令来执行。编写完脚本后，要为脚本分配可执行权限。 1[root@localhost profile.d]# chmod a+x mystart.sh 使用chkconfig命令执行自己写脚本，放入/etc/init.d下 12345678[root@localhost ~]# cd /etc/init.d[root@localhost init.d]# vi speed-start#!/bin/bash# chkconfig: - 95 15# description: speed-api start scriptnohup /usr/local/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/data/wwwroot/api/mylog.log 保存脚本，并赋予执行权限 1[root@localhost init.d]# chmod a+x speed-start 添加到chkconfig中，并设置开机启动 12[root@localhost init.d]# chkconfig --add speed-start[root@localhost init.d]# chkconfig speed-start on 这样，当下次服务器重启时，项目就可以自己启动了。]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -197,9 +197,9 @@
         <category>NIO</category>
       </categories>
       <tags>
-        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
+        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +211,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Java</tag>
         <tag>Buffer</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>

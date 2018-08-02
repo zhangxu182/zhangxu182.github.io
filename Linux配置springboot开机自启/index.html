@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="张扎瓦的博客">
 <meta property="og:description" content="本文介绍了Linux环境下，自定义服务的开机自启">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-02T13:58:58.806Z">
+<meta property="og:updated_time" content="2018-08-02T14:03:41.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux配置springboot开机自启">
 <meta name="twitter:description" content="本文介绍了Linux环境下，自定义服务的开机自启">
@@ -351,7 +351,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T21:58:58+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T22:03:41+08:00">
                 2018-08-02
               </time>
             
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  697
+                  681
                 </span>
               
 
@@ -464,8 +464,7 @@
 <a id="more"></a>
 <hr>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>&emsp;&emsp;对于不使用云服务器的公司而言，服务器断电是一件很头痛的事。最近公司的一个外包项目上线了，但甲方三天两头打电话，说服务没办法访问。最后才找出原因，他们的服务器断过电。一开始，我以为是偶发事件，结果是他们的服务器经常性的断电。每次断电重启后，都要打电话给我，重新启动项目，非常麻烦。能不能配置一下服务器，在开机的时候就启动指定的服务呢？</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>关于Linux服务开机自启，有三种方式。</p>
-<p>&emsp;&emsp;关于Linux服务开机自启，有三种方式。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Linux服务开机自启，有三种方式。 </p>
 <h3 id="编辑-etc-rc-local"><a href="#编辑-etc-rc-local" class="headerlink" title="编辑/etc/rc.local"></a>编辑/etc/rc.local</h3><p>使用vi编辑此文件，直接添加要执行的命令就行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># It is highly advisable to create own systemd services or udev rules</span></span><br><span class="line"><span class="comment"># to run scripts during boot instead of using this file.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># In contrast to previous versions due to parallel execution during boot</span></span><br><span class="line"><span class="comment"># this script will NOT be run after all other services.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure</span></span><br><span class="line"><span class="comment"># that this script will be executed during boot.</span></span><br><span class="line"></span><br><span class="line">touch /var/lock/subsys/<span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里是自定义的执行命令</span></span><br><span class="line">nohup /usr/java/jdk1.8.0_162/bin/java -jar /data/wwwroot/api/speed-api-0.0.1-SNAPSHOT.jar &amp;&gt;/dev/null</span><br></pre></td></tr></table></figure>
 <p>这里有一点需要注意，即使配置过环境变量，在这里也要指定java命令的路径，否则会有如下错误。</p>
