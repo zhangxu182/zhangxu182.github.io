@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="Java8,lambda表达式," />
+  <meta name="keywords" content="Redis,定时任务," />
 
 
 
@@ -88,18 +88,24 @@
 
 
 
-<meta name="description" content="Java8中新增的lambda表达式的介绍和用法">
-<meta name="keywords" content="Java8,lambda表达式">
+<meta name="description" content="使用Redis中的Expire key，结合springboot实现定时任务通知。">
+<meta name="keywords" content="Redis,定时任务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java8新功能-lambda表达式">
-<meta property="og:url" content="https://www.zhangjava.com/Java8新功能-lambda表达式/index.html">
+<meta property="og:title" content="使用Redis完成定时任务">
+<meta property="og:url" content="https://www.zhangjava.com/使用Redis完成定时任务/index.html">
 <meta property="og:site_name" content="张扎瓦的博客">
-<meta property="og:description" content="Java8中新增的lambda表达式的介绍和用法">
+<meta property="og:description" content="使用Redis中的Expire key，结合springboot实现定时任务通知。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-10T08:13:00.638Z">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533227343766.png">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533227344316.png">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533226100512.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533226098906.jpg">
+<meta property="og:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533301430500.jpg">
+<meta property="og:updated_time" content="2018-08-03T13:12:18.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java8新功能-lambda表达式">
-<meta name="twitter:description" content="Java8中新增的lambda表达式的介绍和用法">
+<meta name="twitter:title" content="使用Redis完成定时任务">
+<meta name="twitter:description" content="使用Redis中的Expire key，结合springboot实现定时任务通知。">
+<meta name="twitter:image" content="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533227343766.png">
 
 
 
@@ -129,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://www.zhangjava.com/Java8新功能-lambda表达式/"/>
+  <link rel="canonical" href="https://www.zhangjava.com/使用Redis完成定时任务/"/>
 
 
 
 
 
-  <title>Java8新功能-lambda表达式 | 张扎瓦的博客</title>
+  <title>使用Redis完成定时任务 | 张扎瓦的博客</title>
   
 
 
@@ -306,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/Java8新功能-lambda表达式/">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjava.com/使用Redis完成定时任务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张扎瓦">
@@ -323,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java8新功能-lambda表达式</h1>
+          <h1 class="post-title" itemprop="name headline">使用Redis完成定时任务</h1>
         
 
         <div class="post-meta">
@@ -335,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-10T14:08:36+08:00">
-                2018-06-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T22:43:18+08:00">
+                2018-08-02
               </time>
             
 
@@ -351,8 +357,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-10T16:13:00+08:00">
-                2018-06-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T21:12:18+08:00">
+                2018-08-03
               </time>
             
           </span>
@@ -370,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -388,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Java8新功能-lambda表达式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Java8新功能-lambda表达式/" itemprop="commentCount"></span>
+                <a href="/使用Redis完成定时任务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/使用Redis完成定时任务/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,7 +403,7 @@
 
           
           
-             <span id="/Java8新功能-lambda表达式/" class="leancloud_visitors" data-flag-title="Java8新功能-lambda表达式">
+             <span id="/使用Redis完成定时任务/" class="leancloud_visitors" data-flag-title="使用Redis完成定时任务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -422,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  372
+                  1,670
                 </span>
               
 
@@ -438,7 +444,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  7
                 </span>
               
             </div>
@@ -459,25 +465,74 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Java8中新增的lambda表达式的介绍和用法</p>
+        <blockquote class="blockquote-center"><p>使用Redis中的Expire key，结合springboot实现定时任务通知。</p>
 </blockquote>
 <a id="more"></a>
 <hr>
-<h2 id="为什么需要lambda表达式"><a href="#为什么需要lambda表达式" class="headerlink" title="为什么需要lambda表达式"></a>为什么需要lambda表达式</h2><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>在JDK8以前，如果我们需要临时创建一个线程，通常使用匿名内部类的方式实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当我们需要对集合进行自定义排序时，通常这么写</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; names = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    names.add(<span class="string">"tom"</span>);</span><br><span class="line">    names.add(<span class="string">"jerry"</span>);</span><br><span class="line">    names.sort(<span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String o1, String o2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> o1.length() - o2.length();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    System.out.println(names);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面两个例子中，我们都是将一段代码当作参数，传入方法中。</p>
-<h3 id="使用lambda"><a href="#使用lambda" class="headerlink" title="使用lambda"></a>使用lambda</h3><p>在JDK8中，我们可以使用lambda表达式简化代码。</p>
-<p>创建线程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        System.out.println(Thread.currentThread());</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>自定义比较器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; names = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    names.add(<span class="string">"tom"</span>);</span><br><span class="line">    names.add(<span class="string">"jerry"</span>);</span><br><span class="line">    names.sort((o1, o2) -&gt; &#123;</span><br><span class="line">    	<span class="keyword">return</span> Integer.compare(o1.length(), o2.length());</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(names);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>()</code>里写参数名，如果没有参数，可以不写。<code>{}</code>里写表达式，如果无法用一个表达式表示，也可以写多条语句。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">names.sort((o1, o2) -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"123"</span>);</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> Integer.compare(o1.length(), o2.length());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>参数的类型如果可以被推导，也可以省略。</p>
-<p>如果需要赋值，也可以这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;String&gt; comparator = (o1, o2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> Integer.compare(o1.length(), o2.length());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>&emsp;&emsp;使用Java做过项目的人大概都用过定时器。一般来说，项目里订单模块和评论模块，都会涉及到定时任务执行。比如说：</p>
+<ul>
+<li>用户下订单后，需要在5分钟内完成支付，否则订单关闭；</li>
+<li>用户在完成订单后，如果没有评论，过一星期，系统自动评论，并完结。</li>
+</ul>
+<p>我以前曾经做过一个租车系统，其中订单的预约逻辑是这样的：</p>
+<ol>
+<li>用户选择车辆并预约</li>
+<li>后台系统开始计时</li>
+<li>计时结束后，如果用户没有进行支付，则取消本次订单</li>
+</ol>
+<p>当时后台计时部分的技术，用的就是java中的定时器类Timer ,使用schedule来设置定时任务。虽然说功能实现了，但还是有很多问题，因为Timer本质上还是启动了一个线程来进行处理。当预约用户过多时，系统内存就会飙升，而且当发布新功能时，如果重启服务器，所有的定时器都会丢失。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><h3 id="薛定谔解决法"><a href="#薛定谔解决法" class="headerlink" title="薛定谔解决法"></a>薛定谔解决法</h3><p>&emsp;&emsp;在订单信息中，加入过期时间，当用户查询订单或其他操作时，检查一下有没有过期的预订单，如果有，则进入逻辑处理。也就是说，当用户不进行操作时，这个预订单是不会自己结束的。这样做的好处在于，当系统重启时，这个订单的状态是不会收到影响的。坏处当然也显而易见，延迟率太高，主动权完全决定在用户手中。</p>
+<h3 id="Redis定时器"><a href="#Redis定时器" class="headerlink" title="Redis定时器"></a>Redis定时器</h3><p>&emsp;&emsp;Redis中有一个expire命令，用来设置key的过期时间。使用发布订阅，可以接收到key的过期提醒，当key过期时，再执行取消订单的逻辑，就可以了。</p>
+<p>redis 定时器演示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> <span class="built_in">test</span> tom EX 10</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get <span class="built_in">test</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<p>设置test(key)的过期时间为10秒，10秒过后key自动销毁。</p>
+<p>当然，仅仅有定时器还是不够的，接下来看redis的另一个功能，发布订阅。</p>
+<h3 id="Redis发布订阅"><a href="#Redis发布订阅" class="headerlink" title="Redis发布订阅"></a>Redis发布订阅</h3><p>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。</p>
+<p>Redis 客户端可以订阅任意数量的频道。</p>
+<p>用一张图来展示频道(channel1)与订阅者(client2, client5, client1)的关系：</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533227343766.png" alt="订阅"></p>
+<p>当有消息发布时，他们的关系：</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533227344316.png" alt="发布"></p>
+<p>消息经由频道广播到每个订阅者中。</p>
+<p>发布订阅演示：</p>
+<p>首先创建一个频道：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SUBSCRIBE chat1</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) <span class="string">"subscribe"</span></span><br><span class="line">2) <span class="string">"chat1"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<p>此时控制台进入阻塞状态。</p>
+<p>开启2个控制台，分别订阅chat1频道</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PSUBSCRIBE chat1</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) <span class="string">"psubscribe"</span></span><br><span class="line">2) <span class="string">"chat1"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<p>这两个控制台也依次进入阻塞状态。</p>
+<p>再开一个控制台，进行信息的发布：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PUBLISH chat1 <span class="string">"hello everyone!"</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>此时两个订阅者和一个频道创建者都分别收到了相同的内容 <code>hello everyone!</code></p>
+<p>这里放上一张图片，效果可能会比较好：</p>
+<p>发消息之前</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533226100512.jpg" alt="发消息之前"></p>
+<p>发消息之后</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533226098906.jpg" alt="发消息之后"></p>
+<p>redis的key过期通知也是基于发布订阅模型的。不同的是订阅频道是固定的<code>__keyevent@0__:expired</code>,当然，redis还有好多类似与这种特定频道的通知，想了解更多，可以看这里<a href="http://redisdoc.com/topic/notification.html" target="_blank" rel="noopener">Redis键空间通知</a>。</p>
+<h3 id="Redis过期通知"><a href="#Redis过期通知" class="headerlink" title="Redis过期通知"></a>Redis过期通知</h3><p>要使用Redis的过期通知功能，需要首先开启该功能。</p>
+<p>在配置文件中加入如下语句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notify-keyspace-events Ex</span><br></pre></td></tr></table></figure>
+<p>控制台1订阅频道<code>__keyevent@0__:expired</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PSUBSCRIBE __keyevent@0__:expired</span><br><span class="line">Reading messages... (press Ctrl-C to quit)       </span><br><span class="line">1) <span class="string">"psubscribe"</span>                                  </span><br><span class="line">2) <span class="string">"__keyevent@0__:expired"</span>                      </span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<p>控制台2存入一个key，并设置过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> <span class="built_in">test</span> tom EX 10</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<p>当10秒过后，控制台1收到信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) <span class="string">"pmessage"</span></span><br><span class="line">2) <span class="string">"__keyevent@0__:expired"</span></span><br><span class="line">3) <span class="string">"__keyevent@0__:expired"</span></span><br><span class="line">4) <span class="string">"test"</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用springboot接收Redis过期通知"><a href="#使用springboot接收Redis过期通知" class="headerlink" title="使用springboot接收Redis过期通知"></a>使用springboot接收Redis过期通知</h3><h4 id="首先在maven中配置redis"><a href="#首先在maven中配置redis" class="headerlink" title="首先在maven中配置redis"></a>首先在maven中配置redis</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个包是spring实现的redis client功能的包。</p>
+<h4 id="在springboot配置文件中配置redis"><a href="#在springboot配置文件中配置redis" class="headerlink" title="在springboot配置文件中配置redis"></a>在springboot配置文件中配置redis</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#Redis配置</span><br><span class="line">#数据库索引，默认为0</span><br><span class="line">spring.redis.database=0</span><br><span class="line">#服务器地址，默认localhost</span><br><span class="line">spring.redis.host=localhost</span><br><span class="line">#端口，默认6379</span><br><span class="line">spring.redis.port=6379</span><br><span class="line">#密码，默认为空</span><br><span class="line">spring.redis.password=</span><br><span class="line">#连接池最大连接数，默认为8</span><br><span class="line">spring.redis.jedis.pool.max-active=8</span><br><span class="line">#连接池最大阻塞等待时间，使用负值表示没有限制</span><br><span class="line">spring.redis.jedis.pool.max-wait=-1</span><br><span class="line">#连接池最大空闲连接，默认为8</span><br><span class="line">spring.redis.jedis.pool.max-idle=8</span><br><span class="line">#连接池中的最小空闲连接，默认为0</span><br><span class="line">spring.redis.jedis.pool.min-idle=0</span><br><span class="line">#连接超时时间(毫秒)</span><br><span class="line">spring.redis.timeout=10</span><br></pre></td></tr></table></figure>
+<h4 id="开始写实现"><a href="#开始写实现" class="headerlink" title="开始写实现"></a>开始写实现</h4><p>首先写接收通知的处理方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisMessageReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收redis消息，并处理</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message 过期的redis key</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveMessage</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"通知的key是："</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再写频道订阅的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * redis 订阅频道</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> connectionFactory</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> listenerAdapter</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">RedisMessageListenerContainer <span class="title">container</span><span class="params">(RedisConnectionFactory connectionFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            MessageListenerAdapter listenerAdapter)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        RedisMessageListenerContainer container = <span class="keyword">new</span> RedisMessageListenerContainer();</span><br><span class="line">        container.setConnectionFactory(connectionFactory);</span><br><span class="line">        <span class="comment">// 订阅通道，key过期时通知</span></span><br><span class="line">        container.addMessageListener(listenerAdapter, <span class="keyword">new</span> PatternTopic(<span class="string">"__keyevent@0__:expired"</span>));</span><br><span class="line">        <span class="comment">// 可以订阅多个通道</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> container;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置redis事件监听处理器</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> receiver</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">MessageListenerAdapter <span class="title">listenerAdapter</span><span class="params">(RedisMessageReceiver receiver)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MessageListenerAdapter(receiver, <span class="string">"receiveMessage"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样整个代码就完成了。我们来测试一下效果：</p>
+<p>使用控制台，新增一个key，并设置过期时间为10秒</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> testnofity xxx EX 10</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>切换到我们的程序中，可以在控制台看到如下信息：</p>
+<p><img src="http://zhangjava-1252424622.cos.ap-beijing.myqcloud.com/1533301430500.jpg" alt="redis通知"></p>
+<p>好了，现在我们就可以根据不同的key做不同的业务逻辑处理了。比如规定，所有订单的key，都必须以<code>order-订单号</code>的形式存入，这样，当接收到订单过期的通知时，就可以解析出订单信息，进一步处理了。</p>
+<p>当然，这个只是一种解决思路，你也可以使用一些其他的方式实现，比如说使用RabbitMQ消息队列实现。</p>
 
       
     </div>
@@ -527,7 +582,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.zhangjava.com/Java8新功能-lambda表达式/" title="Java8新功能-lambda表达式">https://www.zhangjava.com/Java8新功能-lambda表达式/</a>
+    <a href="https://www.zhangjava.com/使用Redis完成定时任务/" title="使用Redis完成定时任务">https://www.zhangjava.com/使用Redis完成定时任务/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -542,9 +597,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java8/" rel="tag"><i class="fa fa-tag"></i> Java8</a>
+            <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
           
-            <a href="/tags/lambda表达式/" rel="tag"><i class="fa fa-tag"></i> lambda表达式</a>
+            <a href="/tags/定时任务/" rel="tag"><i class="fa fa-tag"></i> 定时任务</a>
           
         </div>
       
@@ -557,8 +612,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/spring参数统一校验/" rel="next" title="spring参数统一校验">
-                <i class="fa fa-chevron-left"></i> spring参数统一校验
+              <a href="/Linux配置springboot开机自启/" rel="next" title="Linux配置springboot开机自启">
+                <i class="fa fa-chevron-left"></i> Linux配置springboot开机自启
               </a>
             
           </div>
@@ -566,10 +621,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Java8新功能-接口可以实现方法/" rel="prev" title="Java8新功能-接口可以实现方法">
-                Java8新功能-接口可以实现方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要lambda表达式"><span class="nav-number">1.</span> <span class="nav-text">为什么需要lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用lambda"><span class="nav-number">1.2.</span> <span class="nav-text">使用lambda</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text">解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#薛定谔解决法"><span class="nav-number">2.1.</span> <span class="nav-text">薛定谔解决法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis定时器"><span class="nav-number">2.2.</span> <span class="nav-text">Redis定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis发布订阅"><span class="nav-number">2.3.</span> <span class="nav-text">Redis发布订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis过期通知"><span class="nav-number">2.4.</span> <span class="nav-text">Redis过期通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用springboot接收Redis过期通知"><span class="nav-number">2.5.</span> <span class="nav-text">使用springboot接收Redis过期通知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先在maven中配置redis"><span class="nav-number">2.5.1.</span> <span class="nav-text">首先在maven中配置redis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在springboot配置文件中配置redis"><span class="nav-number">2.5.2.</span> <span class="nav-text">在springboot配置文件中配置redis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始写实现"><span class="nav-number">2.5.3.</span> <span class="nav-text">开始写实现</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
