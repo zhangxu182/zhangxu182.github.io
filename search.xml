@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[tomcat更新maven索引]]></title>
+    <url>%2Ftomcat%E6%9B%B4%E6%96%B0maven%E7%B4%A2%E5%BC%95%2F</url>
+    <content type="text"><![CDATA[本文介绍了使用tomcat手动更新idea的maven索引 因为某些原因，使用idea更新maven索引时，非常非常慢，所以我们需要手动进行更新。 首先去http://repo1.maven.org/maven2/.index/下，下载两个文件 nexus-maven-repository-index.properties nexus-maven-repository-index.gz 在本地tomcat的webapps下，创建maven2\.index文件夹，.index文件夹在windows下，需要使用命令创建 1mkdir .index 将下载好的文件，放入创建好的目录下，启动tomcat 在idea中，设置maven代理。 -DproxyHost设置代理IP -DproxyPort设置代理端口，这里设置为本地tomcat端口 现在就可以快速更新maven索引了。]]></content>
+      <categories>
+        <category>maven</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[solr7.2 tomcat8环境搭建]]></title>
     <url>%2Fsolr7-2-tomcat8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[solr7.2和tomcat8具体搭建流程 配置前的准备下载jdk1.8，并安装配置好环境变量，下载路径：JDK1.8 下载solr7.2，解压待用。下载路径：solr 下载tomcat8，解压待用。下载路径：tomcat8 开始配置配置tomcat 打开tomcat的webapps路径，创建一个文件夹，命名为solr。 打开解压后的solr文件夹，将solr-7.2.0\server\solr-webapp\webapp下，所有的文件，拷入上一步在tomcat中创建的solr文件夹下。 将solr-7.2.0\server\lib\ext下所有包，solr-7.2.0\server\lib下除了jetty开头的所有包，拷入tomcat-8.5.31\webapps\solr\WEB-INF\lib中。 将solr-7.2.0\dist下的两个以solr-dataimporthandler开头的包拷入tomcat-8.5.31\webapps\solr\WEB-INF\lib中 在tomcat-8.5.31\webapps\solr\WEB-INF新建classes目录，然后把solr-7.2.0\server\resources\log4j.properties粘贴过去 把solr-7.2.0\server\solr整个文件夹复制到tomcat根路径下，并重命名为solr-home，这个是solr的核心配置文件夹。 将solr-7.2.0下的contrib和dist拷入solr-home中。 修改tomcat-8.5.31\webapps\solr\WEB-INF\web.xml文件，指定solr-home位置 注释权限控制 运行tomcat，在浏览器输入http://localhost:8080/solr/index.html，即可访问solr。]]></content>
@@ -233,9 +244,9 @@
         <category>NIO</category>
       </categories>
       <tags>
+        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
-        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -247,8 +258,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Buffer</tag>
         <tag>Java</tag>
+        <tag>Buffer</tag>
       </tags>
   </entry>
   <entry>
