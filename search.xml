@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot时间格式化]]></title>
+    <url>%2Fspringboot%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[最近使用了JDK8中新的时间API LocalDateTime，这里记录一下与springboot集成时出现的一些需要注意的细节 1.问题的出现在未使用LocalDateTime以前，项目中的实体类都是用Timestamp对应的。可以在springboot的主配置文件中，统一进行格式化设置 12# 返回时间戳spring.jackson.serialization.write-dates-as-timestamps=true 使用@responseBody返回json数据时，会自动将时间格式化为毫秒值。 但当使用了LocalDateTime后，这种做法就失效了，时间数据会被转成一个类似于[2019,2,22,15,24,55]的数组，而并非毫秒值。引用自jackson-modules-java8 LocalDate, LocalTime, LocalDateTime, and OffsetTime, which cannot portably be converted to timestamps and are instead represented as arrays when WRITE_DATES_AS_TIMESTAMPS is enabled. 2.解决方案 自定义JsonSerialize 123456789101112/** * json序列化，将LocateDateTime转换为时间戳 * * @author zhangxu */public class LocalDateTimeConverter extends JsonSerializer&lt;LocalDateTime&gt; &#123; @Override public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException &#123; gen.writeNumber(value.toInstant(ZoneOffset.of("+8")).toEpochMilli()); &#125;&#125; 在实体类时间属性上，加入@JsonSerialize(using = LocalDateTimeConverter.class)注解即可 3.其他问题服务器返回时间戳的问题解决了，但还会有另一个问题，就是时间戳的接收问题。当接口使用实体类接收数据时，无法解析客户端传过来的时间戳，会报类型转换错误的bug。 这就需要自定义Converter解决问题。 1234567891011121314/** * spring接收参数格式转化 long --&gt; LocalDateTime * * @author zhangxu */@Configurationpublic class DateConfig implements Converter&lt;String, LocalDateTime&gt; &#123; @Override public LocalDateTime convert(String source) &#123; ZoneOffset zoneOffset = ZoneOffset.of("+8"); return LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(source)), zoneOffset); &#125;&#125; 再次启动项目，就可以自动将时间戳转换为 LocalDateTime了。]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[tomcat更新maven索引]]></title>
     <url>%2Ftomcat%E6%9B%B4%E6%96%B0maven%E7%B4%A2%E5%BC%95%2F</url>
     <content type="text"><![CDATA[本文介绍了使用tomcat手动更新idea的maven索引 因为某些原因，使用idea更新maven索引时，非常非常慢，所以我们需要手动进行更新。 首先去http://repo1.maven.org/maven2/.index/下，下载两个文件 nexus-maven-repository-index.properties nexus-maven-repository-index.gz 在本地tomcat的webapps下，创建maven2\.index文件夹，.index文件夹在windows下，需要使用命令创建 1mkdir .index 将下载好的文件，放入创建好的目录下，启动tomcat 在idea中，设置maven代理。 -DproxyHost设置代理IP -DproxyPort设置代理端口，这里设置为本地tomcat端口 现在就可以快速更新maven索引了。]]></content>
@@ -244,9 +255,9 @@
         <category>NIO</category>
       </categories>
       <tags>
-        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
+        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -258,8 +269,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Java</tag>
         <tag>Buffer</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
