@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot mybatis druid多数据源配置]]></title>
+    <url>%2Fspringboot-mybatis-druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[多数据源配置 项目结构最近项目用到了多数据源，在此处记录一下具体的配置信息。 目前是两个数据库，paas 和 robot，根据数据库，将项目的包结构分为如下图所示，方便管理及后期维护。 项目配置主配置文件 application.properties1234567891011121314151617181920212223242526272829303132333435#连接池配置spring.datasource.type=com.alibaba.druid.pool.DruidDataSourcespring.datasource.driverClassName=com.mysql.jdbc.Driver#robot库spring.datasource.robot.url=jdbc:mysql://localhost:3306/robot?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=truespring.datasource.robot.username=rootspring.datasource.robot.password=spring.datasource.robot.initialSize=1spring.datasource.robot.maxActive=20spring.datasource.robot.minIdle=1spring.datasource.robot.maxWait=60000spring.datasource.robot.timeBetweenEvictionRunsMillis=60000spring.datasource.robot.minEvictableIdleTimeMillis=300000spring.datasource.robot.validationQuery=select 1spring.datasource.robot.testWhileIdle=true#pass库spring.datasource.paas.url=jdbc:mysql://localhost:3306/paas?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=truespring.datasource.paas.username=rootspring.datasource.paas.password=spring.datasource.paas.initialSize=1spring.datasource.paas.maxActive=20spring.datasource.paas.minIdle=1spring.datasource.paas.maxWait=60000spring.datasource.paas.timeBetweenEvictionRunsMillis=60000spring.datasource.paas.minEvictableIdleTimeMillis=300000spring.datasource.paas.validationQuery=select 1spring.datasource.paas.testWhileIdle=true#实体类扫描路径mybatis.type-aliases-package=com.huayunworld.parser.flowChart.model.db#mybatis配置文件路径mybatis.config-location=classpath:mybatis-config.xml 数据源robot配置1234567891011121314151617181920212223242526272829303132@Configuration@MapperScan(basePackages = "com.huayunworld.parser.flowChart.dao.robot", sqlSessionFactoryRef = "robotSqlSessionFactory")public class RobotDruidConfig &#123; private static final String MAPPER = "classpath:mapping/robot/*.xml"; @ConfigurationProperties("spring.datasource.robot") @Primary @Bean(name = "robotDataSource") public DruidDataSource robotDataSource() &#123; return new DruidDataSource(); &#125; @Bean(name = "robotTransactionManager") @Primary public DataSourceTransactionManager robotTransactionManager() &#123; return new DataSourceTransactionManager(robotDataSource()); &#125; @Bean(name = "robotSqlSessionFactory") @Primary public SqlSessionFactory masterSqlSessionFactory(@Qualifier("robotDataSource") DataSource dataSource) throws Exception &#123; final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean(); sessionFactoryBean.setDataSource(dataSource); sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER)); return sessionFactoryBean.getObject(); &#125;&#125; 数据源paas配置1234567891011121314151617181920212223242526272829@Configuration@MapperScan(basePackages = "com.huayunworld.parser.flowChart.dao.paas", sqlSessionFactoryRef = "paasSqlSessionFactory")public class PaasDruidConfig &#123; private static final String MAPPER = "classpath:mapping/paas/*.xml"; @ConfigurationProperties("spring.datasource.paas") @Bean(name = "paasDataSource") public DruidDataSource paasDataSource() &#123; return new DruidDataSource(); &#125; @Bean(name = "paasTransactionManager") public DataSourceTransactionManager masterTransactionManager() &#123; return new DataSourceTransactionManager(paasDataSource()); &#125; @Bean(name = "paasSqlSessionFactory") public SqlSessionFactory masterSqlSessionFactory(@Qualifier("paasDataSource") DataSource dataSource) throws Exception &#123; final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean(); sessionFactoryBean.setDataSource(dataSource); sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER)); return sessionFactoryBean.getObject(); &#125;&#125; 测试使用时，与之前的mybatis的使用方法一样，直接注入dao层对象即可。spring会根据不同包下的dao，连接不同的数据库。 测试代码： 12345678910111213141516171819202122@RunWith(SpringRunner.class)@SpringBootTest(classes = RbcParserApplication.class)@Transactionalpublic class RbcParserApplicationTests &#123; // robot库 @Resource private AttrMapper attrMapper; // paas库 @Resource private CallRecBotMapper callRecBotMapper; /** * 两个数据库同时测试 查询 */ @Test public void allDataSourceSelectTest() &#123; System.out.println(attrMapper.selectAllData()); System.out.println(callRecBotMapper.selectAllData()); &#125; 输出结果： 通过测试可以看出，两个库分别连接成功了。]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+        <tag>mybatis</tag>
+        <tag>多数据源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[模板方法模式]]></title>
+    <url>%2F%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[模板方法模式及其应用场景 动机&emsp;&emsp;在软件构建过程中，对于某一项任务，它常常有稳定的整体操作结构，但各个子步骤却有很多改变的需求，或者由于固有的原因（比如框架与应用之间的关系）而无法和任务的整体结构同时实现。 &emsp;&emsp;如何在确定稳定操作结构的前提下，来灵活应对各个子步骤的变化或者晚期实现需求？ 模板方法模式模板方法模式的功能&emsp;&emsp;模板方法模式的功能在于固定算法骨架，而让具体算法实现可扩展。 &emsp;&emsp;这在实际应用中非常广泛，尤其是在设计框架级功能的时候非常有用。框架定义了算法的实现步骤，在合适的地点让开发人员进行扩展，实现具体的算法。比如在DAO层设计通用的增删改查功能。 &emsp;&emsp;模板方法设计模式还额外提供了一个好处，就是可以控制子类的扩展。因为在父类中定义好了算法的步骤，只是在某几个固定的点才回调用到被子类实现的方法，因此也就只允许在这几个点来扩展功能。这些可以被子类覆盖以扩展功能的方法通常被称为“钩子”方法，比如servlet中的生命周期函数，spring中的拦截器等。 代码演示要点总结&emsp;&emsp;模板方法模式是一种非常基础性的设计模式，在面向对象系统中有着大量的应用。它用最简洁的机制为很多应用程序框架提供了灵活的扩展点，是代码复用方面的基本实现结构。 &emsp;&emsp;除了可以灵活应对自步骤的变化外，“不要调用我，让我调用你”的反向控制结构是模板方法模式的典型应用。 &emsp;&emsp;在具体实现方面，被模板方法调用的虚方法可以具体实现，也可以没有任何实现，但一般都把它们设置为protected方法。]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>模板方法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[springboot时间格式化]]></title>
     <url>%2Fspringboot%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%2F</url>
     <content type="text"><![CDATA[最近使用了JDK8中新的时间API LocalDateTime，这里记录一下与springboot集成时出现的一些需要注意的细节 1.问题的出现在未使用LocalDateTime以前，项目中的实体类都是用Timestamp对应的。可以在springboot的主配置文件中，统一进行格式化设置 12# 返回时间戳spring.jackson.serialization.write-dates-as-timestamps=true 使用@responseBody返回json数据时，会自动将时间格式化为毫秒值。 但当使用了LocalDateTime后，这种做法就失效了，时间数据会被转成一个类似于[2019,2,22,15,24,55]的数组，而并非毫秒值。引用自jackson-modules-java8 LocalDate, LocalTime, LocalDateTime, and OffsetTime, which cannot portably be converted to timestamps and are instead represented as arrays when WRITE_DATES_AS_TIMESTAMPS is enabled. 2.解决方案 自定义JsonSerialize 123456789101112/** * json序列化，将LocateDateTime转换为时间戳 * * @author zhangxu */public class LocalDateTimeConverter extends JsonSerializer&lt;LocalDateTime&gt; &#123; @Override public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException &#123; gen.writeNumber(value.toInstant(ZoneOffset.of("+8")).toEpochMilli()); &#125;&#125; 在实体类时间属性上，加入@JsonSerialize(using = LocalDateTimeConverter.class)注解即可 3.其他问题服务器返回时间戳的问题解决了，但还会有另一个问题，就是时间戳的接收问题。当接口使用实体类接收数据时，无法解析客户端传过来的时间戳，会报类型转换错误的bug。 这就需要自定义Converter解决问题。 1234567891011121314/** * spring接收参数格式转化 long --&gt; LocalDateTime * * @author zhangxu */@Configurationpublic class DateConfig implements Converter&lt;String, LocalDateTime&gt; &#123; @Override public LocalDateTime convert(String source) &#123; ZoneOffset zoneOffset = ZoneOffset.of("+8"); return LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(source)), zoneOffset); &#125;&#125; 再次启动项目，就可以自动将时间戳转换为 LocalDateTime了。]]></content>
@@ -255,9 +280,9 @@
         <category>NIO</category>
       </categories>
       <tags>
+        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
-        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -269,8 +294,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Buffer</tag>
         <tag>Java</tag>
+        <tag>Buffer</tag>
       </tags>
   </entry>
   <entry>
@@ -326,7 +351,7 @@
   <entry>
     <title><![CDATA[设计模式概述]]></title>
     <url>%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0%2F</url>
-    <content type="text"><![CDATA[四人帮23种设计模式概述 什么是设计模式&emsp;&emsp;设计模式，是指在软件开发中，经过验证的，用于解决在特定环境下，重复出现的、特定问题的解决方案。通俗的说，就是解决特定问题的套路方法。 为什么要学设计模式 他山之石，可以攻玉。学习别人解决问题的思路，以后自己碰到了就可以很好的解决同样的问题。 提升逼格。让自己的代码更优雅，更有设计感。 如何学习设计模式 心态要稳，学习要狠。不要指望一步登天，心浮气躁。 理论与实践相结合。多写多思考，在实际开发中使用，然后再结合理论思考，然后再应用，再思考……如此循环，反复多次，直到达到对设计模式掌握的水平。 学习设计模式的三个层次鹦鹉学舌&emsp;&emsp;能够正确理解和掌握每个设计模式的基本知识，能够识别在什么场景下，出现了什么样的问题，采用何种方案解决它，并能够在实际的程序设计和开发中套用相应的设计模式。 照猫画虎&emsp;&emsp;能根据具体的实际情况，对设计模式进行适当的变形使用，能够确保正确使用设计模式，而不是生搬硬套。 学以致用&emsp;&emsp;真正的设计模式是没有模式。从本质上已经掌握了设计模式的精髓，并完全融入到了自己的思想中。在设计程序的时候，可以随意的，自然而然的运用。 上面基本都是废话，下面来点干货。 设计模式的六大原则开闭原则一个软件的实体(类、方法、模块等)，应该对扩展开放，对修改关闭。 依赖倒置原则高层模块不应该依赖底层模块，两个都应该依赖抽象。 抽象不应该依赖细节，细节应该依赖抽象。 迪米特法则如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。 单一职责原则一个类只做一种类型责任，当这个类需要承担其他类型的责任的时候，就需要分解这个类。 里氏替换原则接口或类出现的地方，他们的实现或者子类可以完全替换调他们。 接口隔离原则不要提供一个大的接口包含所有功能，要根据功能把这些接口分割，减少依赖。 设计模式分类创建型模式创建型模式有五种。 单例模式、工厂模式、建造者模式、原型模式、适配器模式。 结构型模式结构型模式有七种。 适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为模式行为模式有十一种。 模板方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、责任链模式、访问者模式。]]></content>
+    <content type="text"><![CDATA[四人帮23种设计模式概述 什么是设计模式&emsp;&emsp;设计模式，是指在软件开发中，经过验证的，用于解决在特定环境下，重复出现的、特定问题的解决方案。通俗的说，就是解决特定问题的套路方法。 为什么要学设计模式 他山之石，可以攻玉。学习别人解决问题的思路，以后自己碰到了就可以很好的解决同样的问题。 提升逼格。让自己的代码更优雅，更有设计感。 如何学习设计模式 心态要稳，学习要狠。不要指望一步登天，心浮气躁。 理论与实践相结合。多写多思考，在实际开发中使用，然后再结合理论思考，然后再应用，再思考……如此循环，反复多次，直到达到对设计模式掌握的水平。 学习设计模式的三个层次鹦鹉学舌&emsp;&emsp;能够正确理解和掌握每个设计模式的基本知识，能够识别在什么场景下，出现了什么样的问题，采用何种方案解决它，并能够在实际的程序设计和开发中套用相应的设计模式。 照猫画虎&emsp;&emsp;能根据具体的实际情况，对设计模式进行适当的变形使用，能够确保正确使用设计模式，而不是生搬硬套。 学以致用&emsp;&emsp;真正的设计模式是没有模式。从本质上已经掌握了设计模式的精髓，并完全融入到了自己的思想中。在设计程序的时候，可以随意的，自然而然的运用。 上面基本都是废话，下面来点干货。 设计模式的六大原则开闭原则一个软件的实体(类、方法、模块等)，应该对扩展开放，对修改关闭。 依赖倒置原则高层模块不应该依赖底层模块，两个都应该依赖抽象。 抽象不应该依赖细节，细节应该依赖抽象。 迪米特法则如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。 单一职责原则一个类只做一种类型责任，当这个类需要承担其他类型的责任的时候，就需要分解这个类。 里氏替换原则接口或类出现的地方，他们的实现或者子类可以完全替换调他们。 接口隔离原则不要提供一个大的接口包含所有功能，要根据功能把这些接口分割，减少依赖。 设计模式分类创建型模式创建型模式有五种。 单例模式、工厂模式、建造者模式、原型模式、适配器模式。 结构型模式结构型模式有七种。 适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。 行为模式行为模式有十一种。 模板方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、责任链模式、访问者模式。 从封装变化角度分类组件协作模板方法、策略模式、观察者模式 单一职责装饰模式、桥接模式 对象创建工厂模式、抽象工厂模式、原型模式、建造者模式 对象性能单例模式、享元模式 接口隔离外观模式、代理模式、中介者模式、适配器模式 状态变化备忘录模式、状态模式 数据结构组合模式、迭代器模式、责任链模式 行为变化命令模式、访问者模式 领域问题解释器模式 重构获得模式面向对象设计模式是“好的面向对象设计”，所谓“面向对象设计”，指的是那些可以满足“应对变化，提高复用”设计。 现代软件的设计特征是“需求的频繁变化”。设计模式的要点是“寻找变化点，然后在变化点处应用设计模式”，从而来更好的应对需求的变化。什么时候，什么地点应用设计模式，比理解设计模式本身更为重要。 设计模式的应用不宜先入为主，一上来就使用设计模式，是对设计模式的最大误用。没有一步到位的设计模式，敏捷开发实践提倡的“Refactoring to Patterns”是目前普遍公认的最好的使用设计模式的方法。]]></content>
       <categories>
         <category>设计模式</category>
       </categories>
