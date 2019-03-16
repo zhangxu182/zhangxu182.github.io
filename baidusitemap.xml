@@ -253,9 +253,9 @@
         
         <tag>NIO</tag>
          
-        <tag>Java</tag>
-         
         <tag>Buffer</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -637,11 +637,11 @@
         <title>Channel通道</title>
         <pubTime>2018-05-29T08:43:37.000Z</pubTime>
         
-        <tag>Channel</tag>
-         
         <tag>NIO</tag>
          
         <tag>Java</tag>
+         
+        <tag>Channel</tag>
          
          
            

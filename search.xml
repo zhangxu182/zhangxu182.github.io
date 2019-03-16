@@ -280,9 +280,9 @@
         <category>NIO</category>
       </categories>
       <tags>
-        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
+        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -294,8 +294,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Java</tag>
         <tag>Buffer</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
