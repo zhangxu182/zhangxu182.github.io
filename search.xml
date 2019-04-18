@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux历史记录，输出重定向等命令]]></title>
+    <url>%2FLinux%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%EF%BC%8C%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91%E7%AD%89%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[其他杂项命令 常用命令 1.历史记录 history[选项][历史命令保存文件]history用于查看当前登录用户的操作历史记录，文件在 ~ 下的 .bash_history -c: 清空历史命令 -w: 把缓存中的历史命令写入到 .bash_history文件中 例子1history -w /home/zhangxu/myhistory将历史记录写入指定文件中 例子2history -w将历史记录写入默认文件中(.bash_history) 修改历史记录默认条数历史记录的默认条数在linux的环境变量配置文件 /etc/profile 中 HISTSIZE=1000,默认是1000条 历史命令的调用 使用上、下箭头调用以前的历史命令 使用 !n 重复执行第n条历史领命 使用 !! 重复执行上一条命令 使用 !字符串 重复执行最后一条以该字符串开头的命令 2.别名 命令执行优先级1.用绝对路径或相对路径执行的命令2.使用别名执行的命令3.执行bash内部命令4.按照$PATH环境变量定义的目录查找顺序找到的第一个命令 添加和修改临时别名 使用 alias命令添加别名 alias vi=’vim’ 使用 unalias 删除别名 unalias vi 用这种方式添加的别名，下次登陆后就不存在了，属于临时别名 让别名永久生效 编辑 ~/.bashrc 文件，添加别名，使别名永久生效 3.快捷键 bash常用快捷键 快捷键 作用 CTRL+A 将光标移动到命令行开头 CTRL+E 将光标移动到命令行结尾 CTRL+C 强行终止当前命令 CTRL+L 清屏，相当于clear CTRL+U 删除或剪切光标之前的命令 CTRL+K 删除或剪切光标之后的命令 CTRL+Y 粘贴CTRL+U或者CTRL+K剪切的内容 CTRL+R 在历史命令中搜索 CTRL+D 退出当前终端 CTRL+Z 暂停，并放入后台 CTRL+S 暂停屏幕输出 CTRL+Q 恢复屏幕输出 4.输出重定向 标准输入输出 设备 设备文件名 文件描述符 类型 键盘 /dev/stdin 0 标准输入 显示器 /dev/sdtout 1 标准输出 显示器 /dev/sdterr 2 标准输出错误 输出重定向1 类型 符号 作用 标准输出重定向 命令 &gt; 文件 以覆盖的方式，把命令正确输出到指定的文件或设备中 命令 &gt;&gt; 文件 以追加的方式，把命令正确输出到指定的文件或设备中 标准错误输出重定向 错误命令 2&gt;文件 以覆盖的方式，把命令错误输出到指定的文件或设备中 错误命令 2&gt;&gt;文件 以追加的方式，把命令错误输出到指定的文件或设备中 ​ 输出重定向2 符号 作用 命令 &gt; 文件 2&gt;&amp;1 以覆盖的方式，把正确输出和错误输出都保存到同一个文件中 命令 &gt;&gt; 文件 2&gt;&amp;1 以追加的方式，把正确输出和错误输出都保存到同一个文件中 命令 &amp;&gt; 文件 以覆盖的方式，把正确输出和错误输出都保存到同一个文件中 命令 &amp;&gt;&gt; 文件 以追加的方式，把正确输出和错误输出都保存到同一个文件中 命令&gt;&gt;文件1 2&gt;&gt;文件2 以追加的方式，把正确输出保存到文件1中，错误输出保存到文件2中 输出重定向3特殊用法：ls &amp;&gt;/dev/null不保存输出结果，将输出结果丢入垃圾箱 5.输入重定向 wc[选项][文件名] -c 统计字节数 -w 统计单词数 -l 统计行数 例子：输入：wc &lt; a.txt输出：1(行数) 2(单词数) 4(字节数) 特殊用法 统计某个文件夹下有多少文件ls 文件夹名 |wc -w 6.多命令顺序执行 多命令执行符 格式 作用 ; 命令1;命令2 多个命令顺序执行，命令之间没有 任何逻辑联系 &amp;&amp; 命令1&amp;&amp;命令2 逻辑与；当命令1正确执行，命令2才会执行；当命令1执行不正确，命令2不会执行 \ \ 命令1 \ \ 命令2 逻辑或；当命令1执行不正确，则执行命令2；当命令1执行正确，命令2不执行 硬盘数据复制 dd if=输入文件 of=输出文件 bs=字节数 count=个数 选项 if=输入文件 指定源文件或源设备 of=输出文件 指定目标文件或目标设备 bs=字节数 指定一次输入/输出多少字节，即把这些字节看作一个数据块 count=个数 指定输入/输出多少个数据块 例子：date;dd if=/dev/zero of=/root/testfile bs=1k count=100000;date; 7.管道符 命令1 | 命令2命令1的正确输出作为命令2的操作对象 例子 ll -a /etc/ | more netstat -an|grep “ESTABLISHED” 8.grep命令 grep[选项]”搜索内容” 文件名 选项 -i：忽略大小写 -n：输出行号 -v：反向查找 –color=auto 搜索出的关键字用颜色显示 例子 grep -n –color=auto “phone” readme.txt 9.通配符 通配符 作用 ？ 匹配一个任意字符 * 匹配0个或任意多个字符，也就是匹配任何内容 [] 匹配括号中任意字符。例如：[abc]代表一定匹配一个字符，或者是a，或者是b，或者是c [-] 匹配括号中任意一个字符。代表一个范围。例如：[a-z]代表匹配26个英文字母中任意一个小写字母 [^] 逻辑非，表示匹配不是括号内的一个字符。例如代[ ^0-9 ]表匹配一个不是数字的字符 10.进程 查看进程 ps -ef查看所有进程 ps -aux查看正在运行的进程 杀死进程 kill -9 进程id 11.重启系统 关机 poweroff shutdown -h now init 0 重启 reboot init 6 设置系统启动方式 vi /etc/inittab 1id:3:initdefault: 3 是以字符界面启动5 是以图形化界面启动 12.磁盘操作 显示系统的磁盘空间用量 df -h //显示磁盘分区信息 mkfs.ext4 /dev/sdb1 //格式化具体磁盘分区 fdisk -l //查看磁盘分区 fdisk /dev/sdb1 //查看具体的磁盘信息 du -h -s 目录 //查看目录使用大小 挂载 mount -t vfat /dev/sdb1 /media/umnt //挂载 mount -o remount rw / //重新挂载，或者将根目录以读写方式重新加载 umount /media/umnt //卸载 文件系统修复 fsck -y /dev/sda1 (修复的可以是分区也可以是目录，最好在单用户模式下使用) 13.用户和组的操作 账户 超级账户 root uid=0 普通账户 uid&gt;=500 系统账户 uid=1~499 /etc/passwd 保存账户的信息 /etc/shadow 保存账户密码信息 /root root家目录 /home/xxx 普通用户 xxx 的家目录 添加和删除用户 useradd 用户名 //创建用户 -u 指定uid -d 指定宿主目录 -s 指定使用shell -e 指定用户过期时间 -g 指定基本组 -G 指定附加组 userdel 用户名 //删除用户，不删除用户目录 -r 连用户目录一起删除 用户组操作 gpasswd -a tom jerry //将tom添加到jerry组 gpasswd -d tom jerry //将tom移出jerry组 groups tom //查看tom在哪个组 修改用户密码 passwd 用户名 修改用户权限 usermod -L 用户名 //锁定用户，禁止登录 usermod -U 用户名 ///解锁用户 切换用户 su 用户名 //切换到指定用户]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>grep</tag>
+        <tag>history</tag>
+        <tag>kill</tag>
+        <tag>df</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux压缩包操作，查找命令]]></title>
+    <url>%2FLinux%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[Linux压缩包操作，查找命令 压缩包操作，查找命令1.打包压缩 打 tar/tar.gz 包 -z 压缩 -c 打包 -x 解包 -f 必须要 -C 指定解包位置 -v 输出信息 tar -zcvf down.tar ./Download 将Download打包到当前目录 tar -zxvf down.tar 将down.tar解压到当前目录 zip 包 unzip 解包 1unzip text.zip #将text.zip解压到当前目录下 zip 打包 1zip text.zip note/ Download/ -r #将note Download 文件夹打包成text.zip包 2.查找 查找命令所在路径 which zip 查找命令安装路径 whereis ls 查找文件-效率很快(用的是数据库) locate httpd.conf #查找文件所在路径 updatedb #更新数据库 查找文件-效率较低 find / -name zip]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>压缩包</tag>
+        <tag>查找命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux文件操作]]></title>
+    <url>%2FLinux%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[Linux文件操作 linux文件操作1.创建文件和目录 mkdir /home/file 创建空文件夹 mkdir -p /home/file/picture 递归创建空文件夹 touch /home/file/a.txt 创建空文件 vi /home/file/a.txt 创建空文件，并进入编辑模式 2.查看文件 cat 文件名 查看所有文件内容 -n 查看所有文件内容，显示行号 tail 文件名 查看文件最后10行数据 -20 查看文件最后20行数据 -f 实时监控文件内容 head 文件名 查看文件头10行数据 -20 查看文件前20行数据 more 文件名 以百分比的形式查看文件内容，不可回滚 less 文件名 查看文件内容，可以回滚 3.复制文件 cp /usr/a /home/b 将文件a复制到文件夹/home/b中 cp -r /home/file /home/file1 将文件夹file复制到file1中 4.移动文件 mv /home/a /home/b 5.删除文件 rm 文件名 删除文件 -r 删除目录 -f 强制删除 -rf 强制删除文件目录]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux防火墙、软件安装管理]]></title>
+    <url>%2FLinux%E9%98%B2%E7%81%AB%E5%A2%99%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[Linux防火墙，软件安装 防火墙，软件安装管理1.防火墙操作 防火墙的启动与停止 service iptables start 启动防火墙服务 service iptables stop 关闭防火墙 service iptables restart 重启防火墙 开放某个端口通过防火墙 vi /etc/sysconfig/iptables 编辑添加指定端口 2.设置服务开机启动 chkconfig xxx on 1chkconfig tomcat on 开机启动tomcat chkconfig xxx of chkconfig tomcat off 禁止开机启动 查看某个服务是否开机启动 chkconfig tomcat --list 3.rpm软件安装 二进制包直接解压，配置 /etc/profile 配置文件就能使用 rpm 安装 -i install的意思 -q query查询 -a all所有 -v 显示附加信息 -h 安装时输出标记”#” –test 只对安装进行测试，并不实际安装 –nodeps 不检查软件之间的依赖关系，加入此选项可能会导致软件不可用 –force 忽略软件包及软件冲突 –replacepkgs 强制重新安装已经安装的软件包 –prefix 将软件包安装到指定的路径下 –percent 以百分比的形式输出安装的进度 –exclueddocs 不安装软件包中的说明文件 –includedocs 安装软件包，包含说明文件 re&gt;m -ivh nc.rpm #安装示例 rpm 校验包 rpm -Vp 软件包名 rpm 检查更新包 rpm -Uvh mysql-community-release-el6-5.noarch.rpm rpm 删除包 rmp -e mysql-community-release-el6-5.noarch.rpm 4.yum 安装软件包 安装 yum install package1 安装软件package1 yum groupinstall group1 安装程序组group1 更新和升级 yum -y update 升级所有包，改变软件设置和系统设置，系统版本内核都升级 yum -y upgrade 升级所有包，不改变软件设置和系统设置，系统版本升级，内核不变 yum update package1 更新软件package1 yum upgrade package1 更新软件package1 yum check-update 检查可更新的程序 yum groupupdate group1 更新程序组group1 查找和显示 yum info package1 显示package1安装包信息 yum list 显示所有已经安装和可以安装的程序包 yum list package1 显示package1安装包情况 yum grouplist 显示所有已经安装和可以安装的程序组 yum groupinfo group1 显示程序组group1信息 yum search string 根据关键字string查找安装包 删除程序 yum remove/erase package1 删除程序package1 yum groupremove group1 删除程序组group1 yum deplist package1 查看程序package1依赖情况 清除缓存 yum clean packages 清除缓存目录下的软件包 yum clean headers 清除缓存目录下的headers yum clean all 清除缓存目录下所有的旧软件包 yum makecache 重新构建缓存 5.源码包安装 解压源码包 找到源码包下的configure，并执行 [root@centos6 bashdb-4.4-0.94]# ./configure 当configure执行成功时，会在当前目录下生成Makefile文件 使用make命令编译源码 [root@centos6 bashdb-4.4-0.94]# make make install 安装包 [root@centos6 bashdb-4.4-0.94]# make install]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>软件安装</tag>
+        <tag>防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringCloud-2-服务提供与调用]]></title>
+    <url>%2FSpringCloud-2-%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E4%B8%8E%E8%B0%83%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[服务提供与调用]]></content>
+      <categories>
+        <category>springcloud</category>
+      </categories>
+      <tags>
+        <tag>springcloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringCloud(1)-注册与发现(Eureka)]]></title>
+    <url>%2FSpringCloud-1-%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0-Eureka%2F</url>
+    <content type="text"><![CDATA[使用Eureka实现注册中心 什么是注册中心注册中心就相当于一个管家，当我们的系统随着业务规模越来越大时，系统之间的相互调用也会越来越复杂。而且各个子系统出于高可用的目的，可能会有多个实例，当某个子系统出现了故障，要自动切换到备用的系统。注册中心就是处理这些问题的。 项目搭建创建父项目创建一个maven项目，作为父项目。删除src目录，只留pom文件。 修改pom文件，引入springboot与springcloud依赖 123456789101112131415161718192021222324252627282930313233343536373839404142&lt;parent&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.1.3.RELEASE&lt;/version&gt;&lt;/parent&gt;&lt;groupId&gt;com.zhangjava.cloud2&lt;/groupId&gt;&lt;artifactId&gt;cloud2&lt;/artifactId&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;packaging&gt;pom&lt;/packaging&gt;&lt;properties&gt; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt; &lt;java.version&gt;1.8&lt;/java.version&gt; &lt;spring-cloud.version&gt;Greenwich.RELEASE&lt;/spring-cloud.version&gt;&lt;/properties&gt;&lt;!-- springcloud版本 --&gt;&lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt; &lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt; &lt;type&gt;pom&lt;/type&gt; &lt;scope&gt;import&lt;/scope&gt; &lt;/dependency&gt; &lt;/dependencies&gt;&lt;/dependencyManagement&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 注意springcloud与springboot的版本号要对应。父项目要修改打包方式为pom: &lt;packaging&gt;pom&lt;/packaging&gt; 创建注册中心创建springboot module，修改pom继承自cloud2 12345678910111213141516171819202122232425&lt;parent&gt; &lt;groupId&gt;com.zhangjava.cloud2&lt;/groupId&gt; &lt;artifactId&gt;cloud2&lt;/artifactId&gt; &lt;version&gt;1.0&lt;/version&gt;&lt;/parent&gt;&lt;artifactId&gt;register&lt;/artifactId&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;name&gt;register&lt;/name&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;!-- 注意这是 server --&gt; &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt;&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt; 修改application.properties配置文件 12345678910111213#端口号server.port=8085#服务名称spring.application.name=eureka-register#地址eureka.instance.hostname=localhost#禁止自己注册自己eureka.client.register-with-eureka=false#禁止自己获取注册信息eureka.client.fetch-registry=false#向外暴露注册地址eureka.client.service-url.defaultZone=http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/ 在启动类上加入@EnableEurekaServer注解即可。 启动项目后，访问localhost:8085，看到如下页面，表示启动成功。 创建服务提供者创建springboot module，修改pom继承自cloud2 12345678910111213141516171819202122232425262728293031&lt;parent&gt; &lt;groupId&gt;com.zhangjava.cloud2&lt;/groupId&gt; &lt;artifactId&gt;cloud2&lt;/artifactId&gt; &lt;version&gt;1.0&lt;/version&gt;&lt;/parent&gt;&lt;artifactId&gt;server&lt;/artifactId&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;name&gt;server&lt;/name&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;!-- 注意这是 client --&gt; &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt; &lt;/dependency&gt; &lt;!-- client端要加web，否则启动报错 --&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt;&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt; 修改application.properties配置文件 123456#端口号server.port=8086#名称spring.application.name=server#register注册地址eureka.client.service-url.defaultZone=http://localhost:8085/eureka/ 在启动类上加入@EnableDiscoveryClient注解。 启动项目，刷新localhost:8085页面，如果看到如下图所示，表示注册成功]]></content>
+      <categories>
+        <category>springcloud</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+        <tag>springcloud</tag>
+        <tag>eureka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[什么是springcloud]]></title>
+    <url>%2F%E4%BB%80%E4%B9%88%E6%98%AFspringcloud%2F</url>
+    <content type="text"><![CDATA[SpringCloud简介 Spring Cloud简介官方定义Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线）。分布式系统的协调导致了样板模式, 使用Spring Cloud开发人员可以快速地支持实现这些模式的服务和应用程序。他们将在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心，以及Cloud Foundry等托管平台。 大白话基于SpringBoot的一套快速搭建分布式微服务的框架，有很多现成的组件可以开箱即用。 与SpringBoot的版本依赖关系 SpringBoot SpringCloud 1.2.x Angel版本 1.3.x Brixton版本 1.4.x Camden版本 1.5.x Dalston版本、Edgware版本 2.0.x Finchley版本、Greenwich版本 使用maven引用包时，一定要注意版本的对应关系，否则会启动报错 成员组件]]></content>
+      <categories>
+        <category>springcloud</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+        <tag>springcloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[springboot mybatis druid多数据源配置]]></title>
     <url>%2Fspringboot-mybatis-druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[多数据源配置 项目结构最近项目用到了多数据源，在此处记录一下具体的配置信息。 目前是两个数据库，paas 和 robot，根据数据库，将项目的包结构分为如下图所示，方便管理及后期维护。 项目配置主配置文件 application.properties1234567891011121314151617181920212223242526272829303132333435#连接池配置spring.datasource.type=com.alibaba.druid.pool.DruidDataSourcespring.datasource.driverClassName=com.mysql.jdbc.Driver#robot库spring.datasource.robot.url=jdbc:mysql://localhost:3306/robot?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=truespring.datasource.robot.username=rootspring.datasource.robot.password=spring.datasource.robot.initialSize=1spring.datasource.robot.maxActive=20spring.datasource.robot.minIdle=1spring.datasource.robot.maxWait=60000spring.datasource.robot.timeBetweenEvictionRunsMillis=60000spring.datasource.robot.minEvictableIdleTimeMillis=300000spring.datasource.robot.validationQuery=select 1spring.datasource.robot.testWhileIdle=true#pass库spring.datasource.paas.url=jdbc:mysql://localhost:3306/paas?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=truespring.datasource.paas.username=rootspring.datasource.paas.password=spring.datasource.paas.initialSize=1spring.datasource.paas.maxActive=20spring.datasource.paas.minIdle=1spring.datasource.paas.maxWait=60000spring.datasource.paas.timeBetweenEvictionRunsMillis=60000spring.datasource.paas.minEvictableIdleTimeMillis=300000spring.datasource.paas.validationQuery=select 1spring.datasource.paas.testWhileIdle=true#实体类扫描路径mybatis.type-aliases-package=com.huayunworld.parser.flowChart.model.db#mybatis配置文件路径mybatis.config-location=classpath:mybatis-config.xml 数据源robot配置1234567891011121314151617181920212223242526272829303132@Configuration@MapperScan(basePackages = "com.huayunworld.parser.flowChart.dao.robot", sqlSessionFactoryRef = "robotSqlSessionFactory")public class RobotDruidConfig &#123; private static final String MAPPER = "classpath:mapping/robot/*.xml"; @ConfigurationProperties("spring.datasource.robot") @Primary @Bean(name = "robotDataSource") public DruidDataSource robotDataSource() &#123; return new DruidDataSource(); &#125; @Bean(name = "robotTransactionManager") @Primary public DataSourceTransactionManager robotTransactionManager() &#123; return new DataSourceTransactionManager(robotDataSource()); &#125; @Bean(name = "robotSqlSessionFactory") @Primary public SqlSessionFactory masterSqlSessionFactory(@Qualifier("robotDataSource") DataSource dataSource) throws Exception &#123; final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean(); sessionFactoryBean.setDataSource(dataSource); sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER)); return sessionFactoryBean.getObject(); &#125;&#125; 数据源paas配置1234567891011121314151617181920212223242526272829@Configuration@MapperScan(basePackages = "com.huayunworld.parser.flowChart.dao.paas", sqlSessionFactoryRef = "paasSqlSessionFactory")public class PaasDruidConfig &#123; private static final String MAPPER = "classpath:mapping/paas/*.xml"; @ConfigurationProperties("spring.datasource.paas") @Bean(name = "paasDataSource") public DruidDataSource paasDataSource() &#123; return new DruidDataSource(); &#125; @Bean(name = "paasTransactionManager") public DataSourceTransactionManager masterTransactionManager() &#123; return new DataSourceTransactionManager(paasDataSource()); &#125; @Bean(name = "paasSqlSessionFactory") public SqlSessionFactory masterSqlSessionFactory(@Qualifier("paasDataSource") DataSource dataSource) throws Exception &#123; final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean(); sessionFactoryBean.setDataSource(dataSource); sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER)); return sessionFactoryBean.getObject(); &#125;&#125; 测试使用时，与之前的mybatis的使用方法一样，直接注入dao层对象即可。spring会根据不同包下的dao，连接不同的数据库。 测试代码： 12345678910111213141516171819202122@RunWith(SpringRunner.class)@SpringBootTest(classes = RbcParserApplication.class)@Transactionalpublic class RbcParserApplicationTests &#123; // robot库 @Resource private AttrMapper attrMapper; // paas库 @Resource private CallRecBotMapper callRecBotMapper; /** * 两个数据库同时测试 查询 */ @Test public void allDataSourceSelectTest() &#123; System.out.println(attrMapper.selectAllData()); System.out.println(callRecBotMapper.selectAllData()); &#125; 输出结果： 通过测试可以看出，两个库分别连接成功了。]]></content>
