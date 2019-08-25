@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[elasticsearch 配置ik和拼音分词器]]></title>
+    <url>%2Felasticsearch-%E9%85%8D%E7%BD%AEik%E5%92%8C%E6%8B%BC%E9%9F%B3%E5%88%86%E8%AF%8D%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[elasticsearch配置ik和拼音分词器同时生效 下载分词器 ik分词器 拼音分词器 大家可以根据自己的elasticsearch 版本下载对应的分词器。 版本一定要下对，否则配置插件时，es启动会报错 本文演示所使用的es版本为6.5.0 安装分词器es安装分词器非常简单，直接将下载好的分词器解压，放入plugins目录就行，一图胜千言 测试分词器是否正常 es分词器安装后，需要重启，否则插件不生效。 测试ik分词器ik分词器有两种模式，大家可以自由选择。 ik_max_word最大化分词，将一句话的所有排列组合全部分词，如图所示 ik_smart智能分词，分词效果如下所示 测试拼音分词器拼音分词器的分词效果，如图所示 开始使用创建索引 123456789101112131415161718&#123; "index": &#123; "analysis": &#123; "analyzer": &#123; "ik_pinyin_analyzer": &#123; "type": "custom", "tokenizer": "ik_max_word", "filter": ["my_pinyin"] &#125; &#125;, "filter": &#123; "my_pinyin": &#123; "type": "pinyin" &#125; &#125; &#125; &#125;&#125; 创建mapping 123456789101112131415161718192021&#123; "engineer": &#123; "properties": &#123; "id": &#123; "type": "keyword" &#125;, "name": &#123; "type": "text", "analyzer": "ik_pinyin_analyzer" &#125;, "job": &#123; "type": "text", "analyzer": "ik_pinyin_analyzer" &#125;, "address": &#123; "type": "text", "analyzer": "ik_pinyin_analyzer" &#125; &#125; &#125;&#125; 插入文档数据 为方便测试，插入以下四条数据 123456789101112131415161718192021222324252627&#123; "id": "10001", "name": "张三", "job": "java开发工程师", "address": "北京市中关村"&#125;&#123; "id": "10002", "name": "李四", "job": "iOS工程师", "address": "北京市海淀区中关村e世界" &#125;&#123; "id": "10003", "name": "王五", "job": "android工程师", "address": "山西省太原市高新开发区"&#125;&#123; "id": "10004", "name": "赵六", "job": "数据库工程师", "address": "河北省"&#125; 查询使用文字查询 返回的查询结果(太长无法截图) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364&#123; "took": 12, "timed_out": false, "_shards": &#123; "total": 5, "successful": 5, "skipped": 0, "failed": 0 &#125;, "hits": &#123; "total": 4, "max_score": 2.781309, "hits": [ &#123; "_index": "test", "_type": "engineer", "_id": "et6Fx2wBy2XSSIAAvTdi", "_score": 2.781309, "_source": &#123; "id": "10002", "name": "李四", "job": "iOS工程师", "address": "北京市海淀区中关村e世界" &#125; &#125;, &#123; "_index": "test", "_type": "engineer", "_id": "e96Gx2wBy2XSSIAASzcE", "_score": 2.7094207, "_source": &#123; "id": "10003", "name": "王五", "job": "android工程师", "address": "山西省太原市高新开发区" &#125; &#125;, &#123; "_index": "test", "_type": "engineer", "_id": "eN6Dx2wBy2XSSIAA4Tfq", "_score": 1.7647985, "_source": &#123; "id": "10001", "name": "张三", "job": "java开发工程师", "address": "北京市中关村" &#125; &#125;, &#123; "_index": "test", "_type": "engineer", "_id": "fN6Hx2wBy2XSSIAAJjdC", "_score": 1.73723, "_source": &#123; "id": "10004", "name": "赵六", "job": "数据库工程师", "address": "河北省" &#125; &#125; ] &#125;&#125; 使用拼音查询 返回的结果： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152&#123; "took": 9, "timed_out": false, "_shards": &#123; "total": 5, "successful": 5, "skipped": 0, "failed": 0 &#125;, "hits": &#123; "total": 3, "max_score": 1.2686434, "hits": [ &#123; "_index": "test", "_type": "engineer", "_id": "eN6Dx2wBy2XSSIAA4Tfq", "_score": 1.2686434, "_source": &#123; "id": "10001", "name": "张三", "job": "java开发工程师", "address": "北京市中关村" &#125; &#125;, &#123; "_index": "test", "_type": "engineer", "_id": "et6Fx2wBy2XSSIAAvTdi", "_score": 0.8630462, "_source": &#123; "id": "10002", "name": "李四", "job": "iOS工程师", "address": "北京市海淀区中关村e世界" &#125; &#125;, &#123; "_index": "test", "_type": "engineer", "_id": "fN6Hx2wBy2XSSIAAJjdC", "_score": 0.28743857, "_source": &#123; "id": "10004", "name": "赵六", "job": "数据库工程师", "address": "河北省" &#125; &#125; ] &#125;&#125; 配置了拼音分词器后，可以查询到读音相似的文本信息，如输入汉字 一起或者拼音 yiqi，会返回读音都为 yiqi的文本信息，大家可以自行测试。]]></content>
+      <categories>
+        <category>elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>全文检索</tag>
+        <tag>ik分词器</tag>
+        <tag>拼音分词器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[线程池]]></title>
+    <url>%2F%E7%BA%BF%E7%A8%8B%E6%B1%A0%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>多线程</tag>
+        <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[activemq队列模式下的多个消费者问题]]></title>
     <url>%2Factivemq%E9%98%9F%E5%88%97%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E5%A4%9A%E4%B8%AA%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[关于使用activemq多个消费者遇到的一些问题 问题最近在项目中使用了activemq进行消息的异步传递，只有一个消费者时，系统可以正常运行，但当增加多个消费者时，却只有一个消费者进行消费，其他的消费者不消费。 原因activemq有一个机制，叫消息预读取，这个机制默认会读取1000条消息发往一个消费者中，当超过1000消息堆积时，才会继续读取剩下的消息发往另一个消费者中。当只有一个消费者时，这个机制可以提高效率，但有多个消费者时，就不合适了，会导致其他消费者闲置。 解决办法在客户端的连接上，拼接jms.prefetchPolicy.all=xxx，就可以调整消息预读取条数，当有多个消费者时，可以适当的调低这个参数，保证其他消费者也可以消费到，从而提高消费速度。 完整的连接示例（以spring boot为例）： 1spring.activemq.broker-url=tcp://localhost:61616?jms.prefetchPolicy.all=2]]></content>
