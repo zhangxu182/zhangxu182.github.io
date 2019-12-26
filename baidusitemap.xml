@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/activemq-jmsTemplate%E5%8F%91%E9%80%81%E5%BB%B6%E6%9C%9F%E6%B6%88%E6%81%AF/</loc>
+    <lastmod>2019-12-26T03:45:26.106Z</lastmod>
+    <data>
+        <display>
+        <title>activemq jmsTemplate发送延期消息</title>
+        <pubTime>2019-12-26T03:09:34.000Z</pubTime>
+        
+        <tag>activemq</tag>
+         
+        <tag>jmsTemplate</tag>
+         
+        <tag>延期消息</tag>
+         
+        <tag>延时消息</tag>
+         
+         
+           
+             
+              <breadCrumb title="springboot" url="https://www.zhangjava.com/categories/springboot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/springboot-activemq-%E5%90%8C%E6%97%B6%E6%94%AF%E6%8C%81topic%E5%92%8Cqueue%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2019-12-26T03:01:07.918Z</lastmod>
     <data>
