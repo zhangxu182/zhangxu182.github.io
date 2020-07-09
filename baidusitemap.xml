@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2020-07-09T07:46:33.282Z</lastmod>
+    <data>
+        <display>
+        <title>mysql主从配置</title>
+        <pubTime>2020-07-09T06:17:05.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>主从配置</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="https://www.zhangjava.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/springboot%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2020-01-02T15:36:48.336Z</lastmod>
     <data>
@@ -546,9 +568,9 @@
         
         <tag>NIO</tag>
          
-        <tag>Buffer</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Buffer</tag>
          
          
            
@@ -930,11 +952,11 @@
         <title>Channel通道</title>
         <pubTime>2018-05-29T08:43:37.000Z</pubTime>
         
+        <tag>Channel</tag>
+         
         <tag>NIO</tag>
          
         <tag>Java</tag>
-         
-        <tag>Channel</tag>
          
          
            
