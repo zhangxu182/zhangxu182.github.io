@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="shardingsphere,shardingjdbc,读写分离,分表,精确分片," />
+  <meta name="keywords" content="分表,shardingsphere,shardingjdbc,读写分离,精确分片," />
 
 
 
@@ -89,14 +89,14 @@
 
 
 <meta name="description" content="使用shardingsphere进行读写分离+精确分表">
-<meta name="keywords" content="shardingsphere,shardingjdbc,读写分离,分表,精确分片">
+<meta name="keywords" content="分表,shardingsphere,shardingjdbc,读写分离,精确分片">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shardingsphere读写分离+精确分片">
 <meta property="og:url" content="https://www.zhangjava.com/shardingsphere读写分离-精确分片/index.html">
 <meta property="og:site_name" content="张扎瓦的博客">
 <meta property="og:description" content="使用shardingsphere进行读写分离+精确分表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-12T13:32:31.688Z">
+<meta property="og:updated_time" content="2020-07-12T13:39:35.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shardingsphere读写分离+精确分片">
 <meta name="twitter:description" content="使用shardingsphere进行读写分离+精确分表">
@@ -351,7 +351,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-07-12T21:32:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-12T21:39:35+08:00">
                 2020-07-12
               </time>
             
@@ -422,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,588
+                  1,576
                 </span>
               
 
@@ -470,19 +470,13 @@
 <p>Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能组件能够灵活的以可插拔的方式进行扩展。 目前，数据分片、读写分离、多数据副本、数据加密、影子库压测等功能，以及 MySQL、PostgreSQL、SQLServer、Oracle 等 SQL 与协议的支持，均通过插件的方式织入项目。 开发者能够像使用积木一样定制属于自己的独特系统。Apache ShardingSphere 目前已提供数十个 SPI 作为系统的扩展点，仍在不断增加中。</p>
 <p>ShardingSphere 已于2020年4月16日成为 Apache 软件基金会的顶级项目。</p>
 <h2 id="常见的分库分表简介"><a href="#常见的分库分表简介" class="headerlink" title="常见的分库分表简介"></a>常见的分库分表简介</h2><ul>
-<li><p>垂直分表</p>
-<p>将一个大表的若干字段提取出来，拆分成多个小表</p>
-</li>
-<li><p>垂直分库<br>专库专表    数据库根据功能划分，如订单库，商品库</p>
-</li>
-<li><p>水平分表</p>
-<p>同一个表  拆分成结构相同的多个表，减少单表数据量</p>
-</li>
-<li><p>水平分库<br>同一个库，拆分成结构相同的多个库，减少单个数据库的数据量</p>
-</li>
+<li>垂直分表<br>将一个大表的若干字段提取出来，拆分成多个小表</li>
+<li>垂直分库<br>专库专表    数据库根据功能划分，如订单库，商品库</li>
+<li>水平分表<br>同一个表  拆分成结构相同的多个表，减少单表数据量</li>
+<li>水平分库<br>同一个库，拆分成结构相同的多个库，减少单个数据库的数据量</li>
 </ul>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>因为业务不是特别复杂，也没有字段特别多的表，所以使用水平分表，根据数据量划分，每张表的数据量控制在五六百万左右。分表方式采用时间后缀的方式区分，如：order_202007，order_202008。因为数据库的写入操作比较频繁(10分钟一次)，为了减少一个数据库的压力，降低由于数据更新导致的行锁，采用读写分离，即：主库负责写入操作，从库负责查询，主从通过bin-log方式进行数据同步。</p>
-<h2 id="开始干"><a href="#开始干" class="headerlink" title="开始干"></a>开始干</h2><h3 id="MySQL配置主从复制"><a href="#MySQL配置主从复制" class="headerlink" title="MySQL配置主从复制"></a>MySQL配置主从复制</h3><p>这一部分可以参考我的上一篇博客，地址：<a href="https://www.zhangjava.com/mysql主从配置/">https://www.zhangjava.com/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</a></p>
+<h2 id="开始干"><a href="#开始干" class="headerlink" title="开始干"></a>开始干</h2><h3 id="MySQL配置主从复制"><a href="#MySQL配置主从复制" class="headerlink" title="MySQL配置主从复制"></a>MySQL配置主从复制</h3><p>这一部分可以参考我的上一篇博客，地址：<a href="https://www.zhangjava.com/mysql主从配置/">mysql主从配置</a></p>
 <h3 id="springboot-shardingsphere配置"><a href="#springboot-shardingsphere配置" class="headerlink" title="springboot+shardingsphere配置"></a>springboot+shardingsphere配置</h3><h4 id="maven配置"><a href="#maven配置" class="headerlink" title="maven配置"></a>maven配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shardingsphere<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.0-RC1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="properties-配置"><a href="#properties-配置" class="headerlink" title="properties 配置"></a>properties 配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#sharding 分表配置</span><br><span class="line">#一个实体类对应多张表</span><br><span class="line">spring.main.allow-bean-definition-overriding=true</span><br><span class="line"></span><br><span class="line">#配置数据源，给数据源起名</span><br><span class="line">spring.shardingsphere.datasource.names=master,slave0</span><br><span class="line"></span><br><span class="line">#主库配置</span><br><span class="line">spring.shardingsphere.datasource.master.type=com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">spring.shardingsphere.datasource.master.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.shardingsphere.datasource.master.url=jdbc:mysql://192.168.0.43:3306/sas_hkdl?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=false</span><br><span class="line">spring.shardingsphere.datasource.master.username=root</span><br><span class="line">spring.shardingsphere.datasource.master.password=zhangxu</span><br><span class="line"></span><br><span class="line">#从库配置</span><br><span class="line">spring.shardingsphere.datasource.slave0.type=com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">spring.shardingsphere.datasource.slave0.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">spring.shardingsphere.datasource.slave0.url=jdbc:mysql://192.168.0.43:3307/sas_hkdl?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=false</span><br><span class="line">spring.shardingsphere.datasource.slave0.username=root</span><br><span class="line">spring.shardingsphere.datasource.slave0.password=zhangxu</span><br><span class="line"></span><br><span class="line">#配置读写分离</span><br><span class="line">spring.shardingsphere.sharding.master-slave-rules.ds.masterDataSourceName=master</span><br><span class="line">spring.shardingsphere.sharding.master-slave-rules.ds.slaveDataSourceNames=slave0</span><br><span class="line"></span><br><span class="line">#配置精确分表</span><br><span class="line">#范围分表 -- 按月</span><br><span class="line">spring.shardingsphere.sharding.tables.hkdl_upload_audio.actual-data-Nodes=ds.hkdl_upload_audio$&#123;[]&#125;</span><br><span class="line">#分片的主键</span><br><span class="line">spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.sharding-column=start_time</span><br><span class="line">#自定义精确分表的实现类</span><br><span class="line">spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.precise-algorithm-class-name=com.huayunworld.sas.web.conf.db.algorithm.month.MonthPreciseShardingAlgorithm</span><br><span class="line">#范围分表的实现类，用来查找符合查询范围内的表名</span><br><span class="line">spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.range-algorithm-class-name=com.huayunworld.sas.web.conf.db.algorithm.month.MonthRangeShardingAlgorithm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#打印sql语句</span><br><span class="line">spring.shardingsphere.props.sql.show=true</span><br></pre></td></tr></table></figure>
 <h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><blockquote>
@@ -556,13 +550,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/分表/" rel="tag"><i class="fa fa-tag"></i> 分表</a>
+          
             <a href="/tags/shardingsphere/" rel="tag"><i class="fa fa-tag"></i> shardingsphere</a>
           
             <a href="/tags/shardingjdbc/" rel="tag"><i class="fa fa-tag"></i> shardingjdbc</a>
           
             <a href="/tags/读写分离/" rel="tag"><i class="fa fa-tag"></i> 读写分离</a>
-          
-            <a href="/tags/分表/" rel="tag"><i class="fa fa-tag"></i> 分表</a>
           
             <a href="/tags/精确分片/" rel="tag"><i class="fa fa-tag"></i> 精确分片</a>
           

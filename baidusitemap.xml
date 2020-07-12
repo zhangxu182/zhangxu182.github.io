@@ -5,19 +5,19 @@
     
   <url>
     <loc>https://www.zhangjava.com/shardingsphere%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB-%E7%B2%BE%E7%A1%AE%E5%88%86%E7%89%87/</loc>
-    <lastmod>2020-07-12T13:32:31.688Z</lastmod>
+    <lastmod>2020-07-12T13:39:35.461Z</lastmod>
     <data>
         <display>
         <title>shardingsphere读写分离+精确分片</title>
         <pubTime>2020-07-09T14:55:09.000Z</pubTime>
         
+        <tag>分表</tag>
+         
         <tag>shardingsphere</tag>
          
         <tag>shardingjdbc</tag>
          
         <tag>读写分离</tag>
-         
-        <tag>分表</tag>
          
         <tag>精确分片</tag>
          
@@ -209,11 +209,11 @@
         <title>mybatis拦截器</title>
         <pubTime>2019-05-17T15:50:52.000Z</pubTime>
         
-        <tag>分表</tag>
-         
         <tag>mybatis</tag>
          
         <tag>拦截器</tag>
+         
+        <tag>分表</tag>
          
          
            
