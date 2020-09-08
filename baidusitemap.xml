@@ -4,8 +4,34 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/MySQL%E4%B8%BB%E4%BB%8E%E4%B8%8D%E5%90%8C%E6%AD%A5%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2020-09-08T10:19:40.146Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL主从不同步的处理方式</title>
+        <pubTime>2020-09-08T09:56:09.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>mysql主从同步</tag>
+         
+        <tag>mysql主从不同步</tag>
+         
+        <tag>mysql主从恢复同步</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="https://www.zhangjava.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2020-07-13T06:13:48.638Z</lastmod>
+    <lastmod>2020-07-13T06:22:05.968Z</lastmod>
     <data>
         <display>
         <title>mysql主从配置</title>
@@ -596,9 +622,9 @@
         
         <tag>NIO</tag>
          
-        <tag>Java</tag>
-         
         <tag>Buffer</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -980,11 +1006,11 @@
         <title>Channel通道</title>
         <pubTime>2018-05-29T08:43:37.000Z</pubTime>
         
-        <tag>Channel</tag>
-         
         <tag>NIO</tag>
          
         <tag>Java</tag>
+         
+        <tag>Channel</tag>
          
          
            

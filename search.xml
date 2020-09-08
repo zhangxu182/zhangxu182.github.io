@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL主从不同步的处理方式]]></title>
+    <url>%2FMySQL%E4%B8%BB%E4%BB%8E%E4%B8%8D%E5%90%8C%E6%AD%A5%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[MySQL主从不同步的恢复步骤 查看MySQL从库同步状态使用mysql命令行客户端，连接到从库MySQL，执行 1show slave status\G; 如果如下图所示，表示未同步，需要手动执行同步操作 下面介绍两种同步操作方式 方法1 方法1适用于主从库数据相差不大，或者要求数据可以不完全统一的情况，数据要求不严格的情况 使用命令行连接到MySQL 1mysql -uroot -p 先停止MySQL主从同步 1stop slave; 设置跳过复制错误 1set global sql_slave_skip_counter =1; 开启主从同步 1start slave; 具体流程如下图所示： 方法2 方法2适用于主从库数据相差较大，或者要求数据完全统一的情况 使用命令行连接主库，设置主库为只读状态，防止写入 1flush tables with read lock; 退出mysql命令行客户端 1exit; 备份主库的数据 1mysqldump -uroot -p --databases sas_hkdl &gt; mysql.bak.sql 连接mysql命令行客户端，查看主库状态，并记录下File 和 Position 参数的值，等下同步的时候需要用 1show master status; 使用scp命令，将备份的sql文件拷贝到从库服务 1scp mysql.bak.sql root@需要服务器ip地址:/tmp 连接从库的MySQL，停止数据库同步 1stop slave; 导入备份的sql文件到从库中 1source /tmp/mysql.bak.sql 重新设置主从同步 1change master to master_host = &apos;10.71.55.82&apos;, master_user = &apos;tongbu&apos;, master_port=3306, master_password=&apos;123456&apos;, master_log_file = &apos;mysqld-bin.000017&apos;, master_log_pos=1004224; 注意：这里的master_log_file和master_log_pos为主库 show master status 命令的 File和 Position值。 开启主从同步 1start slave; 查看同步状态 1show slave status\G; 连接主库的MySQL，关闭只读锁 1unlock tables;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>mysql主从同步</tag>
+        <tag>mysql主从不同步</tag>
+        <tag>mysql主从恢复同步</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[shardingsphere读写分离+精确分片]]></title>
     <url>%2Fshardingsphere%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB-%E7%B2%BE%E7%A1%AE%E5%88%86%E7%89%87%2F</url>
     <content type="text"><![CDATA[使用shardingsphere进行读写分离+精确分表 背景最近在做一个项目，这个项目的数据量比较大，有几张表会每天产生几十万条数据，其中一张表数据特别大，每天一百万左右，由于前期并未预估到如此大的数据量，还是单库单表，所以导致查询特别慢，有时候还会卡死，急需进行分库分表。 shardingsphere简介官网地址：https://shardingsphere.apache.org/index_zh.html Apache ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 JDBC、Proxy 和 Sidecar（规划中）这 3 款相互独立，却又能够混合部署配合使用的产品组成。 它们均提供标准化的数据分片、分布式事务和数据库治理功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。 Apache ShardingSphere 定位为关系型数据库中间件，旨在充分合理地在分布式的场景下利用关系型数据库的计算和存储能力，而并非实现一个全新的关系型数据库。 它通过关注不变，进而抓住事物本质。关系型数据库当今依然占有巨大市场，是各个公司核心业务的基石，未来也难于撼动，我们目前阶段更加关注在原有基础上的增量，而非颠覆。 Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能组件能够灵活的以可插拔的方式进行扩展。 目前，数据分片、读写分离、多数据副本、数据加密、影子库压测等功能，以及 MySQL、PostgreSQL、SQLServer、Oracle 等 SQL 与协议的支持，均通过插件的方式织入项目。 开发者能够像使用积木一样定制属于自己的独特系统。Apache ShardingSphere 目前已提供数十个 SPI 作为系统的扩展点，仍在不断增加中。 ShardingSphere 已于2020年4月16日成为 Apache 软件基金会的顶级项目。 常见的分库分表简介 垂直分表将一个大表的若干字段提取出来，拆分成多个小表 垂直分库专库专表 数据库根据功能划分，如订单库，商品库 水平分表同一个表 拆分成结构相同的多个表，减少单表数据量 水平分库同一个库，拆分成结构相同的多个库，减少单个数据库的数据量 解决办法因为业务不是特别复杂，也没有字段特别多的表，所以使用水平分表，根据数据量划分，每张表的数据量控制在五六百万左右。分表方式采用时间后缀的方式区分，如：order_202007，order_202008。因为数据库的写入操作比较频繁(10分钟一次)，为了减少一个数据库的压力，降低由于数据更新导致的行锁，采用读写分离，即：主库负责写入操作，从库负责查询，主从通过bin-log方式进行数据同步。 开始干MySQL配置主从复制这一部分可以参考我的上一篇博客，地址：mysql主从配置 springboot+shardingsphere配置maven配置12345&lt;dependency&gt; &lt;groupId&gt;org.apache.shardingsphere&lt;/groupId&gt; &lt;artifactId&gt;sharding-jdbc-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;4.0.0-RC1&lt;/version&gt;&lt;/dependency&gt; properties 配置1234567891011121314151617181920212223242526272829303132333435363738#sharding 分表配置#一个实体类对应多张表spring.main.allow-bean-definition-overriding=true#配置数据源，给数据源起名spring.shardingsphere.datasource.names=master,slave0#主库配置spring.shardingsphere.datasource.master.type=com.alibaba.druid.pool.DruidDataSourcespring.shardingsphere.datasource.master.driver-class-name=com.mysql.jdbc.Driverspring.shardingsphere.datasource.master.url=jdbc:mysql://192.168.0.43:3306/sas_hkdl?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=falsespring.shardingsphere.datasource.master.username=rootspring.shardingsphere.datasource.master.password=zhangxu#从库配置spring.shardingsphere.datasource.slave0.type=com.alibaba.druid.pool.DruidDataSourcespring.shardingsphere.datasource.slave0.driver-class-name=com.mysql.jdbc.Driverspring.shardingsphere.datasource.slave0.url=jdbc:mysql://192.168.0.43:3307/sas_hkdl?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=falsespring.shardingsphere.datasource.slave0.username=rootspring.shardingsphere.datasource.slave0.password=zhangxu#配置读写分离spring.shardingsphere.sharding.master-slave-rules.ds.masterDataSourceName=masterspring.shardingsphere.sharding.master-slave-rules.ds.slaveDataSourceNames=slave0#配置精确分表#范围分表 -- 按月spring.shardingsphere.sharding.tables.hkdl_upload_audio.actual-data-Nodes=ds.hkdl_upload_audio$&#123;[]&#125;#分片的主键spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.sharding-column=start_time#自定义精确分表的实现类spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.precise-algorithm-class-name=com.huayunworld.sas.web.conf.db.algorithm.month.MonthPreciseShardingAlgorithm#范围分表的实现类，用来查找符合查询范围内的表名spring.shardingsphere.sharding.tables.hkdl_upload_audio.table-strategy.standard.range-algorithm-class-name=com.huayunworld.sas.web.conf.db.algorithm.month.MonthRangeShardingAlgorithm#打印sql语句spring.shardingsphere.props.sql.show=true 代码实现 类 PreciseShardingAlgorithm 的泛型，就是上面配置的分表主键的数据类型 MonthPreciseShardingAlgorithm 类 123456789101112131415161718192021222324252627/** * 分表策略，根据日期分表 * * @author zhangxu * @date 2020/6/28 11:45 */@Slf4jpublic class MonthPreciseShardingAlgorithm implements PreciseShardingAlgorithm&lt;Timestamp&gt; &#123; private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyyMM", Locale.CHINA); //表名分隔符 private static final String SEPERATOR = "_"; @Override public String doSharding(Collection&lt;String&gt; collection, PreciseShardingValue&lt;Timestamp&gt; shardingValue) &#123; String loginTableName = shardingValue.getLogicTableName(); Timestamp createTime = shardingValue.getValue(); try &#123; String timeStr = SEPERATOR + createTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(MONTH_FORMAT); log.info("进入表：&#123;&#125;", loginTableName + timeStr); return loginTableName + timeStr; &#125; catch (Exception e) &#123; log.error("解析创建时间异常，分表失败", e); &#125; return loginTableName; &#125;&#125; MonthRangeShardingAlgorithm 类 12345678910111213141516171819202122232425262728293031323334/** * 范围查询策略 * * @author zhangxu * @date 2020/6/28 11:53 */@Slf4jpublic class MonthRangeShardingAlgorithm implements RangeShardingAlgorithm&lt;Timestamp&gt; &#123; private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyyMM", Locale.CHINA); //表名分隔符 private static final String SEPERATOR = "_"; @Override public Collection&lt;String&gt; doSharding(Collection&lt;String&gt; collection, RangeShardingValue&lt;Timestamp&gt; rangeShardingValue) &#123; Collection&lt;String&gt; tableSet = Sets.newConcurrentHashSet(); String logicTableName = rangeShardingValue.getLogicTableName(); Range&lt;Timestamp&gt; dates = rangeShardingValue.getValueRange(); // 获取开始时间 LocalDate startTime = dates.lowerEndpoint().toLocalDateTime().toLocalDate(); // 获取结束时间 LocalDate endTime = dates.upperEndpoint().toLocalDateTime().toLocalDate(); // 计算传入的月份跟当前月份的差值 Period period = Period.between(startTime, endTime); int subMonths = period.getMonths() + 1; for (int i = 0; i &lt;= subMonths; i++) &#123; tableSet.add(logicTableName + SEPERATOR + MONTH_FORMAT.format(startTime)); startTime = startTime.plusMonths(1); &#125; log.info("要查询的表集合:&#123;&#125;", tableSet); return tableSet; &#125;&#125; 需要注意的一点，每次查询或者插入时，都必须传入分表字段，否则无法分表。]]></content>
@@ -465,9 +479,9 @@
         <category>NIO</category>
       </categories>
       <tags>
-        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
+        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -479,8 +493,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Java</tag>
         <tag>Buffer</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
