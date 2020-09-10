@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MongoDB副本集方式搭建集群]]></title>
+    <url>%2FMongoDB%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[MongoDB副本集方式搭建集群 演示机器ip ip 角色 192.168.0.56 master 192.168.0.61 slave 192.168.0.74 slave MongoDB安装从官网下载mongo 解压程序包 1tar -zxvf mongodb-linux-x86_64-4.2.1.tgz 解压完成后，会在前目录下生成 mongodb-linux-x86_64-4.2.1目录 进入mongodb-linux-x86_64-4.2.1目录，创建两个目录 12mkdir -p data/dbmkdir logs 创建配置文件 mongod.conf，编辑保存以下内容 123456789101112#数据目录dbpath=/home/sas/soft/mongodb-linux-x86_64-rhel62-4.2.1/data/db#日志目录logpath=/home/sas/soft/mongodb-linux-x86_64-rhel62-4.2.1/logs/mongod.log#端口号port=27017#绑定ip，一般为当前机器的ipbind_ip=192.168.0.56#设置后台运行fork=true#设置以复制集的方式启动，这个值可以自己随便设置，多个节点需要保持一致replSet=rs0 进入bin目录，启动mongo 1./mongod -f ../mongod.conf 其他两台机器也是相同的操作。 MongoDB复制原理mongodb的复制至少需要两个节点。其中一个是主节点，负责处理客户端请求，其余的都是从节点，负责复制主节点上的数据。 mongodb各个节点常见的搭配方式为：一主一从、一主多从。 主节点记录在其上的所有操作oplog，从节点定期轮询主节点获取这些操作，然后对自己的数据副本执行这些操作，从而保证从节点的数据与主节点一致。 MongoDB复制结构图如下所示： 以上结构图中，客户端从主节点读取数据，在客户端写入数据到主节点时， 主节点与从节点进行数据交互保障数据的一致性。 副本集特征： N 个节点的集群 任何节点可作为主节点 所有写入操作都在主节点上 自动故障转移 自动恢复 复制集设置使用命令行连接mongo主节点 1./mongo 192.168.0.56:27017 正常情况下，命令行的前缀是没有任何东西的，像这样： 如果连接到命令行后，发现命令行前缀像这样： 表示已经开启了复制集了，如果想重新清除复制集，需要使用非复制集的方式重新启动mongo，并删除local库。 具体操作如下： kill掉当前的mongo进程 使用vim编辑mongod.conf 文件，删除 replSet=rs0 重新启动mongo，使用命令行连接到mongo，执行 12use local;db.dropDatabase(); 再次kill掉当前的mongo进程 使用vim编辑mongod.conf文件，添加 replSet=rs0 重启mongo 这样就可以重新设置复制集了。 执行 1rs.initiate(); 初始化副本集 然后再执行： 1rs.add("192.168.0.74:27017") 添加其他节点为从节点 至此就完成设置了。 验证数据同步连接主节点，执行 1rs.isMaster() 可以查看当前节点是否是主节点 如果是从节点，会返回这样： 向主节点写入一条数据，测试数据是否同步 12use testdb.a.insert(&#123;"a":1&#125;) 从节点查看数据： 123show dbsuse testdb.a.find() 如果执行 show dbs 时，返回如下信息： 需要先执行 1rs.slaveOk() 再执行命令 验证节点切换首先查看哪个节点是主节点，随便连接一个mongo，执行rs.isMaster() 可以看到现在192.168.0.56是主节点 将主节点的mongo进程kill掉 然后随便连接一个mongo，再次执行rs.isMaster() 可以看到现在master节点已经切换到192.168.0.74了。 SpringBoot连接mongo集群修改application.properties 配置文件，改为如下配置： 1spring.data.mongodb.uri=mongodb://192.168.0.43:27017,192.168.0.44:27017,192.168.0.45:27017/asr]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>mongo</tag>
+        <tag>副本集</tag>
+        <tag>集群</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Redis哨兵集群搭建]]></title>
+    <url>%2FRedis%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[搭建Redis哨兵主从复制集群，SpringBoot连接哨兵集群 redis哨兵最少需要三台服务器搭建（节点选举master，半数+1），其中master负责数据写入，slave节点进行数据同步。原则上，slave节点不允许写入数据。当有一台服务宕掉后，哨兵会从剩余的机器中选举一台作为master，从而达到服务高可用的目的。 接下来我使用3台虚拟机来演示一下具体的配置步骤。 ip 角色 192.168.0.74 master 192.168.0.61 slave 192.168.0.56 slave 安装redisredis安装比较简单，从官网下载安装包，解压编译就可以直接使用。 解压程序包 1tar -zxvf redis-5.0.7.tar.gz 解压完成后，会在前目录下生成 redis-5.0.7目录 编译生成可执行文件 进入 redis-5.0.7/src 目录，执行 1make 编译完成后，会在当前目录下生成可执行文件 图中绿色的文件，就是编译后生成的可执行文件 配置redis.conf使用vim打开redis.conf文件，修改如下配置 1234567891011121314#设置绑定的ip，一般为当前机器的ip地址，也可以设置为 0.0.0.0bind 192.168.0.74#是否设置后台执行daemonize yes#设置日志文件位置logfile &quot;/usr/local/redis/redis.log&quot;#设置工作目录dir /data/redis#设置同步数据时的密码masterauth 123456#客户端连接密码requirepass 123456#打开AOF持久化appendonly yes 从节点配置增加： 12# 主节点ip，端口replicaof 192.168.0.74 6379 注意：配置logfile 和 dir 后，需要手动创建一下目录 配置sentinel.conf使用vim打开sentinel.conf文件，修改如下配置： 12345678910111213#设置是否后台运行daemonize yes#日志文件位置logfile &quot;/usr/local/redis/sentinel.log&quot;#设置工作目录dir &quot;/usr/local/redis/sentinel&quot;#设置监听的节点ip，端口号，选举节点需要哨兵同意个数#判断master失效至少需要2个sentinel同意，建议设置为n/2+1，n为sentinel个数sentinel monitor mymaster 192.168.0.74 6379 2#设置同步时的密码sentinel auth-pass mymaster 123456#master节点无法访问30秒，才算宕机，重新选举master节点sentinel down-after-milliseconds mymaster 30000 其他两台的sentinel配置与此相同。 注意：配置logfile 和 dir 后，需要手动创建一下目录 启动服务先启动redis，启动命令如下： 1redis-server ../redis.conf 依次启动三个机器的redis，再依次启动三个哨兵，启动命令如下 1redis-sentinel ../sentinel.conf 验证数据同步演示随便连接一台redis，输入 info replication，查看节点状态 可以看到当前节点的角色和master节点的ip 连接到master节点，执行 1set test1 1 再随便连接一个slave节点，执行 1keys * 可以看到节点数据已经同步了 动图演示： 宕机重新切换节点验证将master节点的redis进程杀掉，等待十几秒，随便连接一个从节点，执行info replication，会从剩余的两个节点中选出一个master。 动图演示： SpringBoot 连接哨兵集群SpringBoot连接redis哨兵集群比较简单，修改application.properties 配置文件为： 12345#哨兵集群名称spring.redis.sentinel.master=mymaster#哨兵节点，多个节点使用英文的,分割spring.redis.sentinel.nodes=10.71.55.81:26379,10.71.55.82:26379,10.71.55.83:26379spring.redis.password=123456 注意：此处连接不能使用6379端口号，需要连接哨兵的端口号26379]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis哨兵</tag>
+        <tag>Redis集群</tag>
+        <tag>Redis主从复制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL主从不同步的处理方式]]></title>
     <url>%2FMySQL%E4%B8%BB%E4%BB%8E%E4%B8%8D%E5%90%8C%E6%AD%A5%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[MySQL主从不同步的恢复步骤 查看MySQL从库同步状态使用mysql命令行客户端，连接到从库MySQL，执行 1show slave status\G; 如果如下图所示，表示未同步，需要手动执行同步操作 下面介绍两种同步操作方式 方法1 方法1适用于主从库数据相差不大，或者要求数据可以不完全统一的情况，数据要求不严格的情况 使用命令行连接到MySQL 1mysql -uroot -p 先停止MySQL主从同步 1stop slave; 设置跳过复制错误 1set global sql_slave_skip_counter =1; 开启主从同步 1start slave; 具体流程如下图所示： 方法2 方法2适用于主从库数据相差较大，或者要求数据完全统一的情况 使用命令行连接主库，设置主库为只读状态，防止写入 1flush tables with read lock; 退出mysql命令行客户端 1exit; 备份主库的数据 1mysqldump -uroot -p --databases sas_hkdl &gt; mysql.bak.sql 连接mysql命令行客户端，查看主库状态，并记录下File 和 Position 参数的值，等下同步的时候需要用 1show master status; 使用scp命令，将备份的sql文件拷贝到从库服务 1scp mysql.bak.sql root@需要服务器ip地址:/tmp 连接从库的MySQL，停止数据库同步 1stop slave; 导入备份的sql文件到从库中 1source /tmp/mysql.bak.sql 重新设置主从同步 1change master to master_host = &apos;10.71.55.82&apos;, master_user = &apos;tongbu&apos;, master_port=3306, master_password=&apos;123456&apos;, master_log_file = &apos;mysqld-bin.000017&apos;, master_log_pos=1004224; 注意：这里的master_log_file和master_log_pos为主库 show master status 命令的 File和 Position值。 开启主从同步 1start slave; 查看同步状态 1show slave status\G; 连接主库的MySQL，关闭只读锁 1unlock tables;]]></content>
@@ -479,9 +505,9 @@
         <category>NIO</category>
       </categories>
       <tags>
+        <tag>Channel</tag>
         <tag>NIO</tag>
         <tag>Java</tag>
-        <tag>Channel</tag>
       </tags>
   </entry>
   <entry>
@@ -493,8 +519,8 @@
       </categories>
       <tags>
         <tag>NIO</tag>
-        <tag>Buffer</tag>
         <tag>Java</tag>
+        <tag>Buffer</tag>
       </tags>
   </entry>
   <entry>

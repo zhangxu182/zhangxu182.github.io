@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://www.zhangjava.com/MongoDB%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2020-09-10T02:32:57.030Z</lastmod>
+    <data>
+        <display>
+        <title>MongoDB副本集方式搭建集群</title>
+        <pubTime>2020-09-10T02:31:04.000Z</pubTime>
+        
+        <tag>mongo</tag>
+         
+        <tag>副本集</tag>
+         
+        <tag>集群</tag>
+         
+         
+           
+             
+              <breadCrumb title="MongoDB" url="https://www.zhangjava.com/categories/MongoDB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.zhangjava.com/Redis%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2020-09-10T02:29:09.122Z</lastmod>
+    <data>
+        <display>
+        <title>Redis哨兵集群搭建</title>
+        <pubTime>2020-09-10T02:25:15.000Z</pubTime>
+        
+        <tag>Redis哨兵</tag>
+         
+        <tag>Redis集群</tag>
+         
+        <tag>Redis主从复制</tag>
+         
+         
+           
+             
+              <breadCrumb title="Redis" url="https://www.zhangjava.com/categories/Redis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.zhangjava.com/MySQL%E4%B8%BB%E4%BB%8E%E4%B8%8D%E5%90%8C%E6%AD%A5%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/</loc>
     <lastmod>2020-09-08T10:19:40.146Z</lastmod>
     <data>
@@ -622,9 +670,9 @@
         
         <tag>NIO</tag>
          
-        <tag>Buffer</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Buffer</tag>
          
          
            
@@ -1006,11 +1054,11 @@
         <title>Channel通道</title>
         <pubTime>2018-05-29T08:43:37.000Z</pubTime>
         
+        <tag>Channel</tag>
+         
         <tag>NIO</tag>
          
         <tag>Java</tag>
-         
-        <tag>Channel</tag>
          
          
            
